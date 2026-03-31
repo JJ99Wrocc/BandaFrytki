@@ -94,16 +94,7 @@ object-fit: contain;
     
 }
 
-.header-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 123125;
-  pointer-events: none;
-  transition: transform 0.1s ease-out; /* Szybka reakcja na puls audio */
-}
+
 
     .header-overlay {
   position: absolute;
@@ -162,7 +153,7 @@ object-fit: contain;
   /* Zostawiam Twoje pozycjonowanie */
   position: absolute;
   left: 50%; 
-  top: 85%; /* Obniżyłem o 5%, żeby nie wchodził na napis */
+
   transform: translate(-50%, -50%);
   z-index: 123123123132123;
 
@@ -182,9 +173,10 @@ object-fit: contain;
   
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' style='font-size:30px'><text y='30'>🍔</text></svg>"), pointer !important;
   pointer-events: auto;
-  
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
+  top: -100% !important;
+animation: buttonPulse 3s infinite ease-in-out;
 }
 
 /* EFEKT PO NAJECHANIU (HOVER) */
@@ -219,15 +211,80 @@ object-fit: contain;
 
 /* ANIMACJA PULSOWANIA (BEZ NAJECHANIA) */
 
-.header-button {
-    animation: buttonPulse 3s infinite ease-in-out;
-}
+
 
 /* --- RESPONSYWNE UKRYWANIE FILMÓW --- */
 
 /* 1200px+ : Pokazujemy wszystkie 4 (standard) */
 
 /* Poniżej 1200px: Pokazujemy tylko 3 filmy */
+
+/* Kontener dla przycisku i strzałki */
+.button-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 85%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Odstęp między buttonem a strzałką */
+  z-index: 9999;
+}
+
+/* Styl strzałek (Chevron) */
+.scroll-arrow-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.chevron {
+  position: absolute;
+  width: 20px;
+  height: 4px;
+  opacity: 0;
+  transform: scale3d(0.5, 0.5, 0.5);
+  animation: move 3s ease-out infinite;
+}
+
+.chevron:first-child {
+  animation: move 3s ease-out 1s infinite;
+}
+
+.chevron:nth-child(2) {
+  animation: move 3s ease-out 2s infinite;
+}
+
+.chevron:before,
+.chevron:after {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 51%;
+  background: #fff; /* Kolor strzałki */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.chevron:before {
+  left: 0;
+  transform: skew(0deg, 30deg);
+}
+
+.chevron:after {
+  right: 0;
+  width: 50%;
+  transform: skew(0deg, -30deg);
+}
+
+/* Animacja płynięcia w dół */
+
+
 @media (max-width: 1200px) {
   .video-wrapper:nth-child(4) {
     display: none;
@@ -246,7 +303,6 @@ object-fit: contain;
     font-size: 5rem;
   }
 }
-
 /* Poniżej 576px: Pokazujemy tylko 1 główny film */
 @media (max-width: 576px) {
   /* Kontener musi być relatywny, żeby absolutne dzieci się w nim trzymały */
@@ -261,7 +317,7 @@ object-fit: contain;
     position: absolute;
     inset: 0;
     width: 100%;
-    height: 90%;
+    height: 100%;
     opacity: 0;
     display: block !important; /* Wymuszamy pokazywanie (usuwa display: none) */
     transition: opacity 0.8s ease-in-out;
@@ -285,9 +341,17 @@ object-fit: contain;
   .unmute-button{
     position: absolute;
     left: 50%;
-    top: 65%;
+    top: 35%;
    transform: translate(-50%, -50%);
 
+  }
+    .button-wrapper {
+    top: 82%;
+    gap: 15px;
+  }
+  
+  .scroll-arrow-container {
+    transform: scale(0.8); /* Trochę mniejsza na telefonie */
   }
 }/* ANIMACJA KINOWA */
 @keyframes buttonPulse {
@@ -305,5 +369,22 @@ object-fit: contain;
     opacity: 0.9; 
     transform: scale(1.02); 
     filter: blur(1px) brightness(1.2);
+  }
+}
+@keyframes move {
+  25% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 1;
+    transform: translateY(15px);
+  }
+  67% {
+    opacity: 1;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(45px) scale3d(0.5, 0.5, 0.5);
   }
 }

@@ -125,7 +125,15 @@ const handleVideoEnd = (id) => {
         <p className="header-description">Świat pełen zabawy</p>
       </div>
       
-      <button className="header-button">Zgarnij drop</button>
+    <div className="button-wrapper">
+  <button className="header-button">Zgarnij drop</button>
+  {/* Strzałka zagnieżdżona w wrapperze */}
+  <div className="scroll-arrow-container">
+    <div className="chevron"></div>
+    <div className="chevron"></div>
+    <div className="chevron"></div>
+  </div>
+</div>
     </section>
   );
 }
