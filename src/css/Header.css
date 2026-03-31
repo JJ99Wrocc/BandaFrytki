@@ -248,49 +248,40 @@ object-fit: contain;
 
 /* Poniżej 576px: Pokazujemy tylko 1 główny film */
 @media (max-width: 576px) {
-  .video-wrapper:nth-child(2),
-  .video-wrapper:nth-child(3),
-  .video-wrapper:nth-child(4) {
-    display: none;
+  /* Kontener musi być relatywny, żeby absolutne dzieci się w nim trzymały */
+  .video-grid {
+    position: relative;
+    display: block; /* Wyłączamy flexa na mobile */
+    height: 100vh;
   }
 
-  /* Na komórce 1 film zawsze musi być "active", żeby nie było szarych filtrów */
-  .video-wrapper:nth-child(1) {
-    flex: 1;
-    filter: none;
-  }
-  .video-wrapper:nth-child(1) .header-video-item {
-    filter: none;
-    object-fit: cover; /* Na 1 filmie lepiej wygląda cover */
-  }
-
-  .header-title {
-    font-size: 3rem;
-  }
-  .header-button {
-    top: 80%;
-    padding: 12px 25px;
-  }
+  /* WSZYSTKIE filmy na mobile leżą jeden na drugim */
   .video-wrapper {
     position: absolute;
     inset: 0;
+    width: 100%;
+    height: 100%;
     opacity: 0;
-    transition: opacity 1.2s ease-in-out; /* Dłuższy czas dla kinowego efektu */
+    display: block !important; /* Wymuszamy pokazywanie (usuwa display: none) */
+    transition: opacity 0.8s ease-in-out;
     z-index: 1;
   }
 
+  /* Tylko ten z klasą .active jest widoczny */
   .video-wrapper.active {
     opacity: 1;
     z-index: 2;
   }
 
+  /* Resetujemy filtry na mobile, żeby obraz był czysty */
   .header-video-item {
     object-fit: cover !important;
     filter: none !important;
   }
-  
-}
-/* ANIMACJA KINOWA */
+
+  .header-title { font-size: 3rem; }
+  .header-button { top: 80%; padding: 12px 25px; }
+}/* ANIMACJA KINOWA */
 @keyframes buttonPulse {
   0% { border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 0 0px rgba(255, 255, 255, 0); }
   50% { border-color: rgba(255, 255, 255, 0.6); box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); }

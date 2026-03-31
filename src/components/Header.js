@@ -17,24 +17,27 @@ const Header = () => {
   ];
 
   // --- LOGIKA MOBILE (PONIŻEJ 576px) ---
-  const handleVideoEnd = (id) => {
+const handleVideoEnd = (id) => {
     if (window.innerWidth < 576) {
       const currentIndex = videos.findIndex(v => v.id === id);
       const nextIndex = (currentIndex + 1) % videos.length;
       const nextId = videos[nextIndex].id;
 
       const nextVid = videoRefs.current[nextId];
+      
       if (nextVid) {
-        nextVid.currentTime = 0;
-        // Jeśli użytkownik wcześniej odciszył, następny też ma być głośno i szybko
+        // Ważne: najpierw przygotuj wideo
         nextVid.muted = !isUnmuted;
         nextVid.playbackRate = isUnmuted ? 1.0 : 0.5;
-        nextVid.play();
+        
+        // Zmień stan, aby CSS przełączył widoczność
+        setActiveVideoId(nextId);
+
+        // Odpal wideo z lekkim opóźnieniem lub natychmiast
+        nextVid.play().catch(error => console.error("Autoplay failed:", error));
       }
-      setActiveVideoId(nextId);
     }
   };
-
   // --- LOGIKA KLIKNIĘCIA (WSPÓLNA ALE ROZDZIELONA) ---
   const handleVideoClick = (id) => {
     const video = videoRefs.current[id];
@@ -87,7 +90,7 @@ const Header = () => {
             <video 
               ref={el => videoRefs.current[video.id] = el}
               autoPlay 
-              muted={true} // Zawsze true na starcie dla przeglądarki
+              muted={activeVideoId === video.id ? !isUnmuted : true}// Zawsze true na starcie dla przeglądarki
               loop={window.innerWidth >= 576}  
               playsInline 
               className="header-video-item"
