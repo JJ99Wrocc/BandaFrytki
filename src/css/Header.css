@@ -5,29 +5,34 @@
   overflow: hidden;
   background: #000;
 }
-
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 100%);
+  z-index: 10;
+  pointer-events: none; 
+}
 .video-grid {
   display: flex;
   width: 100%;
   height: 100%;
-  /* Dodajemy płynne przejście dla zmiany szerokości dzieci */
   transition: all 0.6s cubic-bezier(0.25, 1, 0.3, 1);
 }
 
 .video-wrapper {
-  /* Zmieniamy ze sztywnego 25% na elastyczne flex: 1 */
   flex: 1; 
   height: 100%;
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  /* Animacja szerokości */
   transition: flex 0.6s ease, filter 0.6s ease;
 }
 
-/* --- TO DODAŁEM: Efekt rozszerzania i zmiany na contain --- */
 
-/* Gdy film jest aktywny, zajmuje znacznie więcej miejsca */
 .video-wrapper.active {
 object-fit: contain;
 }
@@ -38,22 +43,19 @@ object-fit: contain;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(25px) brightness(0.4); /* Mocny blur i przyciemnienie */
-  transform: scale(1.15); /* Lekkie powiększenie, żeby nie było widać krawędzi wideo */
+  filter: blur(25px) brightness(0.4);
+  transform: scale(1.15);
   z-index: 1;
 }   
-/* Tylko w stanie active zmieniamy na contain, żeby nie ucinało */
+
 .video-wrapper.active .header-video-item {
   object-fit: contain; 
   filter: grayscale(0%) brightness(1);
 }
 
-/* Gdy jakikolwiek film jest aktywny, nieaktywne (idle) się zwężają jeszcze bardziej */
 .video-grid:has(.active) .video-wrapper.idle {
   flex: 0.5;
 }
-
-/* --- RESZTA TWOICH STYLI (BEZ ZMIAN) --- */
 
 .video-wrapper.idle .header-video-item {
   filter: grayscale(100%) brightness(0.6);
@@ -64,8 +66,8 @@ object-fit: contain;
   width: 100%;
   height: 100%;
   position: relative;
-  z-index: 2; /* Musi być wyżej niż blur */
-  object-fit: cover; /* Na idle wypełnia 25% szerokości */
+  z-index: 2;
+  object-fit: cover; 
   transition: all 0.6s ease;
 }
 .unmute-overlay {
@@ -93,9 +95,6 @@ object-fit: contain;
   font-weight: bold;
     
 }
-
-
-
     .header-overlay {
   position: absolute;
   top: 50%;
@@ -108,7 +107,6 @@ object-fit: contain;
 }
 
 .header-title {
-  /* Czcionka musi być bardzo gruba, żeby przezroczystość zadziałała */
   font-family: 'Inter', 'Arial Black', sans-serif;
   font-weight: 900;
   font-size: clamp(3rem, 15vw, 12rem);
@@ -116,23 +114,10 @@ object-fit: contain;
   margin: 0;
   letter-spacing: -0.05em;
   line-height: 0.8;
-
-  /* --- EFEKT PRZEZROCZYSTEGO SZKŁA (GLASS-THRU) --- */
-  
-  /* 1. Sprawiamy, że tekst jest przezroczysty */
   color: rgba(255, 255, 255, 0.05); 
-  
-  /* 2. Dodajemy obrys, żeby litery nie zniknęły całkiem */
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
-  
-  /* 3. KLUCZ: Blend mode sprawia, że film pod spodem reaguje z tekstem */
-  /* 'difference' zrobi efekt negatywu, 'overlay' rozświetli film wewnątrz liter */
   mix-blend-mode: overlay; 
-
-  /* 4. Dodajemy blask, który "rozlewa się" z filmu na litery */
   filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
-
-  /* Animacja delikatnego pulsowania przezroczystości */
   animation: cinematicBreath 4s ease-in-out infinite;
 }
 
@@ -141,36 +126,27 @@ object-fit: contain;
   font-size: clamp(0.7rem, 2vw, 1rem);
   text-transform: uppercase;
   letter-spacing: 0.6em;
-  color: rgba(255, 255, 255, 0.5); /* Półprzezroczysty biały */
-  
-  /* Delikatny efekt rozmycia tła pod opisem */
+  color: rgba(255, 255, 255, 0.5);
   padding: 5px 15px;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(5px);
   display: inline-block;
 }
 .header-button {
-  /* Zostawiam Twoje pozycjonowanie */
   position: absolute;
   left: 50%; 
-
   transform: translate(-50%, -50%);
   z-index: 123123123132123;
-
-  /* --- STYLIZACJA PRO --- */
   padding: 18px 45px;
   font-family: 'Inter', sans-serif;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 4px;
   color: #fff;
-  background: rgba(255, 255, 255, 0.05); /* Przezroczyste tło */
-  
-  /* Efekt szklany */
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 4px; /* Delikatne zaokrąglenie, bardziej pro niż kółko */
-  
+  border-radius: 4px;  
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' style='font-size:30px'><text y='30'>🍔</text></svg>"), pointer !important;
   pointer-events: auto;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -179,16 +155,13 @@ object-fit: contain;
 animation: buttonPulse 3s infinite ease-in-out;
 }
 
-/* EFEKT PO NAJECHANIU (HOVER) */
 .header-button:hover {
   background: #fff;
-  color: #000; /* Odwrócenie kolorów */
-  letter-spacing: 6px; /* Rozszerzenie napisu przy hoverze */
+  color: #000; 
+  letter-spacing: 6px;
   box-shadow: 0 0 50px rgba(255, 255, 255, 0.4);
-  transform: translate(-50%, -60%) scale(1.05); /* Lekkie uniesienie */
+  transform: translate(-50%, -60%) scale(1.05); 
 }
-
-/* "BŁYSK" PRZECHODZĄCY PRZEZ PRZYCISK */
 .header-button::before {
   content: '';
   position: absolute;
@@ -208,18 +181,6 @@ animation: buttonPulse 3s infinite ease-in-out;
 .header-button:hover::before {
   left: 100%;
 }
-
-/* ANIMACJA PULSOWANIA (BEZ NAJECHANIA) */
-
-
-
-/* --- RESPONSYWNE UKRYWANIE FILMÓW --- */
-
-/* 1200px+ : Pokazujemy wszystkie 4 (standard) */
-
-/* Poniżej 1200px: Pokazujemy tylko 3 filmy */
-
-/* Kontener dla przycisku i strzałki */
 .button-wrapper {
   position: absolute;
   left: 50%;
@@ -228,11 +189,9 @@ animation: buttonPulse 3s infinite ease-in-out;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px; /* Odstęp między buttonem a strzałką */
+  gap: 20px; 
   z-index: 9999;
 }
-
-/* Styl strzałek (Chevron) */
 .scroll-arrow-container {
   display: flex;
   flex-direction: column;
@@ -267,75 +226,124 @@ animation: buttonPulse 3s infinite ease-in-out;
   top: 0;
   height: 100%;
   width: 51%;
-  background: #fff; /* Kolor strzałki */
+  background: #fff;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
-
 .chevron:before {
   left: 0;
   transform: skew(0deg, 30deg);
 }
-
 .chevron:after {
   right: 0;
   width: 50%;
   transform: skew(0deg, -30deg);
 }
 
-/* Animacja płynięcia w dół */
+/* --- PRELOADER (EKRAN ŁADOWANIA) --- */
+.preloader {
+  position: fixed;
+  inset: 0;
+  background: #000; /* Głęboka czerń na start */
+  z-index: 9999999; /* Musi być wyżej niż wszystko inne */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.8s ease-out, visibility 0.8s;
+}
 
+.loader-content {
+  text-align: center;
+  color: white;
+}
 
+.loader-logo {
+  width: clamp(120px, 20vw, 200px); /* Elastyczna wielkość logo */
+  margin-bottom: 30px;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+  animation: logoPulse 2s infinite ease-in-out;
+}
+
+.loader-bar {
+  width: 200px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 auto 15px auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.loader-bar::after {
+  content: '';
+  position: absolute;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  box-shadow: 0 0 15px #fff;
+  animation: loadingAnim 1.5s infinite linear;
+}
+
+.loader-content p {
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* Animacja pulsowania logo */
+@keyframes logoPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+/* Animacja paska ładowania */
+@keyframes loadingAnim {
+  0% { left: -100%; }
+  50% { left: 0%; }
+  100% { left: 100%; }
+}
 @media (max-width: 1200px) {
   .video-wrapper:nth-child(4) {
     display: none;
   }
 }
 
-/* Poniżej 768px: Pokazujemy tylko 2 filmy */
 @media (max-width: 768px) {
   .video-wrapper:nth-child(3),
   .video-wrapper:nth-child(4) {
     display: none;
   }
-  
-  /* Zmniejszamy napis, żeby zmieścił się przy 2 filmach */
   .header-title {
     font-size: 5rem;
   }
 }
-/* Poniżej 576px: Pokazujemy tylko 1 główny film */
+
 @media (max-width: 576px) {
-  /* Kontener musi być relatywny, żeby absolutne dzieci się w nim trzymały */
   .video-grid {
     position: relative;
-    display: block; /* Wyłączamy flexa na mobile */
+    display: block; 
     height: 100vh;
   }
-
-  /* WSZYSTKIE filmy na mobile leżą jeden na drugim */
   .video-wrapper {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     opacity: 0;
-    display: block !important; /* Wymuszamy pokazywanie (usuwa display: none) */
+    display: block !important; 
     transition: opacity 0.8s ease-in-out;
     z-index: 1;
   }
-
-
   .video-wrapper.active {
     opacity: 1;
     z-index: 2;
   }
-
-
   .header-video-item {
     object-fit: cover !important;
     filter: none !important;
   }
-
   .header-title { font-size: 3rem; }
   .header-button { top: 80%; padding: 12px 25px; }
   .unmute-button{
@@ -351,9 +359,9 @@ animation: buttonPulse 3s infinite ease-in-out;
   }
   
   .scroll-arrow-container {
-    transform: scale(0.8); /* Trochę mniejsza na telefonie */
+    transform: scale(0.8); 
   }
-}/* ANIMACJA KINOWA */
+}
 @keyframes buttonPulse {
   0% { border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 0 0px rgba(255, 255, 255, 0); }
   50% { border-color: rgba(255, 255, 255, 0.6); box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); }

@@ -2,11 +2,10 @@ import React, { useRef, useState } from 'react';
 import '../css/Header.css';
 
 const Header = () => {
-  // Stan aktywności (ID 1 na start dla mobile, null dla desktopu żeby wszystko było wolne)
   const [activeVideoId, setActiveVideoId] = useState(window.innerWidth < 576 ? 1 : null);
-  // Flaga unmute tylko dla trybu mobile
   const [isUnmuted, setIsUnmuted] = useState(false);
-  
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadedVideo, setLoadedVideo] = useState(0);
   const videoRefs = useRef({});
 
   const videos = [
@@ -15,8 +14,19 @@ const Header = () => {
     { id: 3, src: 'KradziezAuta.mp4' },
     { id: 4, src: 'WkRuchala.mp4' }
   ];
-
-  // --- LOGIKA MOBILE (PONIŻEJ 576px) ---
+// POPRAWIONA LOGIKA
+const handleVideoLoad = () => {
+  setLoadedVideo(prev => {
+    const nextCount = prev + 1;
+    // Jeśli załadował się przynajmniej jeden film (ID 1), zdejmujemy loader
+    if (nextCount >= 1) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000); // 1 sekunda na nacieszenie oka logo
+    }
+    return nextCount;
+  });
+};
 const handleVideoEnd = (id) => {
     if (window.innerWidth < 576) {
       const currentIndex = videos.findIndex(v => v.id === id);
@@ -72,16 +82,27 @@ const handleVideoEnd = (id) => {
 
   return (
     <section className="header" id="header-section">
+        {isLoading && (
+  <div className="preloader">
+    <div className="loader-content">
+      <img src={process.env.PUBLIC_URL + '/LogoBanda.webp'} className="loader-logo" alt="Logo" />
+      <div className="loader-bar"></div>
+      <p>Ładowanie świata zabawy...</p>
+    </div>
+  </div>
+)}
       <div className="video-grid">
         {videos.map((video) => (
           <div 
             key={video.id}
+            onCanPlay={video.id === 1 ? handleVideoLoad : undefined}
             className={`video-wrapper ${activeVideoId === video.id ? 'active' : 'idle'}`}
             onClick={() => handleVideoClick(video.id)}
           >
             {/* 1. WARSTWA TŁA (Tylko desktop) */}
             {activeVideoId === video.id && window.innerWidth >= 576 && (
               <video autoPlay loop muted playsInline className="video-background-blur">
+                <source src={`${process.env.PUBLIC_URL}/videos/${video.src}`} type="video/webm" />
                 <source src={`${process.env.PUBLIC_URL}/videos/${video.src}`} type="video/mp4" />
               </video>
             )}
@@ -104,7 +125,9 @@ const handleVideoEnd = (id) => {
               }} 
               onEnded={() => handleVideoEnd(video.id)}
             >
+              <source src={`${process.env.PUBLIC_URL}/videos/${video.src}`} type="video/webm" />
               <source src={`${process.env.PUBLIC_URL}/videos/${video.src}`} type="video/mp4" />
+
             </video>
 
             {/* PRZYCISK UNMUTE */}
