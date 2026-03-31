@@ -85,6 +85,7 @@ object-fit: contain;
 }
 
 .unmute-button {
+
   padding: 10px 20px;
   background: white;
   border: none;
@@ -260,20 +261,20 @@ object-fit: contain;
     position: absolute;
     inset: 0;
     width: 100%;
-    height: 100%;
+    height: 90%;
     opacity: 0;
     display: block !important; /* Wymuszamy pokazywanie (usuwa display: none) */
     transition: opacity 0.8s ease-in-out;
     z-index: 1;
   }
 
-  /* Tylko ten z klasą .active jest widoczny */
+
   .video-wrapper.active {
     opacity: 1;
     z-index: 2;
   }
 
-  /* Resetujemy filtry na mobile, żeby obraz był czysty */
+
   .header-video-item {
     object-fit: cover !important;
     filter: none !important;
@@ -281,6 +282,13 @@ object-fit: contain;
 
   .header-title { font-size: 3rem; }
   .header-button { top: 80%; padding: 12px 25px; }
+  .unmute-button{
+    position: absolute;
+    left: 50%;
+    top: 65%;
+   transform: translate(-50%, -50%);
+
+  }
 }/* ANIMACJA KINOWA */
 @keyframes buttonPulse {
   0% { border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 0 0px rgba(255, 255, 255, 0); }
