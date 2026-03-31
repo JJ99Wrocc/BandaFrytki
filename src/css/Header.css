@@ -1,0 +1,310 @@
+.header {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-grid {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  /* Dodajemy płynne przejście dla zmiany szerokości dzieci */
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.3, 1);
+}
+
+.video-wrapper {
+  /* Zmieniamy ze sztywnego 25% na elastyczne flex: 1 */
+  flex: 1; 
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  /* Animacja szerokości */
+  transition: flex 0.6s ease, filter 0.6s ease;
+}
+
+/* --- TO DODAŁEM: Efekt rozszerzania i zmiany na contain --- */
+
+/* Gdy film jest aktywny, zajmuje znacznie więcej miejsca */
+.video-wrapper.active {
+object-fit: contain;
+}
+.video-background-blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(25px) brightness(0.4); /* Mocny blur i przyciemnienie */
+  transform: scale(1.15); /* Lekkie powiększenie, żeby nie było widać krawędzi wideo */
+  z-index: 1;
+}   
+/* Tylko w stanie active zmieniamy na contain, żeby nie ucinało */
+.video-wrapper.active .header-video-item {
+  object-fit: contain; 
+  filter: grayscale(0%) brightness(1);
+}
+
+/* Gdy jakikolwiek film jest aktywny, nieaktywne (idle) się zwężają jeszcze bardziej */
+.video-grid:has(.active) .video-wrapper.idle {
+  flex: 0.5;
+}
+
+/* --- RESZTA TWOICH STYLI (BEZ ZMIAN) --- */
+
+.video-wrapper.idle .header-video-item {
+  filter: grayscale(100%) brightness(0.6);
+  transition: filter 0.6s ease;
+}
+
+.header-video-item {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2; /* Musi być wyżej niż blur */
+  object-fit: cover; /* Na idle wypełnia 25% szerokości */
+  transition: all 0.6s ease;
+}
+.unmute-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.2);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 11111;
+}
+
+.video-wrapper:hover .unmute-overlay {
+  opacity: 1;
+}
+
+.unmute-button {
+  padding: 10px 20px;
+  background: white;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+    
+}
+
+.header-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 123125;
+  pointer-events: none;
+  transition: transform 0.1s ease-out; /* Szybka reakcja na puls audio */
+}
+
+    .header-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 100;
+  width: 100%;
+  pointer-events: none;
+}
+
+.header-title {
+  /* Czcionka musi być bardzo gruba, żeby przezroczystość zadziałała */
+  font-family: 'Inter', 'Arial Black', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 15vw, 12rem);
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: -0.05em;
+  line-height: 0.8;
+
+  /* --- EFEKT PRZEZROCZYSTEGO SZKŁA (GLASS-THRU) --- */
+  
+  /* 1. Sprawiamy, że tekst jest przezroczysty */
+  color: rgba(255, 255, 255, 0.05); 
+  
+  /* 2. Dodajemy obrys, żeby litery nie zniknęły całkiem */
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+  
+  /* 3. KLUCZ: Blend mode sprawia, że film pod spodem reaguje z tekstem */
+  /* 'difference' zrobi efekt negatywu, 'overlay' rozświetli film wewnątrz liter */
+  mix-blend-mode: overlay; 
+
+  /* 4. Dodajemy blask, który "rozlewa się" z filmu na litery */
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+
+  /* Animacja delikatnego pulsowania przezroczystości */
+  animation: cinematicBreath 4s ease-in-out infinite;
+}
+
+.header-description {
+  margin-top: 20px;
+  font-size: clamp(0.7rem, 2vw, 1rem);
+  text-transform: uppercase;
+  letter-spacing: 0.6em;
+  color: rgba(255, 255, 255, 0.5); /* Półprzezroczysty biały */
+  
+  /* Delikatny efekt rozmycia tła pod opisem */
+  padding: 5px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  display: inline-block;
+}
+.header-button {
+  /* Zostawiam Twoje pozycjonowanie */
+  position: absolute;
+  left: 50%; 
+  top: 85%; /* Obniżyłem o 5%, żeby nie wchodził na napis */
+  transform: translate(-50%, -50%);
+  z-index: 123123123132123;
+
+  /* --- STYLIZACJA PRO --- */
+  padding: 18px 45px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05); /* Przezroczyste tło */
+  
+  /* Efekt szklany */
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px; /* Delikatne zaokrąglenie, bardziej pro niż kółko */
+  
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' style='font-size:30px'><text y='30'>🍔</text></svg>"), pointer !important;
+  pointer-events: auto;
+  
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+/* EFEKT PO NAJECHANIU (HOVER) */
+.header-button:hover {
+  background: #fff;
+  color: #000; /* Odwrócenie kolorów */
+  letter-spacing: 6px; /* Rozszerzenie napisu przy hoverze */
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -60%) scale(1.05); /* Lekkie uniesienie */
+}
+
+/* "BŁYSK" PRZECHODZĄCY PRZEZ PRZYCISK */
+.header-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: all 0.6s;
+}
+
+.header-button:hover::before {
+  left: 100%;
+}
+
+/* ANIMACJA PULSOWANIA (BEZ NAJECHANIA) */
+
+.header-button {
+    animation: buttonPulse 3s infinite ease-in-out;
+}
+
+/* --- RESPONSYWNE UKRYWANIE FILMÓW --- */
+
+/* 1200px+ : Pokazujemy wszystkie 4 (standard) */
+
+/* Poniżej 1200px: Pokazujemy tylko 3 filmy */
+@media (max-width: 1200px) {
+  .video-wrapper:nth-child(4) {
+    display: none;
+  }
+}
+
+/* Poniżej 768px: Pokazujemy tylko 2 filmy */
+@media (max-width: 768px) {
+  .video-wrapper:nth-child(3),
+  .video-wrapper:nth-child(4) {
+    display: none;
+  }
+  
+  /* Zmniejszamy napis, żeby zmieścił się przy 2 filmach */
+  .header-title {
+    font-size: 5rem;
+  }
+}
+
+/* Poniżej 576px: Pokazujemy tylko 1 główny film */
+@media (max-width: 576px) {
+  .video-wrapper:nth-child(2),
+  .video-wrapper:nth-child(3),
+  .video-wrapper:nth-child(4) {
+    display: none;
+  }
+
+  /* Na komórce 1 film zawsze musi być "active", żeby nie było szarych filtrów */
+  .video-wrapper:nth-child(1) {
+    flex: 1;
+    filter: none;
+  }
+  .video-wrapper:nth-child(1) .header-video-item {
+    filter: none;
+    object-fit: cover; /* Na 1 filmie lepiej wygląda cover */
+  }
+
+  .header-title {
+    font-size: 3rem;
+  }
+  .header-button {
+    top: 80%;
+    padding: 12px 25px;
+  }
+  .video-wrapper {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out; /* Dłuższy czas dla kinowego efektu */
+    z-index: 1;
+  }
+
+  .video-wrapper.active {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  .header-video-item {
+    object-fit: cover !important;
+    filter: none !important;
+  }
+  
+}
+/* ANIMACJA KINOWA */
+@keyframes buttonPulse {
+  0% { border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 0 0px rgba(255, 255, 255, 0); }
+  50% { border-color: rgba(255, 255, 255, 0.6); box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); }
+  100% { border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 0 0px rgba(255, 255, 255, 0); }
+}
+@keyframes cinematicBreath {
+  0%, 100% { 
+    opacity: 0.7; 
+    transform: scale(1); 
+    filter: blur(0px) brightness(1);
+  }
+  50% { 
+    opacity: 0.9; 
+    transform: scale(1.02); 
+    filter: blur(1px) brightness(1.2);
+  }
+}
