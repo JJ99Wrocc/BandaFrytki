@@ -17,30 +17,40 @@ function Product() {
     const [zoomStyle, setZoomStyle] = useState({display : 'none'});
 
   const handleMouseMove = (e) => {
-    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
-    
-    // Pozycja kursora/palca wewnątrz obrazka (procentowo)
-    const x = ((e.pageX - left - window.scrollX) / width) * 100;
-    const y = ((e.pageY - top - window.scrollY) / height) * 100;
+  const rect = e.currentTarget.getBoundingClientRect();
+  
+  // Pobieramy pozycję dotyku lub myszki względem OKNA PRZEGLĄDARKI
+  const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+  const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
 
-    // Pozycja lupy (środek lupy na kursorze)
-    const posX = e.pageX - left - window.scrollX;
-    const posY = e.pageY - top - window.scrollY;
+  // Odejmujemy pozycję kontenera, żeby mieć współrzędne WEWNĄTRZ zdjęcia
+  const x = clientX - rect.left;
+  const y = clientY - rect.top;
 
-    setZoomStyle({
-      display: 'block',
-      left: `${posX}px`,
-      top: `${posY}px`,
-      backgroundImage: `url(${mainImage})`,
-      backgroundPosition: `${x}% ${y}%`,
-      backgroundSize: `${width * 2.5}px ${height * 2.5}px` // Powiększenie 2.5x
-    });
-  };
+  // Obliczamy procenty dla tła lupy
+  const percentX = (x / rect.width) * 100;
+  const percentY = (y / rect.height) * 100;
+
+  // OFFSET (Przesunięcie): 
+  // Na desktopie (0) lupa będzie idealnie pod kursorem.
+  // Na mobile (np. 100px) będzie nad palcem.
+  const isMobile = window.innerWidth <= 768;
+  const offset = isMobile ? -50 : 0; // Zmniejsz tę liczbę, jeśli jest ZA wysoko
+
+  setZoomStyle({
+    display: 'block',
+    left: `${x}px`,
+    top: `${y - offset}px`, // To 'y' jest już relatywne do obrazka!
+    backgroundImage: `url(${mainImage})`,
+    backgroundPosition: `${percentX}% ${percentY}%`,
+    backgroundSize: `${rect.width * 2.5}px ${rect.height * 2.5}px`
+  });
+};
 
     const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
   return (
  <section className="product" id="product-section" aria-labelledby="product-heading">
-  <div className='product-container'>
+     <div className='product-container'>
     {/* id="product-heading" łączy sekcję z jej tytułem dla czytników */}
     <h1 id="product-heading">DESIGN 01/ 2026</h1>
     <p className="drop-subtitle" role="status">LIMITOWANY DROP / NAKŁAD WYCZERPYWALNY</p>
