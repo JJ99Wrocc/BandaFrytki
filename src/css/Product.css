@@ -1,0 +1,451 @@
+
+.product {
+  position: relative; /* TO BYŁO KLUCZOWE - trzyma cienie wewnątrz sekcji */
+
+  
+  /* Jeśli jesteś w React (Create React App/Vite), nie używaj /public w ścieżce. 
+     Użyj ścieżki relatywnej do pliku CSS lub po prostu /BandaFrytkiProduct.webp */
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.75 ), rgba(0,0,0,0.85)), 
+    url('/public/BandaFrytkiProduct.webp'); 
+  
+  background-size: 400px;
+  background-repeat: repeat;
+  color: #fff;
+  padding: 100px 0;
+  overflow: hidden;
+  width: 100%;
+}
+.product::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px; /* Wysokość cienia */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* CIEŃ Z DOŁU (Zanikanie w stronę środka) */
+.product::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px; /* Wysokość cienia */
+  background: linear-gradient(to top, rgba(0, 0, 0, 5) 0%, rgba(0, 0, 0, 0) 100%);
+  z-index: 5;
+  pointer-events: none;
+}
+.product-container {
+  position: relative;
+  z-index: 10; /* Wyżej niż cienie (które mają z-index: 5) */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Tytuły na górze */
+.product-container h1 {
+    margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.product-container .drop-subtitle {
+  margin-bottom: 50px; /* Odstęp od sekcji zdjęć/zakupu */
+}
+
+/* Główny układ - Zdjęcia vs Zakup */
+.product-wrapper {
+  display: flex;
+  justify-content: space-between; /* Rozpycha lewą i prawą stronę */
+  align-items: flex-start;        /* Wyrównuje do góry */
+  text-align: left;               /* Przywraca czytanie od lewej wewnątrz kolumn */
+}
+
+.left-side {
+  flex: 0 0 55%;
+  display: flex;
+  flex-direction: row-reverse; /* Miniaturki po lewej, Main po prawej - bardzo nowoczesne */
+  gap: 30px;
+  align-items: center;
+  position: relative;
+}
+/* Kontener prawy */
+.right-side {
+  flex: 0 0 40%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 40px;
+  border-left: 1px solid rgba(255, 255, 255, 0.05); /* Subtelna linia podziału */
+}
+
+/* Nazwa produktu - Surowa i wielka */
+.product-name {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+/* Cena - Akcent kolorystyczny */
+.product-price {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 24px;
+  color: #FFD700; /* Frytkowe złoto */
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+/* Opis - Minimalistyczny blok */
+.description {
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #888;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px 0;
+  margin-bottom: 40px;
+}
+
+/* Wybór rozmiaru */
+.size-selection {
+  margin-bottom: 40px;
+}
+
+.size-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 15px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.size-guide-btn {
+  background: none;
+  border: none;
+  color: #888;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 11px;
+  transition: color 0.3s;
+}
+
+.size-guide-btn:hover { color: #fff; }
+
+/* Grid rozmiarów - kafelki 2026 */
+.size-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+.active-fade {
+  animation: photoEntry 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.size-item {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 12px 12px;
+  cursor: pointer;
+  font-family: 'Roboto Mono', monospace;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.size-item:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.size-item.active {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+  font-weight: bold;
+}
+
+/* Przycisk KUP TERAZ - Główny focus */
+.buy-now-btn {
+  width: 100%;
+  padding: 25px;
+  background: #FFD700;
+  color: #000;
+  border: none;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%); /* Nowoczesne wcięcie */
+  margin-bottom: 20px;
+}
+
+.buy-now-btn:hover {
+  background: #fff;
+  clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%); /* Animacja kształtu */
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+}
+
+/* Info o wysyłce */
+.shipping-info {
+  font-size: 11px;
+  color: #555;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* RESPONSYWNOŚĆ */
+
+#product-heading {
+  font-family: 'Archivo Black', sans-serif; /* Albo coś grubego i surowego */
+  font-size: 40px; /* Skaluje się z ekranem */
+  letter-spacing: -0.05em; /* Ściśnięte litery - bardzo modne w streetwearze */
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 0.9;
+  /* Efekt Outline: tylko obrys litery (opcjonalnie dla vibe'u Off-White) */
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  color: #fff;
+  position: relative;
+}
+
+/* Subtitle - Kontrastowy i neonowy (Frytkowy Żółty!) */
+.drop-subtitle {
+  font-family: 'Roboto Mono', monospace; /* Techniczny, maszynowy font */
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #FFD700; /* Mocny, "frytkowy" złoty/żółty */
+  background: rgba(255, 215, 0, 0.1); /* Delikatna poświata */
+  display: inline-block;
+  padding: 8px 15px;
+  margin-top: 20px;
+  border: 1px solid #FFD700;
+  /* Animacja "Pulse" - żeby tekst żył */
+  animation: pulse 2s infinite;
+}
+
+
+
+/* Wrapper dla balansu */
+.product-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Wszystko na środek */
+  margin-bottom: 80px;
+}
+/* RESPONSYWNOŚĆ (Mobile) */
+
+
+/* Kontener lewej strony staje się flexem poziomym */
+.left-side {
+  flex: 0 0 55%; 
+  display: flex;
+  flex-direction: row; /* Main po lewej, Thumb po prawej */
+  gap: 15px;           /* Odstęp między zdjęciem a kolumną */
+  align-items: flex-start;
+}
+
+/* Główne zdjęcie przejmuje większość szerokości */
+.main-img-container {
+  position: relative;
+  flex: 1;             /* Zajmuje całą dostępną przestrzeń */
+  aspect-ratio: 1 / 1;
+  background-color: #0c0c0c;
+  overflow: hidden;
+
+  mask-image: radial-gradient(circle, black 90%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle, black 70%, transparent 100%);
+}
+
+.main-img {
+  width: 100%;
+  height: 100%;
+aspect-ratio: 1 / 1;
+  object-fit: cover;
+
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 20px; /* Nowoczesne, duże zaokrąglenie */
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.img-glow-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
+  z-index: -1;
+  filter: blur(40px);
+  pointer-events: none;
+}
+/* Kolumna miniaturek */
+.thumbnail-grid {
+  display: flex;
+  flex-direction: column; /* UKŁAD PIONOWY */
+  gap: 10px;
+  width: 100px;           /* Stała szerokość kolumny miniaturek */
+}
+.thumb-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px); /* Szklany efekt */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s ease;
+}
+.thumb-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: all 0.3s ease;
+  filter: grayscale(1);    /* Pełny surowy mrok */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+.thumb-wrapper.selected .thumb-img {
+  opacity: 1;
+  filter: grayscale(0);
+}
+
+.thumb-img:hover {
+  opacity: 1;
+  filter: grayscale(0);
+  border: 1px solid #FFD700; /* Twoje frytkowe złoto */
+}
+.thumb-wrapper:hover {
+  transform: scale(1.1) translateX(10px);
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.thumb-wrapper:hover .thumb-img {
+  opacity: 1;
+  filter: grayscale(0);
+}
+
+/* Animacja głównego zdjęcia przy hoverze na kontener */
+.main-img-container:hover .main-img {
+  transform: scale(1.02) rotate(-1deg);
+}
+.main-img-container {
+  position: relative;
+  cursor: none; /* Ukrywamy kursor, bo lupa go zastępuje */
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+/* STYLIZACJA LUPY */
+.magnifier-lens {
+  position: absolute;
+  width: 150px; /* Rozmiar lupy */
+  height: 150px;
+  border: 2px solid rgba(255, 215, 0, 0.5); /* Złota obwódka */
+  border-radius: 50%;
+  pointer-events: none; /* Żeby lupa nie blokowała myszki */
+  background-repeat: no-repeat;
+  z-index: 100;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5), inset 0 0 10px rgba(0,0,0,0.2);
+  transform: translate(-50%, -50%); /* Wyśrodkowanie na kursorze */
+  backdrop-filter: blur(2px);
+}
+
+/* EFEKT 2026: Delikatna animacja pojawiania się */
+.magnifier-lens[style*="display: block"] {
+  animation: lensFade 0.2s ease-out;
+}
+
+
+/* ==========================================
+   MOBILE OPTIMIZATION (KLUCZOWE)
+   ========================================== */
+
+/* RESPONSYWNOŚĆ - Ważne! Na telefonie miniaturki muszą wrócić pod spód */
+@media (max-width: 992px) {
+  .left-side {
+    flex-direction: column; /* Miniaturki lądują pod zdjęciem */
+  }
+  
+  .thumbnail-grid {
+    flex-direction: row;    /* W poziomie na mniejszych ekranach */
+    width: 100%;
+    order: 2; 
+  }
+  
+  .thumb-img {
+    width: 80px;            /* Mniejsze na mobile */
+  }
+}
+
+@media (max-width: 768px) {
+  .product-wrapper {
+    flex-direction: column; /* Na telefonie zdjęcie nad opisem */
+    align-items: center;
+  }
+  
+  .left-side, .right-side {
+    flex: 0 0 100%; /* Na telefonie zajmują 100% szerokości */
+    width: 100%;
+  }
+
+  .right-side {
+    padding-left: 0;
+    border-left: none;
+    margin-top: 40px;
+  }
+  .magnifier-lens {
+    width: 120px;
+    height: 120px;
+    /* PRZESUNIĘCIE O 100PX W GÓRĘ NAD PALEC */
+    transform: translate(-50%, calc(-50% - 100px)); 
+    border-width: 3px;
+  }
+  
+  .main-img-container {
+    cursor: crosshair; /* Na mobile lepiej dać standard */
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; text-shadow: 0 0 10px #FFD700; }
+  100% { opacity: 0.8; }
+}
+@keyframes photoEntry {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(10px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+@keyframes lensFade {
+  from { opacity: 0; scale: 0.5; }
+  to { opacity: 1; scale: 1; }
+}

@@ -292,18 +292,7 @@ animation: buttonPulse 3s infinite ease-in-out;
   opacity: 0.6;
 }
 
-/* Animacja pulsowania logo */
-@keyframes logoPulse {
-  0%, 100% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.05); opacity: 1; }
-}
 
-/* Animacja paska ładowania */
-@keyframes loadingAnim {
-  0% { left: -100%; }
-  50% { left: 0%; }
-  100% { left: 100%; }
-}
 @media (max-width: 1200px) {
   .video-wrapper:nth-child(4) {
     display: none;
@@ -395,4 +384,16 @@ animation: buttonPulse 3s infinite ease-in-out;
     opacity: 0;
     transform: translateY(45px) scale3d(0.5, 0.5, 0.5);
   }
+}
+/* Animacja pulsowania logo */
+@keyframes logoPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+/* Animacja paska ładowania */
+@keyframes loadingAnim {
+  0% { left: -100%; }
+  50% { left: 0%; }
+  100% { left: 100%; }
 }
