@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/BandaFrytki/static/css/main.b53ba034.css",
-    "main.js": "/BandaFrytki/static/js/main.713c2ec8.js",
+    "main.css": "/BandaFrytki/static/css/main.ee766f0c.css",
+    "main.js": "/BandaFrytki/static/js/main.8274ad77.js",
     "static/js/453.367ff025.chunk.js": "/BandaFrytki/static/js/453.367ff025.chunk.js",
+    "static/media/BandaFrytkiProduct.webp": "/BandaFrytki/static/media/BandaFrytkiProduct.865f790fb9ae57562c6f.webp",
+    "static/media/ZdjJjKoszulka.webp": "/BandaFrytki/static/media/ZdjJjKoszulka.4a2d46e0b6bb5d7237ec.webp",
     "index.html": "/BandaFrytki/index.html",
-    "main.b53ba034.css.map": "/BandaFrytki/static/css/main.b53ba034.css.map",
-    "main.713c2ec8.js.map": "/BandaFrytki/static/js/main.713c2ec8.js.map",
+    "main.ee766f0c.css.map": "/BandaFrytki/static/css/main.ee766f0c.css.map",
+    "main.8274ad77.js.map": "/BandaFrytki/static/js/main.8274ad77.js.map",
     "453.367ff025.chunk.js.map": "/BandaFrytki/static/js/453.367ff025.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b53ba034.css",
-    "static/js/main.713c2ec8.js"
+    "static/css/main.ee766f0c.css",
+    "static/js/main.8274ad77.js"
   ]
 }
