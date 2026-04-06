@@ -4,7 +4,8 @@ import '../css/YouTubeSection.css';
 
 const YouTubeSection = () => {
     const [longVideos, setLongVideos] = useState([]); 
-    const [latestShort, setLatestShort] = useState(null);
+    const [shortsVideos, setShortsVideos] = useState([]);
+    const [currentShortIndex, setCurrentShortIndex] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -14,33 +15,35 @@ const YouTubeSection = () => {
     useEffect(() => {
         const fetchLatestContent = async () => {
             try {
-                // 1. Pobieramy max (50) ostatnich elementów, żeby na pewno znaleźć te 4 filmy
-                const searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=50&type=video`;
-                const searchRes = await axios.get(searchUrl);
-                const rawItems = searchRes.data.items;
+                // 1. TRIK: Zamiana UC na UU w ID kanału daje ID playlisty "Wgrane filmy"
+                // To wyciąga WSZYSTKO co jest na kanale, pomijając błędy wyszukiwarki
+                const uploadPlaylistId = CHANNEL_ID.replace(/^UC/, 'UU');
 
-                // 2. Pobieramy detale (czas trwania) dla wszystkich 50 elementów
-                const videoIds = rawItems.map(item => item.id.videoId).join(',');
+                const playlistUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${uploadPlaylistId}&part=snippet,contentDetails&maxResults=50`;
+                const playlistRes = await axios.get(playlistUrl);
+                const allItems = playlistRes.data.items;
+
+                // 2. Pobieramy detale (duration), żeby odróżnić filmy od shortów
+                const videoIds = allItems.map(item => item.contentDetails.videoId).join(',');
                 const detailsUrl = `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${videoIds}&part=contentDetails,snippet`;
                 const detailsRes = await axios.get(detailsUrl);
-
-                const allFetched = detailsRes.data.items;
+                const allVideosWithDetails = detailsRes.data.items;
 
                 // 3. FILTROWANIE
-                // Long Vids: szukamy wszystkiego co ma 'M' (minuty) lub 'H' (godziny) w czasie trwania
-                const vids = allFetched.filter(v => 
+                // Filmy: mają M (minuty) lub H (godziny) w czasie trwania
+                const vids = allVideosWithDetails.filter(v => 
                     v.contentDetails.duration.includes('M') || 
                     v.contentDetails.duration.includes('H')
                 );
 
-                // Shorts: szukamy pierwszego z brzegu, który NIE ma 'M' i 'H' (czyli same sekundy 'S')
-                const shorts = allFetched.filter(v => 
+                // Shorty: tylko sekundy (brak M i H)
+                const shorts = allVideosWithDetails.filter(v => 
                     !v.contentDetails.duration.includes('M') && 
                     !v.contentDetails.duration.includes('H')
                 );
 
                 setLongVideos(vids);
-                if (shorts.length > 0) setLatestShort(shorts[0]); // Bierzemy najnowszego Shorta
+                setShortsVideos(shorts);
 
             } catch (err) {
                 console.error("BŁĄD API:", err);
@@ -52,86 +55,97 @@ const YouTubeSection = () => {
         fetchLatestContent();
     }, []);
 
-    const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % longVideos.length);
-    const prevSlide = () => setCurrentIndex((prev) => (prev === 0 ? longVideos.length - 1 : prev - 1));
+    // FUNKCJE STEROWANIA
+    const nextShort = () => {
+        if (shortsVideos.length > 0) {
+            setCurrentShortIndex((prev) => (prev + 1) % shortsVideos.length);
+        }
+    };
+
+    const prevShort = () => {
+        if (shortsVideos.length > 0) {
+            setCurrentShortIndex((prev) => (prev === 0 ? shortsVideos.length - 1 : prev - 1));
+        }
+    };
+
+    const nextVideo = () => {
+        if (longVideos.length > 0) {
+            setCurrentIndex((prev) => (prev + 1) % longVideos.length);
+        }
+    };
+
+    const prevVideo = () => {
+        if (longVideos.length > 0) {
+            setCurrentIndex((prev) => (prev === 0 ? longVideos.length - 1 : prev - 1));
+        }
+    };
 
     if (isLoading) return <div className="yt-loader">SZUKAM TWOICH FILMÓW...</div>;
 
     return (
-       <section className="yt-section" aria-labelledby="yt-section-title" id="videos-section">
-    <div className="yt-container">
-        <h2 id="yt-section-title" className="yt-title">LIVE FEED</h2>
-        <p className="yt-description">ZOBACZ CO NOWEGO NA KANALE</p>
+        <section className="yt-section" id="videos-section">
+            <div className="yt-container">
+                <h2 className="yt-title">WIDEO I SHORTY</h2>
+                <p className="yt-description">ZOBACZ CO NOWEGO NA KANALE</p>
 
-        <div className="yt-split-grid">
-            {/* LEWA: LATEST SHORT */}
-            <div className="yt-column yt-shorts-col">
-                <span className="yt-label" id="label-short">LATEST SHORT</span>
-                <div className="yt-shorts-wrapper" role="region" aria-labelledby="label-short">
-                    {latestShort ? (
-                        <iframe 
-                            src={`https://www.youtube.com/embed/${latestShort.id}?rel=0`} 
-                            title={`YouTube Short: ${latestShort.snippet.title}`} 
-                            allowFullScreen
-                            aria-describedby="label-short"
-                        ></iframe>
-                    ) : <p role="status">Brak shortów</p>}
+                <div className="yt-split-grid">
+                    {/* LEWA: SHORTY */}
+                    <div className="yt-column yt-shorts-col">
+                        <span className="yt-label">OSTATNIE SHORTY</span>
+                        <div className="yt-shorts-wrapper">
+                            {shortsVideos.length > 0 ? (
+                                <iframe 
+                                    key={`short-${shortsVideos[currentShortIndex].id}`}
+                                    src={`https://www.youtube.com/embed/${shortsVideos[currentShortIndex].id}?rel=0`} 
+                                    title="YouTube Short"
+                                    allowFullScreen
+                                ></iframe>
+                            ) : <p>Brak shortów</p>}
+                        </div>
+                        <div className="short-nav-container">
+                            <div className="back-short" onClick={prevShort}></div>
+                            <span className="yt-counter">
+                                    {shortsVideos.length > 0 ? `${currentShortIndex + 1} / ${shortsVideos.length}` : "0 / 0"}
+                                </span>
+                            <div className="next-short" onClick={nextShort}></div>
+                        </div>
+                    </div>
+
+                    {/* PRAWA: FILMY */}
+                    <div className="yt-column yt-video-col">
+                        <div className="yt-header-row">
+                            <span className="yt-label">OSTATNIE FILMY</span>
+                            <div className="video-nav-container">
+                                <div className="back-video" onClick={prevVideo}></div>
+                                <span className="yt-counter">
+                                    {longVideos.length > 0 ? `${currentIndex + 1} / ${longVideos.length}` : "0 / 0"}
+                                </span>
+                                <div className="next-videos" onClick={nextVideo}></div>
+                            </div>
+                        </div>
+
+                        <div className="yt-video-wrapper">
+                            {longVideos.length > 0 ? (
+                                <iframe 
+                                    key={`video-${longVideos[currentIndex].id}`}
+                                    src={`https://www.youtube.com/embed/${longVideos[currentIndex].id}?rel=0`} 
+                                    title="YouTube Video"
+                                    allowFullScreen
+                                ></iframe>
+                            ) : (
+                                <div className="yt-error">Nie znaleziono długich filmów.</div>
+                            )}
+                        </div>
+                        
+                        {longVideos[currentIndex] && (
+                            <h3 className="yt-video-name">
+                                {longVideos[currentIndex].snippet.title}
+                            </h3>
+                        )}
+                    </div>
                 </div>
             </div>
-
-            {/* PRAWA: SLIDER DLA DŁUGICH FILMÓW */}
-            <div className="yt-column yt-video-col">
-                <div className="yt-header-row" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                    <span className="yt-label" id="label-videos">OFFICIAL VIDEOS</span>
-                    {longVideos.length > 1 && (
-                        <div className="yt-controls" role="group" aria-label="Sterowanie sliderem wideo">
-                            <button 
-                                onClick={prevSlide} 
-                                className="yt-arrow" 
-                                aria-label="Poprzedni film"
-                            >
-                                PREV
-                            </button>
-                            <button 
-                                onClick={nextSlide} 
-                                className="yt-arrow" 
-                                aria-label="Następny film"
-                            >
-                                NEXT
-                            </button>
-                        </div>
-                    )}
-                </div>
-
-                <div 
-                    className="yt-video-wrapper" 
-                    role="region" 
-                    aria-live="polite" 
-                    aria-labelledby="label-videos"
-                >
-                    {longVideos.length > 0 ? (
-                        <iframe 
-                            key={longVideos[currentIndex].id}
-                            src={`https://www.youtube.com/embed/${longVideos[currentIndex].id}?rel=0`} 
-                            title={`Film YouTube: ${longVideos[currentIndex].snippet.title}`} 
-                            allowFullScreen
-                        ></iframe>
-                    ) : (
-                        <div style={{padding: '20px', color: 'red'}} role="alert">
-                            Nie znaleziono długich filmów w ostatnich 50 wrzutkach.
-                        </div>
-                    )}
-                </div>
-                
-                {longVideos[currentIndex] && (
-                    <h3 className="yt-video-name" aria-hidden="true">
-                        {longVideos[currentIndex].snippet.title}
-                    </h3>
-                )}
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
     );
 };
 

@@ -17,7 +17,7 @@ function Product({onBuyNow, shake, setShake}) {
       KoszulkaFront,
     Detal1,
     Detal2,
-    "https://picsum.photos/800/800?grayscale&sig=4"
+ 
     ]
 
     const [mainImage, setMainImage] = useState(ProductImages[0]);
