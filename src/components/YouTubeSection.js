@@ -135,7 +135,6 @@ const YouTubeSection = () => {
                                 {longVideos[currentIndex].snippet.title}
                             </h3>
                         )}
-                    </div>
                             <div className="video-nav-container">
                                 <div className="back-video" onClick={prevVideo}></div>
                                 <span className="yt-counter">
@@ -143,6 +142,7 @@ const YouTubeSection = () => {
                                 </span>
                                 <div className="next-videos" onClick={nextVideo}></div>
                             </div>
+                    </div>
                 </div>
             </div>
         </section>

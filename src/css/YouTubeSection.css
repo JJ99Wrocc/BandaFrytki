@@ -52,7 +52,7 @@
     margin-bottom: 20px;
     text-align: center;
     color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+    -webkit-text-stroke: 1px white;
     position: relative;
     transition: all 0.5s ease;
 }
@@ -180,7 +180,7 @@ iframe {
     gap: 15px;
     margin-top: 15px;
     align-items: center;
-    text-align: center !important;
+
     margin: 0 auto;
 }
 
@@ -254,7 +254,7 @@ iframe {
         margin: 0 auto;
     }
     .yt-title {
-        font-size: 30px;
+        font-size: 32px;
     }
     .yt-title:hover {
      letter-spacing: 1.5px;
@@ -272,7 +272,7 @@ iframe {
 
 @media (max-width: 768px) {
     .yt-title {
-        font-size: 25px;
+        font-size: 30px;
     }
     .yt-title:hover {
      letter-spacing: 1.3px;
@@ -288,7 +288,7 @@ iframe {
 @media (max-width: 576px) {
 
     .yt-title {
-        font-size: 26px !important;
+        font-size: 28px !important;
     }
     .yt-title:hover {
      letter-spacing: 1.2px;
