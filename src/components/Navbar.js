@@ -1,15 +1,23 @@
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Navbar.css';
-const MyNavbar = () =>    {
+const MyNavbar = ({ onBrandClick }) =>    {
   return (
 <Navbar 
+className="nav"
 style={{ position: 'fixed', top: 0, zIndex: 1050 , width: '100%'}}
-expand="lg" className="nav" >
+expand="lg"  >
   <Container>
-    <Navbar.Brand href="#home">Banda Frytki</Navbar.Brand>
+    <Navbar.Brand as="span" 
+        
+          onClick={() => {
+            onBrandClick(); // Wywołuje setView('shop') w App.js
+            window.scrollTo(0, 0); // Przewija na samą górę
+          }}
+          >Banda Frytki</Navbar.Brand>
     
     {/* 1. Przycisk burgera (pokazuje się tylko na małych ekranach) */}
     <Navbar.Toggle aria-controls="basic-navbar-nav" />

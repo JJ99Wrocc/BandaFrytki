@@ -14,6 +14,12 @@ const Header = () => {
     { id: 3, src: 'KradziezAuta.mp4' },
     { id: 4, src: 'WkRuchala.mp4' }
   ];
+    const scrollToProduct = () => {
+  const element = document.getElementById('product-section');
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};  
 // POPRAWIONA LOGIKA
 const handleVideoLoad = () => {
   setLoadedVideo(prev => {
@@ -48,6 +54,7 @@ const handleVideoEnd = (id) => {
       }
     }
   };
+
   // --- LOGIKA KLIKNIĘCIA (WSPÓLNA ALE ROZDZIELONA) ---
   const handleVideoClick = (id) => {
     const video = videoRefs.current[id];
@@ -149,7 +156,9 @@ const handleVideoEnd = (id) => {
       </div>
       
     <div className="button-wrapper">
-  <button className="header-button">Zgarnij drop</button>
+<button className="header-button" onClick={scrollToProduct}>
+    Zgarnij drop
+  </button>
   {/* Strzałka zagnieżdżona w wrapperze */}
   <div className="scroll-arrow-container">
     <div className="chevron"></div>

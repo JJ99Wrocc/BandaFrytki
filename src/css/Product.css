@@ -2,11 +2,9 @@
 .product {
   position: relative; /* TO BYŁO KLUCZOWE - trzyma cienie wewnątrz sekcji */
 
-  
-  /* Jeśli jesteś w React (Create React App/Vite), nie używaj /public w ścieżce. 
-     Użyj ścieżki relatywnej do pliku CSS lub po prostu /BandaFrytkiProduct.webp */
+
   background-image: 
-    linear-gradient(rgba(0,0,0,0.75 ), rgba(0,0,0,0.85)), 
+    linear-gradient(rgba(0,0,0,0.90 ), rgba(0,0,0,0.85)), 
     url('/public/BandaFrytkiProduct.webp'); 
   
   background-size: 400px;
@@ -24,7 +22,7 @@
   left: 0;
   width: 100%;
   height: 150px; /* Wysokość cienia */
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 30%, rgba(0, 0, 0, 0) 100%);
   z-index: 5;
   pointer-events: none;
 }
@@ -215,18 +213,29 @@
 /* RESPONSYWNOŚĆ */
 
 #product-heading {
-  font-family: 'Archivo Black', sans-serif; /* Albo coś grubego i surowego */
-  font-size: 40px; /* Skaluje się z ekranem */
-  letter-spacing: -0.05em; /* Ściśnięte litery - bardzo modne w streetwearze */
-  text-transform: uppercase;
-  margin: 0;
-  line-height: 0.9;
-  /* Efekt Outline: tylko obrys litery (opcjonalnie dla vibe'u Off-White) */
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
-  color: #fff;
-  position: relative;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(40px, 8vw, 80px);
+    text-transform: uppercase;
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+    position: relative;
+    transition: all 0.5s ease;
 }
-
+#product-heading::before {
+    content: "DESIGN 01/ 2026";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    color: #fff;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%); /* Efekt przecięcia */
+    z-index: 1;
+}
 /* Subtitle - Kontrastowy i neonowy (Frytkowy Żółty!) */
 .drop-subtitle {
   font-family: 'Roboto Mono', monospace; /* Techniczny, maszynowy font */
@@ -379,11 +388,17 @@ aspect-ratio: 1 /1;
   animation: lensFade 0.2s ease-out;
 }
 
+/* Klasa dodawana przez JS */
+.shake-animation {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+}
 
-/* ==========================================
-   MOBILE OPTIMIZATION (KLUCZOWE)
-   ========================================== */
-
+/* Opcjonalnie: podświetlenie krawędzi przy błędzie */
+.size-selection.shake-animation .size-item {
+  border-color: #ff4d4d;
+  transition: border-color 0.2s;
+}
 /* RESPONSYWNOŚĆ - Ważne! Na telefonie miniaturki muszą wrócić pod spód */
 @media (max-width: 992px) {
   .left-side {
@@ -450,4 +465,11 @@ aspect-ratio: 1 /1;
 @keyframes lensFade {
   from { opacity: 0; scale: 0.5; }
   to { opacity: 1; scale: 1; }
+}
+/* Definicja ruchu lewo-prawo */
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
 }

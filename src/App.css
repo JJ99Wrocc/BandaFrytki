@@ -1,14 +1,14 @@
-/* Domyślny kursor dla wszystkiego (frytki) */
+/* Domyślny kursor (frytki) - ustawiamy hotspot na środku góry frytek */
 * {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' style='font: size 12px'><text y='35'>🍟</text></svg>"), auto;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' style='font-size: 13px'><text y='30'>🍟</text></svg>") 20 10, auto;
 }
 
-/* Kursor dla elementów klikalnych (np. Burger) */
-a, button, [role="button"], .clickable {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' style='font-size:12px'><text y='35'>🍔</text></svg>"), pointer !important;
+/* Kursor dla elementów klikalnych (burger) - hotspot na środku burgera */
+a, button, [role="button"], .clickable, input[type="submit"], input[type="button"] {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' style='font-size: 13px'><text y='30'>🍔</text></svg>") 20 15, pointer !important;
 }
 body{
   margin: 0;
   padding: 0;
-  height: 10000px;
+  height: 100%;
 }

@@ -1,0 +1,122 @@
+.legal-section {
+    background-color: #050505;
+    color: #ffffff;
+    padding: 100px 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+.legal-container {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.legal-tag {
+    font-family: 'Roboto Mono', monospace;
+    color: #FFD700;
+    font-size: 11px;
+    letter-spacing: 3px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+
+.legal-header h1 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(35px, 7vw, 65px);
+    text-transform: uppercase;
+    margin: 30px 0 15px 0;
+    line-height: 1;
+}
+
+.legal-header h1 span {
+    color: transparent;
+    -webkit-text-stroke: 1px #FFD700;
+}
+
+.legal-sub {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 50px;
+}
+
+/* ACCORDION */
+.legal-accordion {
+    border-top: 1px solid #1a1a1a;
+}
+
+.legal-item {
+    border-bottom: 1px solid #1a1a1a;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.legal-item:hover {
+    background: rgba(255, 215, 0, 0.02);
+}
+
+.legal-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 10px;
+}
+
+.legal-q h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #eee;
+}
+
+/* Ikona Plus/Minus */
+.plus-minus {
+    width: 20px;
+    height: 2px;
+    background: #FFD700;
+    position: relative;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.plus-minus::before {
+    content: '';
+    width: 2px;
+    height: 20px;
+    background: #FFD700;
+    position: absolute;
+    left: 9px;
+    top: -9px;
+    transition: 0.4s;
+}
+
+.legal-item.active .plus-minus {
+    transform: rotate(135deg); /* Zamienia plus w X */
+}
+
+.legal-item.active .plus-minus::before {
+    opacity: 1; /* Lub 0 jeśli chcesz tylko kreskę minusa */
+}
+
+/* Rozwijanie Treści */
+.legal-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0, 1, 0, 1);
+}
+
+.legal-item.active .legal-a {
+    max-height: 800px;
+    transition: max-height 1s ease-in-out;
+}
+
+.legal-a-inner {
+    padding: 0 10px 30px 10px;
+    color: #888;
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+.legal-footer {
+    margin-top: 50px;
+    text-align: left;
+    opacity: 0.3;
+    font-size: 11px;
+}

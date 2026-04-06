@@ -1,0 +1,381 @@
+/* GŁÓWNA SEKCJA - IDEALNE POŁĄCZENIE Z PRODUCT.CSS */
+.links-section {
+    position: relative;
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.92), rgba(0,0,0,0.88)), 
+        url('/public/BandaFrytkiProduct.webp'); 
+    background-size: 400px;
+    background-repeat: repeat;
+    color: #fff;
+    padding: 120px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+/* ZACIERANIE GRANIC (VIGNETTE) */
+.links-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to bottom, #000 20%, transparent 100%);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.links-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to top, #000 20%, transparent 100%);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.links-container {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* TYTUŁ H2 - DESIGNERSKI STYL 2026 */
+.links-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 40px;
+    text-transform: uppercase;
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+.links-title::before {
+    content: "Znajdź nas na:";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    color: #fff;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%); /* Efekt przecięcia */
+    z-index: 1;
+}
+
+.links-title:hover {
+    -webkit-text-stroke: 1px #FFD700;
+    letter-spacing: 2px;
+}
+
+/* OPIS P */
+.links-description {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #FFD700;
+    background: rgba(255, 215, 0, 0.05);
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    margin-bottom: 80px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+}
+
+/* GRID DLA OSOB */
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    width: 100%;
+}
+
+/* MINI CONTENER KARTY */
+.links-person {
+    position: relative;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 40px;
+    padding: 40px 20px;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    backdrop-filter: blur(15px);
+    overflow: hidden;
+    height: 100%;
+}
+
+.links-person::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+/* HOVER KARTY */
+.links-person:hover {
+    transform: translateY(-15px) scale(1.02);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 215, 0, 0.3);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+.links-person:hover::before {
+    opacity: 1;
+}
+
+/* LINK OWIJAJĄCY */
+.social-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:25px;
+    color: #fff;
+    z-index: 2;
+    position: relative;
+}
+
+/* IMIĘ JJ / AARON */
+.about-person {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin: 0;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+/* ZDJĘCIE W KÓŁKU Z EFEKTEM "WYCHODZENIA" */
+.social-link-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50% !important;
+    object-fit: cover;
+    border: 4px solid #000;
+    box-shadow: 
+        0 0 0 2px rgba(255, 255, 255, 0.1),
+        0 20px 40px rgba(0,0,0,0.8); /* Głęboki cień */
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: grayscale(0.5);
+}
+
+.links-person:hover img {
+    filter: grayscale(0);
+    transform: scale(1.05) rotate(5deg);
+    box-shadow: 
+        0 0 0 4px #FFD700,
+        0 30px 50px rgba(255, 215, 0, 0.2);
+}
+
+/* SPAN @NICK - HOVER PRO */
+.links-img-name {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    color: #888;
+    background: rgba(0,0,0,0.4);
+    padding: 8px 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+}
+
+.links-person:hover .links-img-name {
+    color: #000;
+    background: #FFD700;
+    border-color: #FFD700;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4);
+}
+
+.links-person:hover .about-person {
+    color: #FFD700;
+}
+
+/* RESPONSYWNOŚĆ */
+@media (max-width: 1200px) {
+    .links-title {
+        font-size: 32px;
+    }
+    .links-title:hover {
+     letter-spacing: 1.75px;
+    }
+    .links-description {
+        font-size: 10px;
+        letter-spacing: 0.25em;
+    }
+    .links-person{
+        padding: 30px 1px !important;
+    }
+    .social-link {
+    gap:20px;   
+}
+
+/* IMIĘ JJ / AARON */
+.about-person {
+    font-size: 17px;
+    letter-spacing: 2px;  
+}
+}
+@media (max-width: 992px) {
+    .links-title {
+        font-size: 30px;
+    }
+    .links-title:hover {
+     letter-spacing: 1.5px;
+    }
+    .links-description {
+        font-size: 11px;
+        letter-spacing: 0.1em;
+    }
+    .links-person{
+        padding: 25px 10px !important;
+    }
+    .social-link {
+    gap:17px;   
+}
+.social-link-img {
+    width: 120px;
+    height: 120px;   
+}
+.links-img-name,.about-person {
+    font-size: 11px;
+}
+
+.about-person {
+    font-size: 17px;
+    letter-spacing: 2px;  
+}
+.links-person:hover img {
+   
+    box-shadow: 
+        0 0 0 3px #FFD700,
+        0 30px 50px rgba(255, 215, 0, 0.2);
+}
+}
+@media (max-width: 768px) {
+    .links-title {
+        font-size: 25px;
+    }
+    .links-title:hover {
+     letter-spacing: 1.3px;
+    }
+    .links-description {
+        font-size: 9px;
+        letter-spacing: 0.05em;
+    margin-bottom: 60px;  
+    }
+    .links-person{
+        padding: 25px 10px !important;
+    }
+    .social-link {
+    gap:18px;   
+}
+.social-link-img {
+    width: 110px;
+    height: 110px;   
+}
+.links-img-name  {
+    font-size: 9px;
+}
+
+.about-person {
+    font-size: 14px;
+    letter-spacing: 2px;  
+}
+.links-person:hover img {
+   
+    box-shadow: 
+        0 0 0 3px #FFD700,
+        0 30px 50px rgba(255, 215, 0, 0.2);
+}
+}
+@media (max-width: 576px) {
+    .links-grid{
+        gap: 15px
+    }
+    .links-title {
+        font-size: 20px;
+    }
+    .links-title:hover {
+     letter-spacing: 1.2px;
+    }
+    .links-description {
+        font-size: 8px;
+        letter-spacing: 0.01em;
+    }
+    .links-person{
+        padding: 20px 10px !important;
+    }
+    .social-link {
+    gap:14px;   
+}
+.social-link-img {
+    width: 85px;
+    height: 85px;   
+}
+.links-img-name  {
+    display: inline-flex;   
+    align-items: center;     
+    gap: 4px;             
+    white-space: nowrap;
+    font-size: 8px;
+}
+
+.about-person {
+    font-size: 12px;
+  
+}
+
+}
+@media (max-width: 450px) {
+    .links-grid {
+        grid-template-columns: 1fr;
+    }
+    .links-person {
+        margin-bottom: 20px;
+        height: 90%;
+    }
+    .links-grid{
+        gap: 7px;
+    }
+    .links-title {
+        font-size: 20px;
+    }
+    .links-title:hover {
+     letter-spacing: 1.2px;
+    }
+    .links-img-name {
+        font-size: 12px !important;
+    }
+
+    .social-link {
+    gap:14px;   
+}
+.social-link-img {
+    width: 110px;
+    height: 110px;   
+}
+
+
+.about-person {
+    font-size: 14px;
+  
+}
+}

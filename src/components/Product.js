@@ -1,15 +1,22 @@
 import React ,{useState} from 'react';
+
 import '../css/Product.css';
 import KoszulkaFront from '../photo/ZdjJjKoszulka.webp'
+import Detal1 from '../photo/Detal1.jpeg';
+import Detal2 from '../photo/Detal2.jpeg';
 
 
-function Product() {
+
+function Product({onBuyNow, shake, setShake}) {
+
+
     const [selectedSize, setSelectedSize] = useState(null);
+
 
     const ProductImages = [
       KoszulkaFront,
-    "https://picsum.photos/800/800?grayscale&sig=2",
-    "https://picsum.photos/800/800?grayscale&sig=3",
+    Detal1,
+    Detal2,
     "https://picsum.photos/800/800?grayscale&sig=4"
     ]
 
@@ -48,7 +55,23 @@ function Product() {
 };
 
     const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
-  return (
+
+    const handlebuyNow = () =>{
+      if(!selectedSize){
+        setShake(true);
+        setTimeout(() => setShake(false), 500);
+        return;
+      }
+      console.log("Przejście do płatności...");
+
+      // 1. Zapisujemy rozmiar globalnie w App.js
+ 
+
+     if (onBuyNow) {
+            onBuyNow(selectedSize); 
+        }
+    };
+      return (
  <section className="product" id="product-section" aria-labelledby="product-heading">
      <div className='product-container'>
     {/* id="product-heading" łączy sekcję z jej tytułem dla czytników */}
@@ -97,9 +120,9 @@ function Product() {
           </p>
         </div>
 
-        <div className='size-selection'>
+        <div className={`size-selection ${shake ? 'shake-animation' : ''}`}>
           <div className="size-header">
-            <span id="size-label">Wybierz rozmiar:</span>
+            <span id="size-label" style={{color: shake ? '#ff4d4d' : 'inherit'}}>Wybierz rozmiar:</span>
             <button 
               className="size-guide-btn" 
               aria-label="Otwórz tabelę rozmiarów"
@@ -115,7 +138,7 @@ function Product() {
                 type="button"
                 key={size} 
                 className={`size-item ${selectedSize === size ? 'active' : ''}`}
-                onClick={() => setSelectedSize(size)}
+                onClick={() => setSelectedSize(size)  }
                 aria-pressed={selectedSize === size}
                 aria-label={`Rozmiar ${size}`}
               >
@@ -126,7 +149,7 @@ function Product() {
         </div>
 
         {/* Główny przycisk akcji */}
-        <button className='buy-now-btn' aria-label="Przejdź do zakupu koszulki">
+        <button className='buy-now-btn' aria-label="Przejdź do zakupu koszulki" onClick={handlebuyNow}>
           KUP TERAZ
         </button>
         

@@ -1,0 +1,311 @@
+    /* GŁÓWNA SEKCJA - Kopiujemy Twój klimat tła */
+    .order-finalization {
+        position: relative;
+        background-image: 
+            linear-gradient(rgba(0,0,0,0.92), rgba(0,0,0,0.88)), 
+            url('/public/BandaFrytkiProduct.webp'); 
+        background-size: 400px;
+        background-repeat: repeat;
+        color: #fff;
+        padding: 120px 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    /* EFEKTY CIENI (Kopiujemy z .product dla spójności) */
+    .order-finalization::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 150px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+        pointer-events: none;
+    }
+
+    .order-finalization .container {
+        position: relative;
+        z-index: 10;
+        max-width: 600px; /* Formularz musi być wąski, żeby wyglądał pro */
+        margin: 0 auto;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.02); /* Ultra delikatne tło formularza */
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 30px;
+    }
+
+    /* TYTUŁ */
+    #checkout-title {
+        font-family: 'Archivo Black', sans-serif;
+        font-size: clamp(28px, 3vw, 40px);
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 10px;
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+    }
+
+    /* INFO O ROZMIARZE */
+    .summary-info {
+        font-family: 'Roboto Mono', monospace;
+        text-align: center;
+        font-size: 14px;
+        color: #888;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .summary-info strong {
+        color: #FFD700;
+        font-size: 18px;
+        margin-left: 10px;
+        border-bottom: 1px solid #FFD700;
+    }
+
+    /* GRUPY INPUTÓW */
+    .input-group {
+        position: relative;
+        margin-bottom: 25px;
+    }
+
+    .customer-input {
+        width: 100%;
+        padding: 18px 25px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        color: #fff;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 14px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .customer-input:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.07);
+        border-color: #FFD700;
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+    }
+
+    .customer-input::placeholder {
+        color: #444;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 0.1em;
+    }
+
+    /* OBSŁUGA BŁĘDÓW */
+    .error-border {
+        border-color: #ff4d4d !important;
+    }
+
+    /* WYŚWIETLANIE CENY */
+    .price-display {
+        margin: 40px 0 20px 0;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        text-align: center;
+    }
+
+    .price-display p {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 16px;
+        color: #888;
+        text-transform: uppercase;
+    }
+
+    .price-amount {
+        display: block;
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 32px;
+        color: #FFD700;
+        margin-top: 5px;
+    }
+
+    /* PRZYCISK FINALIZACJI - Kopiujemy styl .buy-now-btn */
+    .finalize-btn {
+        width: 100%;
+        padding: 22px;
+        background: #FFD700;
+        color: #000;
+        border: none;
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 18px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    
+        transition: all 0.4s ease;
+        clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+        margin-top: 10px;
+    }
+
+    .finalize-btn:hover {
+        background: #fff;
+        clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+    }
+
+    /* ANIMACJE */
+    .shake-animation {
+        animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    }
+
+
+    /* --- INTEGRACJA PHONE INPUT Z TWOIM DESIGNEM --- */
+
+    /* Kontener biblioteki */
+    .phone-container-custom {
+        width: 100% !important;
+        font-family: 'Roboto Mono', monospace !important;
+    }
+
+    /* Nadpisanie samego pola tekstowego - DZIEDZICZY TWOJE STYLE */
+    .react-tel-input .customer-input {
+        width: 100% !important;
+        /* Kopiujemy Twoje wartości z .customer-input */
+        padding: 18px 25px 18px 60px !important; /* 60px paddingu z lewej na flagę */
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 15px !important;
+        color: #fff !important;
+        font-size: 14px !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        height: auto !important; /* Reset wysokości biblioteki */
+    }
+
+    /* Focus dla telefonu - identyczny jak reszta */
+    .react-tel-input .customer-input:focus {
+        background: rgba(255, 255, 255, 0.07) !important;
+        border-color: #FFD700 !important;
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.1) !important;
+        outline: none !important;
+    }
+
+    /* Przycisk wyboru kraju (Dropdown trigger) */
+    .react-tel-input .flag-dropdown {
+        background: transparent !important;
+        border: none !important;
+        border-radius: 15px 0 0 15px !important;
+        padding: 0 10px !important;
+    }
+
+    /* Styl flagi wewnątrz przycisku */
+    .react-tel-input .selected-flag {
+        background: transparent !important;
+        width: 50px !important;
+        padding: 0 0 0 15px !important;
+        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' style='font-size:12px'><text y='35'>🍔</text></svg>"), pointer !important;
+    }
+
+
+
+    /* Lista rozwijana (MROCZNY DROPDOWN) */
+    .react-tel-input .country-list {
+        background: #0c0c0c !important; /* Dopasowane do Twojego tła */
+        color: #fff !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 10px !important;
+        margin-top: 10px !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
+    }
+
+    .react-tel-input .country-list .country:hover {
+        background: rgba(255, 215, 0, 0.2) !important;
+    }
+
+    .react-tel-input .country-list .country.highlight {
+        background: rgba(255, 215, 0, 0.1) !important;
+    }
+
+    .react-tel-input .country-list .country .country-name {
+        color: #fff !important;
+    }
+
+    /* Obsługa błędu dla inputu telefonu */
+    .react-tel-input .error-border {
+        border-color: #ff4d4d !important;
+        box-shadow: 0 0 15px rgba(255, 77, 77, 0.1) !important;
+    }
+
+    /* Ukrywamy szarą linię oddzielającą (jeśli biblioteka ją doda) */
+    .react-tel-input .flag-dropdown.open .selected-flag {
+        background: transparent !important;
+    }
+    /* Styl dla całej listy i każdego pojedynczego kraju w dropdownie */
+    .react-tel-input .country-list .country {
+        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' style='font-size:12px'><text y='35'>🍔</text></svg>"), pointer !important;
+    }
+
+    /* Opcjonalnie: jeśli chcesz, żeby kursor burgera był też na samym przycisku flagi przed otwarciem */
+
+
+    /* Dodatkowo, żeby scrollbar wewnątrz dropdowna nie przywracał domyślnego kursora (dla Chrome/Edge/Safari) */
+    .react-tel-input .country-list::-webkit-scrollbar {
+    
+        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' style='font-size:12px'><text y='35'>🍔</text></svg>"), default !important;
+    }
+    /* Kontener wyszukiwarki wewnątrz dropdowna */
+    .react-tel-input .search {
+        background: #0c0c0c !important; /* Takie samo tło jak reszta dropu */
+        padding: 10px !important;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.2) !important;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    /* Sam input wyszukiwania */
+    .react-tel-input .search-box {
+        width: 90% !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 8px !important;
+        color: #fff !important;
+        font-family: 'Roboto Mono', monospace !important;
+        font-size: 13px !important;
+        padding: 8px 10px !important;
+        margin-left: 0 !important;
+    }
+
+    .react-tel-input .search-box:focus {
+        border-color: #FFD700 !important;
+        outline: none !important;
+    }
+
+    /* Kursor burgera dla wyszukiwarki (opcjonalnie) */
+    .react-tel-input .search-box {
+        cursor: text !important; /* Tutaj zostawiłbym standardowy text dla UX */
+    }
+
+    /* Napis "No entries found" jeśli nic nie wyszuka */
+    .react-tel-input .no-entries-message {
+        color: #888 !important;
+        font-family: 'Roboto Mono', monospace !important;
+        font-size: 11px !important;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+
+
+    @media (max-width: 768px) {
+        .order-finalization .container {
+            margin: 0 20px;
+            padding: 30px 20px;
+            border-radius: 20px;
+        }
+    }
+    @keyframes shake {
+        10%, 90% { transform: translate3d(-1px, 0, 0); }
+        20%, 80% { transform: translate3d(2px, 0, 0); }
+        30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+        40%, 60% { transform: translate3d(4px, 0, 0); }
+    }
+
+    /* MOBILE */
