@@ -115,13 +115,6 @@ const YouTubeSection = () => {
                     <div className="yt-column yt-video-col">
                         <div className="yt-header-row">
                             <span className="yt-label">OSTATNIE FILMY</span>
-                            <div className="video-nav-container">
-                                <div className="back-video" onClick={prevVideo}></div>
-                                <span className="yt-counter">
-                                    {longVideos.length > 0 ? `${currentIndex + 1} / ${longVideos.length}` : "0 / 0"}
-                                </span>
-                                <div className="next-videos" onClick={nextVideo}></div>
-                            </div>
                         </div>
 
                         <div className="yt-video-wrapper">
@@ -143,6 +136,13 @@ const YouTubeSection = () => {
                             </h3>
                         )}
                     </div>
+                            <div className="video-nav-container">
+                                <div className="back-video" onClick={prevVideo}></div>
+                                <span className="yt-counter">
+                                    {longVideos.length > 0 ? `${currentIndex + 1} / ${longVideos.length}` : "0 / 0"}
+                                </span>
+                                <div className="next-videos" onClick={nextVideo}></div>
+                            </div>
                 </div>
             </div>
         </section>
