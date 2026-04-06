@@ -136,7 +136,7 @@ object-fit: contain;
   position: absolute;
   left: 50%; 
   transform: translate(-50%, -50%);
-  z-index: 123123123132123123123123312312;
+  z-index: 12;
   padding: 18px 45px;
   font-family: 'Inter', sans-serif;
   font-weight: 900;
@@ -190,7 +190,7 @@ animation: buttonPulse 3s infinite ease-in-out;
   flex-direction: column;
   align-items: center;
   gap: 20px; 
-  z-index: 9999;
+  z-index: 10;
 }
 .scroll-arrow-container {
   display: flex;
