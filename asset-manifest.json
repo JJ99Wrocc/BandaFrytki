@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/BandaFrytki/static/css/main.635e04d3.css",
-    "main.js": "/BandaFrytki/static/js/main.9d3ef230.js",
+    "main.css": "/BandaFrytki/static/css/main.7693335a.css",
+    "main.js": "/BandaFrytki/static/js/main.10f539e8.js",
     "static/js/453.367ff025.chunk.js": "/BandaFrytki/static/js/453.367ff025.chunk.js",
     "static/media/Detal1.webp": "/BandaFrytki/static/media/Detal1.9aff6b1cef714dbd9ae5.webp",
     "static/media/Detal2.webp": "/BandaFrytki/static/media/Detal2.b87adaa4b7099b3de370.webp",
@@ -11,12 +11,12 @@
     "static/media/BandaMarcin.webp": "/BandaFrytki/static/media/BandaMarcin.0b9e1ab26fc433b74dd6.webp",
     "static/media/BandaJJ.webp": "/BandaFrytki/static/media/BandaJJ.9dc30305e6af6271766b.webp",
     "index.html": "/BandaFrytki/index.html",
-    "main.635e04d3.css.map": "/BandaFrytki/static/css/main.635e04d3.css.map",
-    "main.9d3ef230.js.map": "/BandaFrytki/static/js/main.9d3ef230.js.map",
+    "main.7693335a.css.map": "/BandaFrytki/static/css/main.7693335a.css.map",
+    "main.10f539e8.js.map": "/BandaFrytki/static/js/main.10f539e8.js.map",
     "453.367ff025.chunk.js.map": "/BandaFrytki/static/js/453.367ff025.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.635e04d3.css",
-    "static/js/main.9d3ef230.js"
+    "static/css/main.7693335a.css",
+    "static/js/main.10f539e8.js"
   ]
 }
