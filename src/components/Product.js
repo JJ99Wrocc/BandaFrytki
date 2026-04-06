@@ -2,8 +2,8 @@ import React ,{useState} from 'react';
 
 import '../css/Product.css';
 import KoszulkaFront from '../photo/ZdjJjKoszulka.webp'
-import Detal1 from '../photo/Detal1.jpeg';
-import Detal2 from '../photo/Detal2.jpeg';
+import Detal1 from '../photo/Detal1.webp';
+import Detal2 from '../photo/Detal2.webp';
 
 
 
@@ -22,9 +22,10 @@ function Product({onBuyNow, shake, setShake}) {
 
     const [mainImage, setMainImage] = useState(ProductImages[0]);
     const [zoomStyle, setZoomStyle] = useState({display : 'none'});
-
+    
+    const MIN_SHIPPING = 10.99;
   const handleMouseMove = (e) => {
-  const rect = e.currentTarget.getBoundingClientRect();
+    const rect = e.currentTarget.getBoundingClientRect();
   
   // Pobieramy pozycję dotyku lub myszki względem OKNA PRZEGLĄDARKI
   const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
@@ -111,8 +112,12 @@ function Product({onBuyNow, shake, setShake}) {
       <div className='right-side'>
         <h2 className="product-name">BANDA FRYTKI TEE</h2>
         {/* aria-label pomaga przeczytać cenę poprawnie */}
-        <p className='product-price' aria-label="Cena: 85 złotych">85 PLN</p>
-        
+        <div className="price-wrapper" aria-label="Cena">
+          <p className='product-price' aria-label="Cena: 85 złotych">85 PLN</p>
+        <p className="shipping-info-small">
+            Dostawa już od <strong>{MIN_SHIPPING} PLN</strong>
+        </p>
+        </div>
         <div className="description">
           <p>
             <span role="img" aria-label="Ikona szycia">🧵</span> 
@@ -154,7 +159,7 @@ function Product({onBuyNow, shake, setShake}) {
         </button>
         
         <p className='shipping-info' role="note">
-          Darmowa dostawa od 300 PLN | Wysyłka w 24h
+        Wysyłka w 24h
         </p>
       </div>
     </div>

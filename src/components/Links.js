@@ -1,6 +1,7 @@
 import React from "react";
 import Marcin from '../photo/BandaMarcin.webp';
 import JJ from '../photo/BandaJJ.webp';
+import Aaron from '../photo/BandaAaron.webp';
 import '../css/Links.css';
 
 const Links = () => { 
@@ -28,7 +29,7 @@ const Links = () => {
                 aria-label="Odwiedź profil Aarona na Instagramie (otwiera się w nowej karcie)"
               >
               <p className="about-person">Aaron</p>
-              <img className="social-link-img" src="aaron.jpg" alt="Zdjęcie profilowe Aarona" />
+              <img className="social-link-img" src={Aaron} alt="Zdjęcie profilowe Aarona" />
                 <span className="links-img-name"><i className="fa-brands fa-instagram"></i> 99flegg</span>
               </a>
             </div>

@@ -89,7 +89,7 @@
 /* Nazwa produktu - Surowa i wielka */
 .product-name {
   font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(32px, 4vw, 48px);
+  font-size: 30px;
   line-height: 0.9;
   letter-spacing: -0.04em;
   margin-bottom: 10px;
@@ -99,10 +99,8 @@
 /* Cena - Akcent kolorystyczny */
 .product-price {
   font-family: 'Roboto Mono', monospace;
-  font-size: 24px;
-  color: #FFD700; /* Frytkowe złoto */
-  margin-bottom: 30px;
-  font-weight: 300;
+  font-size: 25px;
+  color: #FFD700;
 }
 
 /* Opis - Minimalistyczny blok */
@@ -158,7 +156,7 @@
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
-  padding: 12px 12px;
+  padding: 10px 10px;
   cursor: pointer;
   font-family: 'Roboto Mono', monospace;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -181,12 +179,12 @@
 /* Przycisk KUP TERAZ - Główny focus */
 .buy-now-btn {
   width: 100%;
-  padding: 25px;
+  padding: 20px;
   background: #FFD700;
   color: #000;
   border: none;
   font-family: 'Archivo Black', sans-serif;
-  font-size: 18px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   cursor: pointer;
   transition: all 0.4s ease;
@@ -214,7 +212,7 @@
 
 #product-heading {
     font-family: 'Archivo Black', sans-serif;
-    font-size: clamp(40px, 8vw, 80px);
+    font-size: 42px;
     text-transform: uppercase;
     line-height: 0.8;
     letter-spacing: -0.05em;
@@ -236,10 +234,14 @@
     clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%); /* Efekt przecięcia */
     z-index: 1;
 }
+#product-heading:hover {
+    -webkit-text-stroke: 1px #FFD700;
+    letter-spacing: 2px;
+}
 /* Subtitle - Kontrastowy i neonowy (Frytkowy Żółty!) */
 .drop-subtitle {
   font-family: 'Roboto Mono', monospace; /* Techniczny, maszynowy font */
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: #FFD700; /* Mocny, "frytkowy" złoty/żółty */
@@ -399,7 +401,62 @@ aspect-ratio: 1 /1;
   border-color: #ff4d4d;
   transition: border-color 0.2s;
 }
+/* Nowy kontener ceny z akcentem */
+.price-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 25px;
+    border-left: 3px solid #FFD700; /* Frytkowy żółty pasek */
+    padding-left: 15px;
+}
+
+/* Mały druczek o wysyłce */
+.shipping-info-small {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
+}
+
+.shipping-info-small strong {
+    color: #FFD700;
+}
+
+/* Ramka podsumowania (styl 'faktury') */
+.delivery-time-info {
+    margin-top: -20px; /* Zmniejsza dystans do opisu */
+    margin-bottom: 20px;
+    padding: 12px;
+    background: rgba(255, 215, 0, 0.03);
+    border: 1px dashed rgba(255, 215, 0, 0.2);
+    border-radius: 4px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: #aaa;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.delivery-time-info strong {
+    color: #fff;
+}
+
+
 /* RESPONSYWNOŚĆ - Ważne! Na telefonie miniaturki muszą wrócić pod spód */
+@media (max-width: 1200px) {
+
+#product-heading {
+    font-size: 42px;
+}
+.drop-subtitle {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+}
+
+}
 @media (max-width: 992px) {
   .left-side {
     flex-direction: column; /* Miniaturki lądują pod zdjęciem */
@@ -414,8 +471,36 @@ aspect-ratio: 1 /1;
   .thumb-img {
     width: 80px;            /* Mniejsze na mobile */
   }
+  #product-heading {
+    font-size: 36px;
+}
+.drop-subtitle {
+  font-size: 10px;
+  letter-spacing: 0.3em;
 }
 
+  .product-name {
+font-size: 25px;
+}
+.product-price{
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.description{
+font-size: 13px;
+letter-spacing: 0.03em;
+}
+.size-header{
+font-size: 11px;
+}
+.buy-now-btn {
+  padding: 15px;
+  font-size: 14px;
+}
+.shipping-info{
+  font-size: 10px;
+}
+}
 @media (max-width: 768px) {
   .product-wrapper {
     flex-direction: column; /* Na telefonie zdjęcie nad opisem */
@@ -431,6 +516,7 @@ aspect-ratio: 1 /1;
     padding-left: 0;
     border-left: none;
     margin-top: 40px;
+    text-align: center;
   }
   .magnifier-lens {
     width: 100px;
@@ -443,8 +529,75 @@ aspect-ratio: 1 /1;
   .main-img-container {
     cursor: crosshair; /* Na mobile lepiej dać standard */
   }
+   #product-heading {
+    font-size: 32px;
+}
+.drop-subtitle {
+  font-size: 9px;
+  letter-spacing: 0.4em;
 }
 
+  .product-name {
+font-size: 27px;
+}
+.product-price{
+  font-size: 21px;
+  margin-bottom: 5px;
+}
+.shipping-info-small{
+  font-size: 11px;
+}
+.description{
+font-size: 12px;
+letter-spacing: 0.2em;
+}
+.size-header{
+font-size: 12px;
+}
+.buy-now-btn {
+  padding: 17px;
+  font-size: 14px;
+}
+.shipping-info{
+  font-size: 11px;
+  margin-bottom: -20px;
+}
+}
+@media(max-width: 576px) {
+    #product-heading {
+        font-size: 28px;
+    }
+    .drop-subtitle {
+        font-size: 8px;
+        letter-spacing: 0.5em;
+    }
+    .product-name {
+        font-size: 22px;
+    }
+    .product-price{
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+    .shipping-info-small{
+        font-size: 10px;
+    }
+    .description{
+        font-size: 11px;
+        letter-spacing: 0.1em;
+    }
+    .size-header{
+        font-size: 11px;
+    }
+    .buy-now-btn {
+        padding: 15px;
+        font-size: 13px;
+    }
+    .shipping-info{
+        font-size: 10px;
+        margin-bottom: -20px;
+    }
+
+  }
 @keyframes pulse {
   0% { opacity: 0.8; }
   50% { opacity: 1; text-shadow: 0 0 10px #FFD700; }
