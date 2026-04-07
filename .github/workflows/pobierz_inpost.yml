@@ -1,44 +1,31 @@
 name: Naprawa-Mapy-InPost
-
 on:
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
-
 permissions:
   contents: write
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Pobierz dane InPost
+      - uses: actions/checkout@v3
+      - name: Pobierz dane
         run: |
           mkdir -p public
-          curl -L -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)" \
-          --compressed \
-          --retry 3 \
-          --retry-delay 5 \
-          "https://api-pl-points.easypack24.net/v1/points?per_page=20000&types=paczkomat" \
-          -o public/paczkomaty.json
-
-      - name: Sprawdz czy JSON jest kompletny
+          curl -L -H "User-Agent: Mozilla/5.0" --compressed "https://api-pl-points.easypack24.net/v1/points?per_page=20000&types=paczkomat" -o public/paczkomaty.json
+      - name: Sprawdz JSON
         run: |
           if jq . public/paczkomaty.json >/dev/null 2>&1; then
-            echo "Sukces: Plik JSON jest poprawny."
+            echo "OK"
           else
-            echo "BŁĄD: Plik niekompletny!"
+            echo "BŁĄD: JSON jest ucięty!"
             exit 1
           fi
-
-      - name: Commit i Push danych
+      - name: Commit
         run: |
           git config --global user.name 'InPost Bot'
           git config --global user.email 'bot@github.com'
           git add public/paczkomaty.json
-          # Commitujemy tylko zmiany w pliku JSON
-          git commit -m "Aktualizacja paczkomatów (dane) [skip ci]" || exit 0
+          git commit -m "Naprawa danych [skip ci]" || exit 0
           git push
