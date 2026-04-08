@@ -103,7 +103,7 @@ return (
       {view === 'shop' && (
         <>
           <Header />
-          <Product onBuyNow={goToCheckout} shake={shake} setShake={setShake} />
+          <Product onBuyNow={goToCheckout} shake={shake} setShake={setShake} navigate={navigateTo} />
           <Links />
           <YouTubeSection />
         </>

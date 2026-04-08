@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-// Dodajemy importy z react-leaflet
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css'; 
 import '../css/OrderFinalization.css';
-import '../components/InPostMap';
-import { useMap } from 'react-leaflet';
+import InPostMap from "../components/InPostMap";
+
 // Fix dla brakujących ikon markerów w React-Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -53,10 +51,10 @@ const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack })
         const isNameValid = customerData.name.trim().split(/\s+/).length >= 2 && nameRegex.test(customerData.name);
         const isEmailValid = emailRegex.test(customerData.email);
         
-        // Adres walidujemy tylko jeśli to kurier (dla InPostu będziesz miał wybór punktu)
+        // Walidacja: jeśli InPost, musi być wybrany punkt. Jeśli kurier, adres musi być długi.
         const isAddressValid = customerData.deliveryMethod === 'courier' 
             ? (customerData.address.length > 12 && /\d{2}-\d{3}/.test(customerData.address)) 
-            : true;
+            : !!customerData.selectedPoint;
 
         const newErrors = {
             size: !selectedSize,
@@ -134,6 +132,7 @@ const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack })
                         id="customer-email"
                         type="email" 
                         placeholder="Adres e-mail" 
+                        value={customerData.email}
                         className={`customer-input ${errors.email ? 'error-border' : ''}`}
                         onChange={(e) => setCustomerData({...customerData, email: e.target.value})}
                     />
@@ -143,7 +142,7 @@ const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack })
                 <div className="delivery-methods">
                     <div 
                         className={`delivery-tile ${customerData.deliveryMethod === 'inpost' ? 'active' : ''}`}
-                        onClick={() => setCustomerData({...customerData, deliveryMethod: 'inpost'})}
+                        onClick={() => setCustomerData({...customerData, deliveryMethod: 'inpost', address: ''})}
                     >
                         <div className="tile-icon">📦</div>
                         <div className="tile-info">
@@ -154,7 +153,7 @@ const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack })
 
                     <div 
                         className={`delivery-tile ${customerData.deliveryMethod === 'courier' ? 'active' : ''}`}
-                        onClick={() => setCustomerData({...customerData, deliveryMethod: 'courier'})}
+                        onClick={() => setCustomerData({...customerData, deliveryMethod: 'courier', selectedPoint: null})}
                     >
                         <div className="tile-icon">🚚</div>
                         <div className="tile-info">
@@ -166,11 +165,11 @@ const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack })
 
                 {/* Przycisk Mapy InPost i Kontener Mapy */}
                 {customerData.deliveryMethod === 'inpost' && (
-                    <div className="input-group">
+                    <div className={`input-group ${errors.address ? 'shake-animation' : ''}`}>
                         <div className="paczkomat-wrapper">
                             <button 
                                 type="button" 
-                                className="inpost-btn"
+                                className={`inpost-btn ${errors.address ? 'error-border' : ''}`}
                                 onClick={() => setShowMap(!showMap)}
                             >
                                 {showMap ? "❌ Zamknij mapę" : "🍟 Wybierz Paczkomat na mapie"}
@@ -178,22 +177,20 @@ const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack })
                         </div>
                         
                         {showMap && (
-                            <div className="map-container-wrapper" style={{ height: '400px', marginTop: '15px', borderRadius: '12px', overflow: 'hidden' }}>
-                                <MapContainer center={[52.237, 21.017]} zoom={13} scrollWheelZoom={false} style={{ height: '100%', width: '100%' }}>
-                                    <TileLayer
-                                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                    />
-                                    <Marker position={[52.237, 21.017]}>
-                                        <Popup>
-                                            Tu pojawi się wybrany punkt.
-                                        </Popup>
-                                    </Marker>
-                                </MapContainer>
+                            <div className="map-container-wrapper" style={{ height: '400px', marginTop: '15px', borderRadius: '12px', overflow: 'hidden', border: '2px solid #fc0' }}>
+                                <InPostMap onSelectPoint={(point) => {
+                                    setCustomerData({
+                                        ...customerData, 
+                                        selectedPoint: point.name,
+                                        address: `Paczkomat: ${point.name}, ${point.address}`
+                                    });
+                                    setShowMap(false); // Zamyka mapę po wyborze
+                                }} />
                             </div>
                         )}
                         
                         {customerData.selectedPoint && (
-                            <div className="selected-point-info">
+                            <div className="selected-point-info" style={{marginTop: '10px', padding: '10px', background: '#f9f9f9', borderRadius: '8px', borderLeft: '4px solid #fc0'}}>
                                 Wybrany punkt: <strong>{customerData.selectedPoint}</strong>
                             </div>
                         )}
@@ -206,6 +203,7 @@ const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack })
                         <input 
                             type="text" 
                             placeholder="Ulica, nr domu, kod pocztowy, miasto" 
+                            value={customerData.address}
                             className={`customer-input ${errors.address ? 'error-border' : ''}`}
                             onChange={(e) => setCustomerData({...customerData, address: e.target.value})}
                         />

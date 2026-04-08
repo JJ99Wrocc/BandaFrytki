@@ -1,71 +1,133 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import '../css/InPostMap.css';
 
-const customIcon = new L.Icon({
+const goldIcon = new L.Icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
+    iconSize: [30, 45], // Nieco większy, bardziej premium
+    iconAnchor: [15, 45],
+    popupAnchor: [0, -40],
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
     shadowSize: [41, 41]
 });
 
 const InPostMap = ({ onSelectPoint }) => {
-    const [allPoints, setAllPoints] = useState([]);
-    const [visiblePoints, setVisiblePoints] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [foundLockers, setFoundLockers] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const mapRef = useRef(null);
 
-    useEffect(() => {
-        const loadData = async () => {
-            setIsLoading(true);
-            try {
-                const res = await fetch('./paczkomaty.json');
-                if (!res.ok) throw new Error("Brak pliku JSON");
-                const data = await res.json();
-                if (data && Array.isArray(data.items)) setAllPoints(data.items);
-            } catch (err) {
-                console.error("Błąd mapy:", err);
-            } finally {
-                setIsLoading(false);
-            }
+    const searchLockersNearby = useCallback((lat, lng) => {
+        if (!window.google) return;
+        setIsLoading(true);
+        
+        const service = new window.google.maps.places.PlacesService(document.createElement('div'));
+        const request = {
+            location: new window.google.maps.LatLng(lat, lng),
+            radius: '3500', 
+            query: 'paczkomat inpost'
         };
-        loadData();
+
+        service.textSearch(request, (results, status) => {
+            if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+                const points = results.map(place => ({
+                    id: place.place_id,
+                    name: place.name.replace("Paczkomat InPost ", ""),
+                    address: place.formatted_address,
+                    lat: place.geometry.location.lat(),
+                    lng: place.geometry.location.lng()
+                }));
+                setFoundLockers(points);
+            }
+            setIsLoading(false);
+        });
     }, []);
 
-    const filterVisiblePoints = useCallback((mapInstance) => {
-        if (!mapInstance || allPoints.length === 0) return;
-        const zoom = mapInstance.getZoom();
-        if (zoom < 13) { setVisiblePoints([]); return; }
-        const bounds = mapInstance.getBounds();
-        const filtered = allPoints.filter(p => p.location && bounds.contains([p.location.latitude, p.location.longitude]));
-        setVisiblePoints(filtered.slice(0, 100));
-    }, [allPoints]);
+  const handleSearch = () => {
+    if (!searchTerm || !window.google) return;
+    
+    const geocoder = new window.google.maps.Geocoder();
+    
+    // Szukamy adresu klienta (np. "Mickiewicza 12, Poznań")
+    geocoder.geocode({ 
+        address: searchTerm, 
+        componentRestrictions: { country: 'PL' } 
+    }, (results, status) => {
+        if (status === 'OK') {
+            const { lat, lng } = results[0].geometry.location;
+            const latNum = lat();
+            const lngNum = lng();
 
-    const MapEvents = () => {
+            // 1. Przenieś mapę do klienta
+            mapRef.current.flyTo([latNum, lngNum], 17, { duration: 1.5 });
+
+            // 2. Natychmiast szukaj paczkomatów w tej nowej okolicy
+            searchLockersNearby(latNum, lngNum);
+        } else {
+            alert("Nie znaleźliśmy tego adresu. Spróbuj podać miasto i ulicę.");
+        }
+    });
+};
+    const MapController = () => {
         useMapEvents({
-            moveend: (e) => filterVisiblePoints(e.target),
-            zoomend: (e) => filterVisiblePoints(e.target),
+            moveend: (e) => {
+                const center = e.target.getCenter();
+                searchLockersNearby(center.lat, center.lng);
+            }
         });
         return null;
     };
 
     return (
-        <div style={{ height: '400px', width: '100%', position: 'relative', border: '2px solid #fc0' }}>
-            <MapContainer center={[52.2297, 21.0122]} zoom={13} style={{ height: '100%', width: '100%' }} whenReady={(e) => filterVisiblePoints(e.target)}>
-                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                <MapEvents />
-                {visiblePoints.map((point) => (
-                    <Marker key={point.name} position={[point.location.latitude, point.location.longitude]} icon={customIcon}>
-                        <Popup>
-                            <strong>{point.name}</strong><br/>
-                            <button onClick={() => onSelectPoint(point)} style={{background:'#fc0', border:'none', cursor:'pointer', width:'100%', marginTop:'5px'}}>WYBIERZ 🍟</button>
+        <div className="premium-map-container">
+            <div className="map-glass-overlay">
+                <div className="search-box-premium">
+                    <input 
+                        type="text" 
+                        placeholder="Znajdź najbliższy punkt..." 
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                    />
+                    <button onClick={handleSearch} className="search-action-btn">
+                        <span>SZUKAJ</span>
+                    </button>
+                </div>
+            </div>
+
+            <MapContainer 
+                center={[52.2297, 21.0122]} 
+                zoom={13} 
+                zoomControl={false} // Usuwamy standardowe przyciski dla czystego wyglądu
+                className="leaflet-prestige"
+                whenReady={(e) => { mapRef.current = e.target; }}
+            >
+                <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
+                <MapController />
+
+                {foundLockers.map(locker => (
+                    <Marker key={locker.id} position={[locker.lat, locker.lng]} icon={goldIcon}>
+                        <Popup className="premium-popup">
+                            <div className="popup-card">
+                                <h3>{locker.name}</h3>
+                                <p>{locker.address}</p>
+                                <button onClick={() => onSelectPoint(locker)}>
+                                    WYBIERZ TEN PUNKT
+                                </button>
+                            </div>
                         </Popup>
                     </Marker>
                 ))}
             </MapContainer>
-            {isLoading && <div style={{position:'absolute', top:10, right:10, zIndex:1000, background:'#fff', padding:'5px'}}>Ładowanie...</div>}
+
+            {isLoading && (
+                <div className="loading-shimmer">
+                    <div className="spinner"></div>
+                    <span>Lokalizowanie paczkomatów Inpost...</span>
+                </div>
+            )}
         </div>
     );
 };

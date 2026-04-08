@@ -1,19 +1,19 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Banda Frytki",
+  "name": "Banda Frytki - Najlepsze filmiki do śmiania",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "LogoBandaFrytki.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
-      "src": "logo192.png",
+      "src": "LogoBandaFrytki.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "LogoBandaFrytki.png",
       "type": "image/png",
       "sizes": "512x512"
     }

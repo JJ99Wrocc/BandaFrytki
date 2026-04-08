@@ -6,7 +6,7 @@ import KoszulkaFront from '../photo/ZdjJjKoszulka.webp';
 import Detal1 from '../photo/Detal1.webp';
 import Detal2 from '../photo/Detal2.webp';
 
-function Product({ onBuyNow, shake, setShake }) {
+function Product({ onBuyNow, shake, setShake, navigate, currentView }) {
     const [selectedSize, setSelectedSize] = useState(null);
     const [termsAccepted, setTermsAccepted] = useState(false);
     
@@ -40,7 +40,12 @@ function Product({ onBuyNow, shake, setShake }) {
             backgroundSize: `${rect.width * 2.5}px ${rect.height * 2.5}px`
         });
     };
+    const handleOnTermsAndPrivacyLink = (e, targetID) =>{
+            if(navigate){
+                navigate(targetID)
+            }
 
+    }
     // LOGIKA PRZYCISKU KUP TERAZ
     const handleBuyNowClick = () => {
         if (!selectedSize || !termsAccepted) {
@@ -58,7 +63,7 @@ function Product({ onBuyNow, shake, setShake }) {
         <section className="product" id="product-section" aria-labelledby="product-heading">
             <div className="product-container">
                 <h1 id="product-heading">DESIGN 01/ 2026</h1>
-                <p className="drop-subtitle" role="status">LIMITOWANY DROP / NAKŁAD WYCZERPYWALNY</p>
+                <p className="drop-subtitle" role="status">NAKŁAD WYCZERPYWALNY</p>
 
                 <div className="product-wrapper">
                     {/* LEWA STRONA - ZDJĘCIA */}
@@ -145,10 +150,20 @@ function Product({ onBuyNow, shake, setShake }) {
                                 />
                                 <span className="checkmark"></span>
                                 <span className="label-text" style={{ color: shake && !termsAccepted ? '#ff4d4d' : 'inherit' }}>
-                                    Akceptuję <a href="#TermsAndConditions">Regulamin</a> i <a href="#PrivacyPolicy">Politykę Prywatności</a> *
+                                    Akceptuję 
+                                    <a onClick={(e) => navigate('terms', e)}>
+        Regulamin
+    </a>
+
+     i
+
+     <a onClick={(e) => navigate('privacy', e)} >
+        Politykę Prywatności
+    </a> *
                                 </span>
                             </label>
                         </div>
+                            <p className='required-fields-info'> * Pola obowiązkowe</p>
 
                         <button 
                             className="buy-now-btn" 

@@ -136,7 +136,7 @@
   border: none;
   color: #888;
   text-decoration: underline;
-  cursor: pointer;
+
   font-size: 11px;
   transition: color 0.3s;
 }
@@ -157,7 +157,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
   padding: 10px 10px;
-  cursor: pointer;
+ 
   font-family: 'Roboto Mono', monospace;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -186,7 +186,6 @@
   font-family: 'Archivo Black', sans-serif;
   font-size: 15px;
   letter-spacing: 0.1em;
-  cursor: pointer;
   transition: all 0.4s ease;
   clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%); /* Nowoczesne wcięcie */
   margin-bottom: 20px;
@@ -326,7 +325,7 @@ aspect-ratio: 1 /1;
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  cursor: pointer;
+
   opacity: 0.4;
   transition: all 0.3s ease;
   filter: grayscale(1);    /* Pełny surowy mrok */
@@ -653,26 +652,25 @@ font-size: 12px;
     transition: all 0.3s ease;
     user-select: none;
     -webkit-user-select: none;
-    cursor: pointer;
-    gap: 0; /* Gap zastąpiony margin-right w checkmarku wg Twojego kodu */
+
+    gap: 2px; 
 }
 
 /* UKRYTY INPUT */
 .legal-checkbox input {
     position: absolute;
     opacity: 0;
-    cursor: pointer;
+
     height: 0;
     width: 0;
 }
 
-/* WŁASNY KWADRACIK (Checkmark) */
-.checkmark {
+   .checkmark {
     position: relative;
     display: block;
     height: 15px;
     width: 15px;
-    padding: 5px 5px 5px 5px;
+    padding: 5px;
     background-color: rgba(255, 255, 255, 0.1);
     border: 2px solid #ffcc00; /* Twoje #fc0 */
     border-radius: 4px;
@@ -680,7 +678,9 @@ font-size: 12px;
     margin-right: 12px;
     transition: all 0.3s cubic-bezier(.4, 0, .2, 1);
 }
-
+.checkmark:hover{
+  transform: scale(1.2);
+}
 /* EFEKT ZAZNACZENIA */
 .legal-checkbox input:checked ~ .checkmark {
     background-color: #ffcc00;
@@ -700,15 +700,22 @@ font-size: 12px;
 }
 
 .label-text a {
-    color: #ffcc00;
+    color: #ffcc00 !important;
     font-weight: 700;
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: border-bottom 0.3s ease;
+    margin: 0 5px;
 }
 
 .label-text a:hover {
     border-bottom: 1px solid #ffcc00;
+}
+.required-fields-info{
+  font-size: 10px;
+  margin-top:-10px;
+  opacity: 0.7;
+  text-align: left;
 }
 
 
@@ -720,6 +727,9 @@ font-size: 12px;
 @media (max-width: 992px) {
     .legal-checkbox { font-size: 9px; }
     .checkmark { height: 12px; width: 12px; }
+    .required-fields-info{
+      text-align: center;
+    }
 }
 
 @media (max-width: 768px) {
@@ -731,6 +741,12 @@ font-size: 12px;
 @media (max-width: 576px) {
     .legal-checkbox { font-size: 10px; }
     .checkmark { height: 12px; width: 12px; margin-right: 4px; }
+    .label-text{
+      font-size: 9.5px !important;
+    }
+    .required-fields-info{
+      font-size: 8.5px;
+    }
 }
 
 /* ANIMACJA SHAKE (Dla walidacji) */

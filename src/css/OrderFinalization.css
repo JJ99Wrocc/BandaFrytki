@@ -436,9 +436,11 @@
 }
 
 .map-container-wrapper {
+
     border: 2px solid #fc0;
     box-shadow: 0 0 20px rgba(255, 204, 0, 0.2);
-    z-index: 10; /* Aby mapa nie nachodziła na inne elementy menu */
+    z-index: 10; 
+    min-width: 300px  !important  ;
 }
 
 /* Fix dla Leafleta żeby kafle się nie rozjeżdżały */
@@ -449,7 +451,31 @@
 }
 
 .inpost-btn {
+    position: relative;
+   
     transition: all 0.3s ease;
     z-index: 11;
-    position: relative;
+  
+}
+
+
+
+/* Efekt Dark Mode dla kafli OpenStreetMap */
+.map-tiles {
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+/* Fix dla markerów i popupów w Leaflet */
+.leaflet-popup-content-wrapper {
+    background: #fff;
+    border-radius: 12px;
+    border: 2px solid #fc0;
+}
+
+.leaflet-popup-tip {
+    background: #fc0;
+}
+
+.inpost-map-wrapper .leaflet-container {
+    cursor: crosshair !important;
 }
