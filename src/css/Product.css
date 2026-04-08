@@ -43,12 +43,12 @@
   position: relative;
   z-index: 10; /* Wyżej niż cienie (które mają z-index: 5) */
   max-width: 1200px;
-
- margin: 0 auto;       /* Centruje cały kontener na środku strony */
-  padding: 0 40px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Wszystko na środek */
+  margin-bottom: 80px;
+ margin: 0 auto;       /* Centruje cały kontener na środku strony */
+  padding: 0 40px;
 }
 
 /* Tytuły na górze */
@@ -257,12 +257,7 @@
 
 
 /* Wrapper dla balansu */
-.product-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Wszystko na środek */
-  margin-bottom: 80px;
-}
+
 /* RESPONSYWNOŚĆ (Mobile) */
 
 
@@ -500,6 +495,10 @@ font-size: 11px;
 .shipping-info{
   font-size: 10px;
 }
+.product-container{
+  margin-bottom: 20px;
+}
+
 }
 @media (max-width: 768px) {
   .product-wrapper {

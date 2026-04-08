@@ -108,7 +108,7 @@
 
 /* --- TREŚĆ W DRAWERZE --- */
 .drawer-content {
-    padding: 70px 50px 50px 50px;
+    padding: 100px 50px 50px 50px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -257,7 +257,7 @@
         font-size: 16px;
     }
 .brand-luxury ,.brand-luxury span{
-    font-size: 22px !important;
+    font-size: 24px !important;
 }
 .nav-link-custom {
     font-size: 14px !important;
@@ -319,9 +319,7 @@ display: flex; /* Aktywuje Flexbox */
     .menu-label{
         font-size: 14px;
     }
-.brand-luxury ,.brand-luxury span{
-    font-size: 17px !important;
-}
+
 .nav-link-custom {
     font-size: 13px !important;
 }
@@ -379,7 +377,7 @@ display: flex; /* Aktywuje Flexbox */
         font-size: 14px;
     }
 .brand-luxury ,.brand-luxury span{
-    font-size: 17px !important;
+    font-size: 22px !important;
 }
 .nav-link-custom {
     font-size: 13px !important;

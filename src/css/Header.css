@@ -334,7 +334,7 @@ animation: buttonPulse 3s infinite ease-in-out;
     filter: none !important;
   }
   .header-title { font-size: 3rem; }
-  .header-button { top: 80%; padding: 12px 25px; }
+  .header-button { top: 80%; padding: 12px 25px; font-size: 15px; }
   .unmute-button{
     position: absolute;
     left: 50%;

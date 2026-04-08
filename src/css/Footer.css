@@ -366,7 +366,7 @@
     }
   
     .footer-company-info,.copyright{
-        font-size: 9px;
+        font-size: 9px !important;
     }
     .important-info a, .footer-navigation a, .contact-list a {
         font-size: 10px;
