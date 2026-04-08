@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/BandaFrytki/static/css/main.4fb418ab.css",
-    "main.js": "/BandaFrytki/static/js/main.589a4f19.js",
+    "main.css": "/BandaFrytki/static/css/main.90b2a1a2.css",
+    "main.js": "/BandaFrytki/static/js/main.d2004060.js",
     "static/js/453.367ff025.chunk.js": "/BandaFrytki/static/js/453.367ff025.chunk.js",
     "static/media/Detal1.webp": "/BandaFrytki/static/media/Detal1.9aff6b1cef714dbd9ae5.webp",
     "static/media/Detal2.webp": "/BandaFrytki/static/media/Detal2.b87adaa4b7099b3de370.webp",
@@ -13,12 +13,12 @@
     "static/media/hotpay-logo.webp": "/BandaFrytki/static/media/hotpay-logo.572ed9b28b39e2064e39.webp",
     "static/media/blik-logo.webp": "/BandaFrytki/static/media/blik-logo.59db009d1158d08b2e82.webp",
     "index.html": "/BandaFrytki/index.html",
-    "main.4fb418ab.css.map": "/BandaFrytki/static/css/main.4fb418ab.css.map",
-    "main.589a4f19.js.map": "/BandaFrytki/static/js/main.589a4f19.js.map",
+    "main.90b2a1a2.css.map": "/BandaFrytki/static/css/main.90b2a1a2.css.map",
+    "main.d2004060.js.map": "/BandaFrytki/static/js/main.d2004060.js.map",
     "453.367ff025.chunk.js.map": "/BandaFrytki/static/js/453.367ff025.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4fb418ab.css",
-    "static/js/main.589a4f19.js"
+    "static/css/main.90b2a1a2.css",
+    "static/js/main.d2004060.js"
   ]
 }
