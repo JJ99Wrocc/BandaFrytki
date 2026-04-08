@@ -9,31 +9,33 @@ const Rodo = ({ onBack }) => {
     };
 
     const sections = [
-        {
-            id: 1,
-            title: "1. Kto jest Administratorem Twoich danych?",
-            content: "Administratorem Twoich danych osobowych jest Joachim Esangbedo, zamieszkały we Wrocławiu, ul. Nowodworska 39/6, NIP: 8943268275. Prowadzimy działalność nierejestrowaną zgodnie z polskim prawem. W sprawach danych możesz pisać na: info@bandafrytki.pl."
-        },
-        {
-            id: 2,
-            title: "2. Jaki jest cel przetwarzania danych?",
-            content: "Twoje dane przetwarzamy wyłącznie w celu: 1. Realizacji Twojego zamówienia (wysyłka, kontakt). 2. Rozliczeń księgowych i podatkowych. 3. Obrony przed ewentualnymi roszczeniami (np. reklamacje). Nie spamujemy i nie sprzedajemy Twoich danych nikomu."
-        },
-        {
-            id: 3,
-            title: "3. Komu przekazujemy Twoje dane?",
-            content: "Twoje dane trafiają tylko do zaufanych partnerów niezbędnych do obsługi zamówienia: firmy kurierskiej (InPost), operatora płatności (Tpay/HotPay) oraz opcjonalnie do biura rachunkowego. Każdy z tych podmiotów dba o bezpieczeństwo Twoich danych tak samo mocno jak my."
-        },
-        {
-            id: 4,
-            title: "4. Twoje prawa (Bardzo ważne!)",
-            content: "Zgodnie z RODO masz prawo do: wglądu w swoje dane, ich poprawienia, żądania ich usunięcia ('prawo do bycia zapomnianym'), ograniczenia przetwarzania oraz przeniesienia danych do innego podmiotu. Chcesz coś zmienić? Napisz do nas e-mail."
-        },
-        {
-            id: 5,
-            title: "5. Okres przechowywania danych",
-            content: "Dane przechowujemy przez okres niezbędny do realizacji zamówienia oraz przez wymagany przepisami prawa okres archiwizacji dokumentacji księgowej (zazwyczaj 5 lat od końca roku podatkowego)."
-        }
+[
+    {
+        id: 1,
+        title: "1. Kto jest Administratorem Twoich danych?",
+        content: "Administratorem Twoich danych osobowych jest Joachim Esangbedo, ul. Nowodworska 39/6, 54-433 Wrocław, NIP: 8943268275. Sprzedaż prowadzona jest w formie działalności nierejestrowanej zgodnie z art. 5 ustawy Prawo przedsiębiorców. Kontakt w sprawach ochrony prywatności: bandafrytki@gmail.com."
+    },
+    {
+        id: 2,
+        title: "2. Cel i podstawa przetwarzania danych",
+        content: "Twoje dane przetwarzamy zgodnie z RODO w celu: 1. Realizacji umowy sprzedaży (Art. 6 ust. 1 lit. b RODO). 2. Wypełnienia obowiązków prawnych i podatkowych wynikających z prowadzenia sprzedaży (Art. 6 ust. 1 lit. c RODO). 3. Dochodzenia roszczeń lub obrony przed nimi (prawnie uzasadniony interes – Art. 6 ust. 1 lit. f RODO)."
+    },
+    {
+        id: 3,
+        title: "3. Odbiorcy danych (Partnerzy)",
+        content: "W celu realizacji zamówienia, Twoje dane są przekazywane wyłącznie niezbędnym podmiotom: operatorowi płatności HotPay (w celu procesowania wpłaty), firmom kurierskim (np. InPost) w celu dostawy oraz podmiotom zapewniającym wsparcie księgowe i techniczne dla Sklepu."
+    },
+    {
+        id: 4,
+        title: "4. Twoje prawa",
+        content: "Przysługuje Ci prawo dostępu do swoich danych, ich sprostowania, usunięcia ('prawo do bycia zapomnianym'), ograniczenia przetwarzania, przenoszenia danych oraz prawo do wniesienia sprzeciwu. Masz również prawo wniesienia skargi do organu nadzorczego – Prezesa Urzędu Ochrony Danych Osobowych (PUODO)."
+    },
+    {
+        id: 5,
+        title: "5. Okres przechowywania i bezpieczeństwo",
+        content: "Dane przechowywane są przez okres niezbędny do realizacji zamówienia oraz wymagany przez przepisy prawa podatkowego (5 lat od końca roku kalendarzowego, w którym dokonano zakupu). Wszystkie dane są chronione certyfikatem SSL, co zapewnia bezpieczne szyfrowanie połączenia."
+    }
+]
     ];
 
     return (

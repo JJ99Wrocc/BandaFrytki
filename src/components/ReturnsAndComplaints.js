@@ -9,31 +9,33 @@ const ReturnsAndComplaints = ({ onBack }) => {
     };
 
     const sections = [
-        {
-            id: 1,
-            title: "1. Szybkie Zwroty (14 dni)",
-            content: "Masz prawo zwrócić towar bez podania przyczyny w ciągu 14 dni od otrzymania paczki. Pamiętaj jednak, że produkt musi być w stanie nienaruszonym – nie może nosić śladów użytkowania ani prania. Koszt wysyłki zwrotnej pokrywa Kupujący. Nie przyjmujemy paczek pobraniowych."
-        },
-        {
-            id: 2,
-            title: "2. Jak dokonać zwrotu? (Krok po kroku)",
-            content: "1. Napisz do nas na info@bandafrytki.pl z numerem zamówienia. 2. Wydrukuj i wypełnij formularz odstąpienia (wyślemy Ci go w mailu). 3. Spakuj bezpiecznie towar. 4. Nadaj paczkę dowolnym kurierem na nasz adres (pamiętaj o zachowaniu potwierdzenia nadania!)."
-        },
-        {
-            id: 3,
-            title: "3. Zwrot środków",
-            content: "Pieniądze zwracamy niezwłocznie, nie później niż w ciągu 14 dni od momentu, gdy paczka do nas dotrze i przejdzie pozytywną weryfikację stanu towaru. Zwrot otrzymasz tą samą drogą, którą opłacono zamówienie (BLIK, karta, przelew)."
-        },
-        {
-            id: 4,
-            title: "4. Reklamacje (Wady towaru)",
-            content: "Jeśli towar dotarł uszkodzony lub ma wadę fabryczną – naprawimy to! Reklamację zgłoś mailowo, załączając zdjęcia wady. Odpowiemy w ciągu 14 dni. Pamiętaj, że reklamacja nie obejmuje uszkodzeń mechanicznych powstałych z winy użytkownika (np. rozerwanie podczas złego użytkowania)."
-        },
-        {
-            id: 5,
-            title: "5. Wyłączenia ze zwrotów",
-            content: "Zgodnie z prawem, zwrotowi nie podlegają produkty personalizowane (robione na Twoje specjalne zamówienie) oraz produkty, które ze względów higienicznych zostały otwarte (jeśli dotyczy). Dbamy o najwyższą jakość, więc każdy produkt przed wysyłką przechodzi kontrolę."
-        }
+ 
+    {
+        id: 1,
+        title: "1. Prawo do odstąpienia od umowy",
+        content: "Konsument (lub osoba fizyczna prowadząca działalność gospodarczą na prawach Konsumenta) ma prawo odstąpić od umowy w terminie 14 dni bez podania przyczyny. Bieg terminu rozpoczyna się od dnia dostarczenia produktu. Do zachowania terminu wystarczy wysłanie oświadczenia przed jego upływem na adres: bandafrytki@gmail.com."
+    },
+    {
+        id: 2,
+        title: "2. Procedura i Koszty Zwrotu",
+        content: "1. Poinformuj nas mailowo o chęci zwrotu. 2. Odeślij towar na adres: ul. Nowodworska 39/6, 54-433 Wrocław. Bezpośredni koszt zwrotu towaru (wysyłkę) pokrywa Konsument. Nie przyjmujemy przesyłek wysłanych 'za pobraniem'. Towar powinien być zabezpieczony tak, aby nie uległ uszkodzeniu w transporcie."
+    },
+    {
+        id: 3,
+        title: "3. Odpowiedzialność za towar i Potrącenia",
+        content: "Konsument ponosi odpowiedzialność za zmniejszenie wartości towaru wynikające z korzystania z niego w sposób wykraczający poza konieczny do stwierdzenia charakteru i cech produktu. W przypadku zwrotu towaru ze śladami użytkowania (np. zapach perfum, potu, prania, makijażu, usunięte metki), Sprzedawca dokona potrącenia kwoty zwrotu proporcjonalnie do utraty wartości towaru, zgodnie z obowiązującymi przepisami Kodeksu Cywilnego."
+    },
+    {
+        id: 4,
+        title: "4. Zwrot płatności przez HotPay",
+        content: "Zwrotu środków dokonamy w ciągu 14 dni od otrzymania oświadczenia, jednak zastrzegamy prawo do wstrzymania się ze zwrotem do czasu fizycznego otrzymania i zweryfikowania stanu towaru. Zwrot następuje przy użyciu identycznej metody płatności (np. zwrot na ten sam numer BLIK lub kartę przez system HotPay), co eliminuje ryzyko błędów i zapewnia bezpieczeństwo obu stron."
+    },
+    {
+        id: 5,
+        title: "5. Reklamacje i Wyłączenia",
+        content: "Zgodnie z prawem, zwrotowi nie podlegają produkty personalizowane (wykonane na indywidualne zamówienie) oraz towary higieniczne po otwarciu opakowania. Reklamacje z tytułu rękojmi za wady (produkty uszkodzone/niezgodne z opisem) należy zgłaszać mailowo. Reklamacja nie obejmuje uszkodzeń mechanicznych spowodowanych przez użytkownika."
+    }
+
     ];
 
     return (

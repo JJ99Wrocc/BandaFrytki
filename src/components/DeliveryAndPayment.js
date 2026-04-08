@@ -9,31 +9,33 @@ const DeliveryAndPayment = ({ onBack }) => {
     };
 
     const sections = [
-        {
-            id: 1,
-            title: "1. Metody Płatności",
-            content: "W naszym sklepie zapłacisz szybko i bezpiecznie. Obsługujemy: BLIK, szybkie przelewy online, karty płatnicze (Visa/Mastercard) oraz Google Pay i Apple Pay. Płatności procesowane są przez autoryzowanego operatora [WPISZ NP. TPAY / HOTPAY], co gwarantuje najwyższy standard bezpieczeństwa (szyfrowanie SSL)."
-        },
-        {
-            id: 2,
-            title: "2. Czas realizacji zamówienia",
-            content: "Szanujemy Twój czas. Produkty wysyłamy zazwyczaj w ciągu 24-48h od momentu zaksięgowania wpłaty. W przypadku produktów preorderowych lub personalizowanych, czas ten może się wydłużyć, o czym zawsze informujemy w opisie produktu."
-        },
-        {
-            id: 3,
-            title: "3. Opcje Dostawy i Cennik",
-            content: "Dostarczamy na terenie całej Polski. Masz do wyboru: 1. Paczkomaty InPost (15,00 zł) - najwygodniejsza opcja, odbierasz kiedy chcesz. 2. Kurier InPost / DPD (20,00 zł) - prosto pod Twoje drzwi. Przy zamówieniach powyżej [WPISZ KWOTĘ, NP. 200 ZŁ] dostawa GRATIS!"
-        },
-        {
-            id: 4,
-            title: "4. Śledzenie Przesyłki",
-            content: "Po nadaniu paczki otrzymasz od nas wiadomość e-mail z numerem przewozowym. Dzięki temu możesz w każdej chwili sprawdzić, gdzie aktualnie znajduje się Twoja 'Banda Frytki' i kiedy trafi w Twoje ręce."
-        },
-        {
-            id: 5,
-            title: "5. Odbiór Przesyłki",
-            content: "Prosimy o sprawdzenie stanu paczki przy kurierze lub przy paczkomacie. Jeśli opakowanie jest widocznie uszkodzone, sporządź protokół szkody – to znacznie ułatwi nam proces ewentualnej reklamacji u przewoźnika."
-        }
+ [
+    {
+        id: 1,
+        title: "1. Bezpieczne Metody Płatności",
+        content: "Podmiotem świadczącym obsługę płatności online jest HotPay. Za zamówienie zapłacisz bezpiecznie poprzez: BLIK, szybkie przelewy online, karty płatnicze oraz Google Pay i Apple Pay. Transakcje procesowane są przez autoryzowanego operatora (e-Service / mElements), co gwarantuje najwyższy standard bezpieczeństwa PCI DSS oraz szyfrowanie SSL."
+    },
+    {
+        id: 2,
+        title: "2. Realizacja Zamówienia",
+        content: "Proces realizacji rozpoczynamy niezwłocznie po pozytywnej autoryzacji płatności. Produkty wysyłamy w ciągu 24-48h. W przypadku produktów personalizowanych (na zamówienie), czas realizacji jest określony w opisie produktu. Zastrzegamy sobie prawo do kontaktu w celu weryfikacji danych przy zamówieniach budzących wątpliwości."
+    },
+    {
+        id: 3,
+        title: "3. Dostawa i Odbiór Przesyłki",
+        content: "Dostawy realizujemy przez Paczkomaty InPost (15,00 zł) oraz Kuriera (20,00 zł). Kupujący ma obowiązek sprawdzić stan przesyłki przy odbiorze. W przypadku stwierdzenia uszkodzenia opakowania lub ingerencji osób trzecich, należy sporządzić protokół szkody w obecności kuriera/przy paczkomacie. Jest to podstawa do dochodzenia roszczeń za uszkodzenia mechaniczne powstałe w transporcie."
+    },
+    {
+        id: 4,
+        title: "4. Zwroty (Odstąpienie od umowy)",
+        content: "Konsument ma 14 dni na zwrot. Pieniądze zwracamy niezwłocznie po otrzymaniu i sprawdzeniu stanu towaru. Zgodnie z prawem, odpowiadasz za zmniejszenie wartości towaru wynikające z niewłaściwego użytkowania (np. plamy, zapach, brak metek). W przypadku zwrotu produktu używanego lub niekompletnego, kwota zwrotu zostanie pomniejszona o stopień zużycia towaru."
+    },
+    {
+        id: 5,
+        title: "5. Procedura Reklamacji i Zwrotu Środków",
+        content: "Reklamacje z tytułu rękojmi rozpatrujemy w 14 dni. Reklamacja nie obejmuje uszkodzeń powstałych z winy użytkownika. Zwrot środków realizowany jest zawsze przy użyciu tego samego sposobu płatności, jakiego użył Kupujący (np. zwrot na ten sam numer BLIK/kartę za pośrednictwem systemu HotPay), co zapewnia pełną przejrzystość i bezpieczeństwo transakcji."
+    }
+]
     ];
 
     return (

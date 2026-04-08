@@ -9,36 +9,43 @@ const TermsAndConditions = ({onBack}) => {
     };
 
     const sections = [
-        {
-            id: 1,
-            title: "§1. Postanowienia Ogólne",
-            content: "Sklep internetowy dostępny pod adresem bandafrytki.pl prowadzony jest przez Joachim Esangbedo, zamieszkałego w Wrocław Nowodworska 39/6, NIP: 8943268275. Sprzedaż odbywa się w ramach działalności nierejestrowanej zgodnie z art. 5 ustawy Prawo przedsiębiorców. Kontakt ze sprzedawcą możliwy jest pod adresem: info@bandafrytki.pl."
-        },
-        {
-            id: 2,
-            title: "§2. Składanie Zamówień i Płatności",
-            content: "Ceny wszystkich produktów są cenami brutto w PLN. Klient może dokonać płatności za pośrednictwem systemów płatności online (BLIK, karta płatnicza, szybki przelew). Operatorem płatności jest [NP. TPAY / HOTPAY]. Realizacja zamówienia rozpoczyna się po otrzymaniu potwierdzenia od operatora płatności."
-        },
-        {
-            id: 3,
-            title: "§3. Dostawa i Realizacja",
-            content: "Zamówienia realizowane są na terenie Polski za pośrednictwem Paczkomatów InPost oraz kurierów. Czas dostawy wynosi zazwyczaj od 2 do 5 dni roboczych. Koszt dostawy jest wskazywany w procesie składania zamówienia w koszyku."
-        },
-        {
-            id: 4,
-            title: "§4. Prawo do Odstąpienia od Umowy",
-            content: "Konsument ma prawo odstąpić od umowy bez podania przyczyny w terminie 14 dni od dnia otrzymania towaru. Aby skorzystać z tego prawa, należy wysłać oświadczenie na adres e-mail: info@bandafrytki.pl. Towar musi zostać zwrócony w stanie niezmienionym (nieużywany)."
-        },
-        {
-            id: 5,
-            title: "§5. Reklamacje i Gwarancja",
-            content: "Sprzedawca odpowiada za wady fizyczne lub prawne towaru. Reklamacje należy zgłaszać drogą elektroniczną. Sprzedawca rozpatrzy reklamację w terminie 14 dni od jej otrzymania. W przypadku uznania reklamacji, towar zostanie naprawiony, wymieniony lub nastąpi zwrot środków."
-        },
-        {
-            id: 6,
-            title: "§6. Ochrona Danych Osobowych (RODO)",
-            content: "Administratorem danych osobowych jest Sprzedawca. Dane przetwarzane są wyłącznie w celu realizacji zamówienia oraz obsługi ewentualnych reklamacji. Szczegóły dotyczące przetwarzania danych znajdują się w naszej Polityce Prywatności."
-        }
+        [
+    {
+        id: 1,
+        title: "§1. Postanowienia Ogólne",
+        content: "Sklep internetowy bandafrytki.pl prowadzony jest przez Joachima Esangbedo, ul. Nowodworska 39/6, 54-433 Wrocław, NIP: 8943268275. Sprzedaż odbywa się w ramach działalności nierejestrowanej (art. 5 ustawy Prawo przedsiębiorców). Regulamin określa zasady korzystania ze Sklepu, składania zamówień oraz procedury reklamacyjne."
+    },
+    {
+        id: 2,
+        title: "§2. Zawarcie Umowy i Płatności",
+        content: "Wszystkie ceny są cenami brutto w PLN. Umowa sprzedaży zostaje zawarta z chwilą opłacenia zamówienia przez Klienta. Płatności procesowane są przez operatora HotPay (e-Service Sp. z o.o. / mElements S.A.). Dostępne metody to: BLIK, karty płatnicze oraz szybkie przelewy online. Realizacja zamówienia następuje po pozytywnej autoryzacji płatności."
+    },
+    {
+        id: 3,
+        title: "§3. Dostawa i Koszty",
+        content: "Dostawa realizowana jest na terenie Polski przez InPost (Paczkomaty/Kurier) oraz DPD. Czas realizacji zamówienia wynosi od 2 do 5 dni roboczych. Koszt dostawy jest widoczny w koszyku i pokrywany przez Kupującego, chyba że opis oferty stanowi inaczej."
+    },
+    {
+        id: 4,
+        title: "§4. Prawo do Odstąpienia od Umowy (Ochrona Sprzedawcy)",
+        content: "Konsument może odstąpić od umowy w ciągu 14 dni. Konsument ponosi bezpośrednie koszty zwrotu towaru. Towar musi być zwrócony w stanie niezmienionym. Zgodnie z prawem, Konsument odpowiada za zmniejszenie wartości towaru wynikające z korzystania z niego w sposób wykraczający poza konieczny do stwierdzenia jego charakteru (np. ślady prania, zapach, zabrudzenia). W takim przypadku Sprzedawca ma prawo do potrącenia kwoty odpowiadającej spadkowi wartości towaru."
+    },
+    {
+        id: 5,
+        title: "§5. Wyłączenia z Prawa Zwrotu",
+        content: "Prawo do odstąpienia od umowy nie przysługuje w przypadku produktów personalizowanych, wykonanych na indywidualne zamówienie Klienta (np. nadruk na życzenie) oraz towarów dostarczanych w zapieczętowanym opakowaniu, których po otwarciu nie można zwrócić ze względu na ochronę zdrowia lub higienę."
+    },
+    {
+        id: 6,
+        title: "§6. Reklamacje (Rękojmia)",
+        content: "Sprzedawca odpowiada za wady towaru na zasadach rękojmi. Reklamacje należy zgłaszać na: bandafrytki@gmail.com. Sprzedawca rozpatrzy reklamację w ciągu 14 dni. Reklamacja nie obejmuje uszkodzeń mechanicznych powstałych z winy Kupującego lub w wyniku nieprawidłowej konserwacji (np. pranie w zbyt wysokiej temperaturze)."
+    },
+    {
+        id: 7,
+        title: "§7. Postanowienia Końcowe",
+        content: "Administrator przetwarza dane zgodnie z Polityką Prywatności. W sprawach nieuregulowanych stosuje się przepisy Kodeksu Cywilnego oraz Ustawy o prawach konsumenta. Spory mogą być rozstrzygane polubownie lub przez właściwy sąd powszechny."
+    }
+]
     ];
 
     return (

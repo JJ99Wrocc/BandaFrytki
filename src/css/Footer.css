@@ -3,7 +3,7 @@
     position: relative;
     background: #000;
     color: #fff;
-    padding: 100px 0 40px 0;
+    padding: 100px 0 25px 0;
     overflow: hidden;
 }
 
@@ -49,23 +49,6 @@
     position: relative;
 }
 
-
-/* Dekoracyjna linia pod tytułem na desktopie */
-@media (min-width: 992px) {
-    .footer-nav-block h4::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 40%;
-        width: 20px;
-        height: 1px;
-        background: #FFD700;
-        transition: width 0.3s ease;
-    }
-    .footer-nav-block:hover h4::after {
-        width: 50px;
-    }
-}
 
 .footer-navigation, .important-info, .contact-list {
     list-style: none;
@@ -170,10 +153,98 @@
     margin-top: 10px;
 }
 
+
+
+
+.payment-icons img {
+    animation: fadeInUp 0.6s ease forwards;
+}
+/* GŁÓWNY PRZYCISK - STYL PREMIUM GLASS */
+.scroll-to-top-gold {
+    /* Pozycjonowanie */
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 9999;
+    
+    /* Wymiary i Flexbox */
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Wygląd: Glassmorphism */
+    background: rgba(0, 0, 0, 0.6); /* Ciemne półprzezroczyste tło */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 215, 0, 0.3); /* Złota poświata ramki */
+    border-radius: 12px;
+    
+    /* Detale */
+    color: #ffd700; /* Złoty kolor strzałki */
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    
+    /* Cień i Animacje */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    animation: fadeInScale 0.4s ease-out forwards;
+}
+
+/* IKONA SVG */
+.scroll-to-top-gold svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor; /* Dziedziczy kolor gold / black */
+    transition: transform 0.3s ease;
+}
+
+/* EFEKT HOVER - PEŁNE ZŁOTO */
+.scroll-to-top-gold:hover {
+    background: #ffd700; /* Przejście w solidne złoto */
+    border-color: #ffd700;
+    color: #000; /* Strzałka staje się czarna */
+    transform: translateY(-8px) scale(1.05); /* Mocniejsze uniesienie */
+    box-shadow: 0 15px 35px rgba(255, 215, 0, 0.4);
+}
+
+.scroll-to-top-gold:hover svg {
+    transform: translateY(-2px) scale(1.1); /* Strzałka lekko drga do góry */
+}
+
+/* EFEKT KLIKNIĘCIA */
+.scroll-to-top-gold:active {
+    transform: translateY(-2px) scale(0.92);
+    transition: all 0.1s;
+}
+
 /* --- RESPONSYWNOŚĆ I AKORDEON (poniżej 992px) --- */
 /* --- CZYSZCZENIE I NAPRAWA AKORDEONU (Mobile) --- */
-
-@media (max-width: 991px) {
+/* Wymuszenie widoczności na Desktopie */
+@media (min-width: 992px) {
+    .footer-navigation, .important-info, .contact-list {
+        max-height: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        overflow: visible !important;
+    }
+        .footer-nav-block h4::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 40%;
+        width: 20px;
+        height: 1px;
+        background: #FFD700;
+        transition: width 0.3s ease;
+    }
+    .footer-nav-block:hover h4::after {
+        width: 50px;
+    }
+}
+@media (max-width: 992px) {
     .upper-footer {
         grid-template-columns: 1fr;
         gap: 0;
@@ -224,30 +295,100 @@
         padding-bottom: 30px;
         transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
                     opacity 0.5s ease;
+                    font-size: 12px;
     }
-
+    .payment-methods-wrapper{
+        margin-bottom: 30px;
+    }
+  
+    .footer-title{
+        font-size: 15px;
+    }
     /* Animacja plusa na iks przy otwarciu */
     .footer-nav-block.is-open h4::after {
         transform: rotate(45deg);
         color: #fff;
     }
-}
-
-/* Wymuszenie widoczności na Desktopie */
-@media (min-width: 992px) {
-    .footer-navigation, .important-info, .contact-list {
-        max-height: none !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        overflow: visible !important;
+    .footer-company-info,.copyright{
+        font-size: 10px;
+    }
+    .creator{
+        margin-bottom: 0;
     }
 }
-/* Animacja FadeIn dla ikon */
+
+/* RESPONSYWNOŚĆ - MOBILE */
+@media (max-width: 768px) {
+    .scroll-to-top-gold {
+        bottom: 25px;
+        right: 25px;
+        width: 40px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.8); /* Mocniejsze tło na mobile */
+    }
+    
+    .scroll-to-top-gold svg {
+        width: 20px;
+        height: 20px;
+    }
+  
+     .footer-nav-block.is-open .footer-navigation,
+    .footer-nav-block.is-open .important-info,
+    .footer-nav-block.is-open .contact-list {
+       
+                    font-size: 11px;
+    }
+    .payment-methods-wrapper{
+        margin-bottom: 20px;
+    }
+  
+    .footer-title{
+        font-size: 13px !important ;
+    }
+  
+    .footer-company-info,.copyright{
+        font-size: 9px;
+    }
+
+
+}
+@media(max-width:576px){
+    .footer-company-info,.copyright,.payment-text{
+        font-size: 10px;
+    }
+
+    .payment-methods-wrapper{
+        margin-bottom: 20px;
+    }
+  
+    .footer-title{
+        font-size: 10px !important ;
+    }
+  
+    .footer-company-info,.copyright{
+        font-size: 9px;
+    }
+    .important-info a, .footer-navigation a, .contact-list a {
+        font-size: 10px;
+    }
+    .payment-icons{
+        font-size: 12px;
+    }
+    
+}
+
+/* WEJŚCIOWA ANIMACJA POJAWIANIA SIĘ */
+@keyframes fadeInScale {
+    0% { 
+        opacity: 0; 
+        transform: translateY(20px) scale(0.5); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-.payment-icons img {
-    animation: fadeInUp 0.6s ease forwards;
 }

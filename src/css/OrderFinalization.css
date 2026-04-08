@@ -309,3 +309,147 @@
     }
 
     /* MOBILE */
+
+    /* KAFELKI DOSTAWY */
+.delivery-methods {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.delivery-tile {
+    align-items: center;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    flex: 1 1;
+    padding: 15px;
+    transition: all .2s ease;
+    color: #333; /* Żeby tekst był widoczny na białym tle kafelka */
+}
+
+.delivery-tile.active {
+    background-color: #fffdf5;
+    border-color: #fc0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.tile-icon {
+    font-size: 24px;
+    margin-right: 12px;
+}
+
+.tile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.method-name {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.method-price {
+    font-size: 12px;
+    color: #666;
+}
+
+/* PRZYCISK INPOST */
+.inpost-btn {
+    background: #fc0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    margin-bottom: 10px;
+    padding: 12px;
+    width: 100%;
+    transition: transform 0.2s;
+}
+
+.inpost-btn:hover {
+    transform: translateY(-2px);
+    background: #e6b800;
+}
+
+/* STYLE DLA MAPY LEAFLET (z Twojego wyciągu) */
+.leaflet-container {
+    height: 500px;
+    width: 100%;
+    position: relative;
+    background: #ddd;
+    outline-offset: 1px;
+    overflow: hidden;
+    font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.leaflet-grab {
+    cursor: grab;
+}
+
+/* BACK LINK */
+.pro-back-link {
+    background: none;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 0;
+}
+
+.text-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.label { font-weight: bold; font-size: 12px; }
+.sub-label { font-size: 10px; opacity: 0.6; }
+
+/* INPUTY */
+.customer-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+}
+
+.finalize-btn {
+    width: 100%;
+    background: #fc0;
+    color: #000;
+    border: none;
+    padding: 18px;
+    font-weight: 900;
+    font-size: 16px;
+    border-radius: 12px;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+.map-container-wrapper {
+    border: 2px solid #fc0;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.2);
+    z-index: 10; /* Aby mapa nie nachodziła na inne elementy menu */
+}
+
+/* Fix dla Leafleta żeby kafle się nie rozjeżdżały */
+.leaflet-container {
+    width: 100%;
+    height: 100%;
+    cursor: crosshair !important;
+}
+
+.inpost-btn {
+    transition: all 0.3s ease;
+    z-index: 11;
+    position: relative;
+}

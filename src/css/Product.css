@@ -629,3 +629,115 @@ font-size: 12px;
   30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
   40%, 60% { transform: translate3d(4px, 0, 0); }
 }
+
+/* GLOBALNY KURSOR FRYTKI (z Twojego kodu) */
+* {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' style='font-size: 13px'><text y='30'>🍟</text></svg>") 20 10, auto;
+    box-sizing: border-box;
+}
+
+/* KONTENER GŁÓWNY */
+.legal-checkbox-container {
+    display: flex;
+    justify-content: flex-start;
+    margin: 25px 0;
+    align-items: center;
+    width: 100%;
+}
+
+/* LABEL (Główny silnik checkboxa) */
+.legal-checkbox {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+    gap: 0; /* Gap zastąpiony margin-right w checkmarku wg Twojego kodu */
+}
+
+/* UKRYTY INPUT */
+.legal-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* WŁASNY KWADRACIK (Checkmark) */
+.checkmark {
+    position: relative;
+    display: block;
+    height: 15px;
+    width: 15px;
+    padding: 5px 5px 5px 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid #ffcc00; /* Twoje #fc0 */
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-right: 12px;
+    transition: all 0.3s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* EFEKT ZAZNACZENIA */
+.legal-checkbox input:checked ~ .checkmark {
+    background-color: #ffcc00;
+}
+
+
+
+.legal-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* TEKST I LINKI */
+.label-text {
+    font-weight: 500;
+    line-height: 1.2;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.label-text a {
+    color: #ffcc00;
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.3s ease;
+}
+
+.label-text a:hover {
+    border-bottom: 1px solid #ffcc00;
+}
+
+
+@media (max-width: 1200px) {
+    .legal-checkbox { font-size: 10px; }
+    .checkmark { height: 13px; width: 13px; margin-right: 6px; }
+}
+
+@media (max-width: 992px) {
+    .legal-checkbox { font-size: 9px; }
+    .checkmark { height: 12px; width: 12px; }
+}
+
+@media (max-width: 768px) {
+    .legal-checkbox-container { justify-content: center; }
+    .legal-checkbox { font-size: 11px; }
+    .checkmark { height: 13px; width: 13px; }
+}
+
+@media (max-width: 576px) {
+    .legal-checkbox { font-size: 10px; }
+    .checkmark { height: 12px; width: 12px; margin-right: 4px; }
+}
+
+/* ANIMACJA SHAKE (Dla walidacji) */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
