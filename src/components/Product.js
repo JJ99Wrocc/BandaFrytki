@@ -141,6 +141,7 @@ function Product({ onBuyNow, shake, setShake }) {
                                     type="checkbox" 
                                     checked={termsAccepted}
                                     onChange={(e) => setTermsAccepted(e.target.checked)}
+                                    required
                                 />
                                 <span className="checkmark"></span>
                                 <span className="label-text" style={{ color: shake && !termsAccepted ? '#ff4d4d' : 'inherit' }}>
