@@ -9,7 +9,7 @@ const DeliveryAndPayment = ({ onBack }) => {
     };
 
     const sections = [
- [
+ 
     {
         id: 1,
         title: "1. Bezpieczne Metody Płatności",
@@ -35,7 +35,7 @@ const DeliveryAndPayment = ({ onBack }) => {
         title: "5. Procedura Reklamacji i Zwrotu Środków",
         content: "Reklamacje z tytułu rękojmi rozpatrujemy w 14 dni. Reklamacja nie obejmuje uszkodzeń powstałych z winy użytkownika. Zwrot środków realizowany jest zawsze przy użyciu tego samego sposobu płatności, jakiego użył Kupujący (np. zwrot na ten sam numer BLIK/kartę za pośrednictwem systemu HotPay), co zapewnia pełną przejrzystość i bezpieczeństwo transakcji."
     }
-]
+
     ];
 
     return (

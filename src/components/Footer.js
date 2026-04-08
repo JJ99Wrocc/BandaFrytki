@@ -3,7 +3,7 @@ import '../css/Footer.css';
 import HotPayLogo from '../photo/hotpay-logo.webp'; // Zmieniona nazwa zmiennej dla jasności
 import Blik from '../photo/blik-logo.webp';
 
-const Footer = ({ navigate }) => {
+const Footer = ({ navigate, currentView }) => {
     const [openSection, setOpenSection] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -29,7 +29,13 @@ const Footer = ({ navigate }) => {
             behavior: 'smooth'
         });
     };
+    const handleNavigateLinkClick = (e,targetID) =>{
+        e.preventDefault();
 
+        if(navigate){
+            navigate(targetID)
+        }
+    }
     return (
         <section className="footer-section" aria-labelledby="footer-navigation">
             <footer className="footer">
@@ -41,10 +47,10 @@ const Footer = ({ navigate }) => {
                             Mapa Strony
                         </h4>
                         <ul className="footer-navigation">
-                            <li><a href="#header-section">Strona Główna</a></li>
-                            <li><a href="#product-section">Produkt</a></li>
-                            <li><a href="#links-section">Linki</a></li>
-                            <li><a href="#videos-section">Filmy</a></li>
+                            <li><a onClick={(e) => handleNavigateLinkClick(e, '#header-section')}>Strona Główna</a></li>
+                            <li><a onClick={(e) => handleNavigateLinkClick(e,'#product-section')}>Produkt</a></li>
+                            <li><a onClick={(e) => handleNavigateLinkClick(e, '#links-section')}>Linki</a></li>
+                            <li><a onClick={(e) => handleNavigateLinkClick(e, '#videos-section')}>Filmy</a></li>
                         </ul>
                     </nav>
 

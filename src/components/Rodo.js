@@ -9,7 +9,7 @@ const Rodo = ({ onBack }) => {
     };
 
     const sections = [
-[
+
     {
         id: 1,
         title: "1. Kto jest Administratorem Twoich danych?",
@@ -35,7 +35,7 @@ const Rodo = ({ onBack }) => {
         title: "5. Okres przechowywania i bezpieczeństwo",
         content: "Dane przechowywane są przez okres niezbędny do realizacji zamówienia oraz wymagany przez przepisy prawa podatkowego (5 lat od końca roku kalendarzowego, w którym dokonano zakupu). Wszystkie dane są chronione certyfikatem SSL, co zapewnia bezpieczne szyfrowanie połączenia."
     }
-]
+
     ];
 
     return (
@@ -76,7 +76,7 @@ const Rodo = ({ onBack }) => {
                 </div>
 
                 <div className="info-box-legal">
-                    <p><strong>Uwaga:</strong> Podanie danych jest dobrowolne, ale jeśli ich nie podasz, nie będziemy mogli wysłać Ci Twoich frytek. Proste zasady!</p>
+                    <p><strong>Uwaga:</strong> Podanie danych jest dobrowolne, ale jeśli ich nie podasz, nie będziemy mogli wysłać Ci Twojego zamówienia. Proste zasady!</p>
                 </div>
 
                 <div className="legal-footer">

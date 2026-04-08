@@ -3,7 +3,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Navbar.css';
 
-const MyNavbar = ({ onBrandClick }) => {
+const MyNavbar = ({ onBrandClick, navigate, currentView }) => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -16,16 +16,8 @@ const MyNavbar = ({ onBrandClick }) => {
     e.preventDefault();
     closeMenu(); // Zamykamy drawer od razu
 
-    const element = document.querySelector(targetId);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+    if(navigate){
+      navigate(targetId)
     }
   };
 

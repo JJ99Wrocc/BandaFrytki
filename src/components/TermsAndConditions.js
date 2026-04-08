@@ -9,7 +9,7 @@ const TermsAndConditions = ({onBack}) => {
     };
 
     const sections = [
-        [
+
     {
         id: 1,
         title: "§1. Postanowienia Ogólne",
@@ -45,7 +45,7 @@ const TermsAndConditions = ({onBack}) => {
         title: "§7. Postanowienia Końcowe",
         content: "Administrator przetwarza dane zgodnie z Polityką Prywatności. W sprawach nieuregulowanych stosuje się przepisy Kodeksu Cywilnego oraz Ustawy o prawach konsumenta. Spory mogą być rozstrzygane polubownie lub przez właściwy sąd powszechny."
     }
-]
+
     ];
 
     return (

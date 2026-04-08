@@ -44,16 +44,59 @@ const triggerGlobalShake = () => {
     window.history.pushState({}, '', '/'); 
     window.scrollTo(0, 0);
 };
-// Funkcja dla Footer
 const navigateTo = (viewName, e) => {
-    if (e) e.preventDefault(); // Blokujemy przeładowanie strony
-    setView(viewName);
-    localStorage.setItem('savedView', viewName);
-    window.scrollTo(0, 0);
+    if (e) e.preventDefault(); 
+
+    // Sprawdzamy, czy to jest link do sekcji (np. #product-section)
+    if (typeof viewName === 'string' && viewName.startsWith('#')) {
+        if (view !== 'shop') {
+            // 1. Jeśli nie jesteśmy w sklepie, najpierw tam wróć
+            setView('shop');
+            localStorage.setItem('savedView', 'shop');
+            
+            // 2. Daj Reactowi 100ms na załadowanie DOM sklepu i zeskroluj
+            setTimeout(() => {
+                const element = document.querySelector(viewName);
+                if (element) {
+                    const offset = 80;
+                    const bodyRect = document.body.getBoundingClientRect().top;
+                    const elementRect = element.getBoundingClientRect().top;
+                    const elementPosition = elementRect - bodyRect;
+                    const offsetPosition = elementPosition - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 100);
+        } else {
+            // Jeśli już jesteśmy w sklepie, po prostu skroluj
+            const element = document.querySelector(viewName);
+            if (element) {
+                const offset = 80;
+                const bodyRect = document.body.getBoundingClientRect().top;
+                const elementRect = element.getBoundingClientRect().top;
+                const elementPosition = elementRect - bodyRect;
+                const offsetPosition = elementPosition - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    } else {
+        // Jeśli to normalna podstrona (np. 'terms')
+        setView(viewName);
+        localStorage.setItem('savedView', viewName);
+        window.scrollTo(0, 0);
+    }
 };
 return (
   <div className="App">
-    <MyNavbar onBrandClick={goBackToShop} />
+
+<MyNavbar onBrandClick={goBackToShop} navigate={navigateTo} currentView={view} />
     
     <main>
       {/* 1. Widok sklepu */}
@@ -107,7 +150,7 @@ return (
     <Rodo onBack={goBackToShop} />
   )}
     </main>
-  <Footer navigate={navigateTo} />
+  <Footer navigate={navigateTo} onCLick={navigateTo} currentView={view} />
   </div>
 );
 }
