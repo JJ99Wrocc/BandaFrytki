@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.3ec237b8.css",
-    "main.js": "/static/js/main.a1cd0766.js",
-    "static/js/453.367ff025.chunk.js": "/static/js/453.367ff025.chunk.js",
-    "static/media/Detal1.webp": "/static/media/Detal1.9aff6b1cef714dbd9ae5.webp",
-    "static/media/Detal2.webp": "/static/media/Detal2.b87adaa4b7099b3de370.webp",
-    "static/media/BandaFrytkiProduct.webp": "/static/media/BandaFrytkiProduct.865f790fb9ae57562c6f.webp",
-    "static/media/ZdjJjKoszulka.webp": "/static/media/ZdjJjKoszulka.4a2d46e0b6bb5d7237ec.webp",
-    "static/media/BandaAaron.webp": "/static/media/BandaAaron.ce1b13be78ac241c3e9d.webp",
-    "static/media/BandaMarcin.webp": "/static/media/BandaMarcin.0b9e1ab26fc433b74dd6.webp",
-    "static/media/BandaJJ.webp": "/static/media/BandaJJ.9dc30305e6af6271766b.webp",
-    "static/media/hotpay-logo.webp": "/static/media/hotpay-logo.572ed9b28b39e2064e39.webp",
-    "static/media/blik-logo.webp": "/static/media/blik-logo.59db009d1158d08b2e82.webp",
-    "index.html": "/index.html",
-    "main.3ec237b8.css.map": "/static/css/main.3ec237b8.css.map",
-    "main.a1cd0766.js.map": "/static/js/main.a1cd0766.js.map",
-    "453.367ff025.chunk.js.map": "/static/js/453.367ff025.chunk.js.map"
+    "main.css": "/BandaFrytki/static/css/main.07517725.css",
+    "main.js": "/BandaFrytki/static/js/main.cee02662.js",
+    "static/js/453.367ff025.chunk.js": "/BandaFrytki/static/js/453.367ff025.chunk.js",
+    "static/media/Detal1.webp": "/BandaFrytki/static/media/Detal1.9aff6b1cef714dbd9ae5.webp",
+    "static/media/Detal2.webp": "/BandaFrytki/static/media/Detal2.b87adaa4b7099b3de370.webp",
+    "static/media/BandaFrytkiProduct.webp": "/BandaFrytki/static/media/BandaFrytkiProduct.865f790fb9ae57562c6f.webp",
+    "static/media/ZdjJjKoszulka.webp": "/BandaFrytki/static/media/ZdjJjKoszulka.4a2d46e0b6bb5d7237ec.webp",
+    "static/media/BandaAaron.webp": "/BandaFrytki/static/media/BandaAaron.ce1b13be78ac241c3e9d.webp",
+    "static/media/BandaMarcin.webp": "/BandaFrytki/static/media/BandaMarcin.0b9e1ab26fc433b74dd6.webp",
+    "static/media/BandaJJ.webp": "/BandaFrytki/static/media/BandaJJ.9dc30305e6af6271766b.webp",
+    "static/media/hotpay-logo.webp": "/BandaFrytki/static/media/hotpay-logo.572ed9b28b39e2064e39.webp",
+    "static/media/blik-logo.webp": "/BandaFrytki/static/media/blik-logo.59db009d1158d08b2e82.webp",
+    "index.html": "/BandaFrytki/index.html",
+    "main.07517725.css.map": "/BandaFrytki/static/css/main.07517725.css.map",
+    "main.cee02662.js.map": "/BandaFrytki/static/js/main.cee02662.js.map",
+    "453.367ff025.chunk.js.map": "/BandaFrytki/static/js/453.367ff025.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3ec237b8.css",
-    "static/js/main.a1cd0766.js"
+    "static/css/main.07517725.css",
+    "static/js/main.cee02662.js"
   ]
 }
