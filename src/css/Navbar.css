@@ -74,6 +74,7 @@
     top: 0;
     right: -100%;
     width: 100%;
+    
     max-width: 450px;
     height: 100vh;
     background: #0a0a0a;
@@ -107,7 +108,7 @@
 
 /* --- TREŚĆ W DRAWERZE --- */
 .drawer-content {
-    padding: 120px 50px 50px 50px;
+    padding: 70px 50px 50px 50px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -139,7 +140,7 @@
 
 .nav-link-custom {
     font-family: 'Archivo Black', sans-serif;
-    font-size: 2rem;
+    font-size: 13px !important;
     color: #fff;
     text-decoration: none;
     display: flex;
@@ -240,4 +241,195 @@
     }
 
     .nav-link-custom:hover::after { width: 100%; }
+}
+@media(max-width:1200px){
+.brand-luxury ,.brand-luxury span{
+    font-size: 23px !important;
+}
+.nav-link-custom {
+    font-size: 13px !important;
+}
+
+
+}
+@media(max-width:992px){
+    .menu-label{
+        font-size: 16px;
+    }
+.brand-luxury ,.brand-luxury span{
+    font-size: 22px !important;
+}
+.nav-link-custom {
+    font-size: 14px !important;
+}
+.drawer-footer-p{
+    color: #fff !important;
+    font-size: 10px !important;
+}
+
+.social-mini .IG{
+    color: rgb(184, 55, 77);
+    
+}
+.social-mini .IG:hover,.social-mini .FB:hover,.social-mini .YT:hover{
+    transform: scale(1.2); 
+}
+
+.social-mini .FB{
+    color: rgb(12, 22, 124);   
+}
+
+.social-mini .YT{
+    color: rgb(243, 6, 6);  
+}
+.unique-burger:hover{
+   transform: scale(1.1);
+}
+.unique-burger,.social-mini{
+    transition: transform 0.3 ease-in-out !important;
+}
+.unique-burger{
+    padding: 5px;    
+}
+.social-mini {
+font-size: 21px;
+display: flex; /* Aktywuje Flexbox */
+    justify-content: space-between; /* Rozsuwa elementy na boki */
+    align-items: center; /* Centruje ikony w pionie */
+    width: 100px;
+}
+.burger-layers{
+    width: 25px;
+    height: 20px;
+}
+
+.layer,.layer-meat span,.layer-top-bun{
+    height: 2px;
+}
+.drawer-content{
+   
+    z-index: 1231241324134214234 !important;
+}
+.side-drawer{
+    width: 300px !important;
+}
+
+}
+@media(max-width:768px){
+    .menu-label{
+        font-size: 14px;
+    }
+.brand-luxury ,.brand-luxury span{
+    font-size: 17px !important;
+}
+.nav-link-custom {
+    font-size: 13px !important;
+}
+.drawer-footer-p{
+    color: #fff !important;
+    font-size: 9px !important;
+}
+
+.social-mini .IG{
+    color: rgb(184, 55, 77);
+    
+}
+.social-mini .IG:hover,.social-mini .FB:hover,.social-mini .YT:hover{
+    transform: scale(1.2); 
+}
+
+.social-mini .FB{
+    color: rgb(12, 22, 124);   
+}
+
+.social-mini .YT{
+    color: rgb(243, 6, 6);  
+}
+.unique-burger:hover{
+   transform: scale(1.1);
+}
+.unique-burger,.social-mini{
+    transition: transform 0.3 ease-in-out !important;
+}
+.unique-burger{
+    padding: 5px;    
+}
+.social-mini {
+font-size: 20px;
+display: flex; /* Aktywuje Flexbox */
+    justify-content: space-between; /* Rozsuwa elementy na boki */
+    align-items: center; /* Centruje ikony w pionie */
+    width: 90px;
+}
+.burger-layers{
+    width: 25px;
+    height: 15px;
+}
+
+.layer,.layer-meat span,.layer-top-bun{
+    height: 2px;
+}
+.side-drawer{
+    width: 270px !important;
+}
+
+}
+@media(max-width: 576px){
+    .menu-label{
+        font-size: 14px;
+    }
+.brand-luxury ,.brand-luxury span{
+    font-size: 17px !important;
+}
+.nav-link-custom {
+    font-size: 13px !important;
+}
+.drawer-footer-p{
+    color: #fff !important;
+    font-size: 9px !important;
+}
+
+.social-mini .IG{
+    color: rgb(184, 55, 77);
+    
+}
+.social-mini .IG:hover,.social-mini .FB:hover,.social-mini .YT:hover{
+    transform: scale(1.2); 
+}
+
+.social-mini .FB{
+    color: rgb(12, 22, 124);   
+}
+
+.social-mini .YT{
+    color: rgb(243, 6, 6);  
+}
+.unique-burger:hover{
+   transform: scale(1.1);
+}
+.unique-burger,.social-mini{
+    transition: transform 0.3 ease-in-out !important;
+}
+.unique-burger{
+    padding: 5px;    
+}
+.social-mini {
+font-size: 20px;
+display: flex; /* Aktywuje Flexbox */
+    justify-content: space-between; /* Rozsuwa elementy na boki */
+    align-items: center; /* Centruje ikony w pionie */
+    width: 90px;
+}
+.burger-layers{
+    width: 25px;
+    height: 15px;
+}
+
+.layer,.layer-meat span,.layer-top-bun{
+    height: 2px;
+}
+.side-drawer{
+    width: 100% !important;
+}
+
 }

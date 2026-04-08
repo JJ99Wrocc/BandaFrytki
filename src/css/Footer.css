@@ -354,7 +354,7 @@
 }
 @media(max-width:576px){
     .footer-company-info,.copyright,.payment-text{
-        font-size: 10px;
+        font-size: 8.5px;
     }
 
     .payment-methods-wrapper{
@@ -362,7 +362,7 @@
     }
   
     .footer-title{
-        font-size: 10px !important ;
+        font-size: 11px !important ;
     }
   
     .footer-company-info,.copyright{
@@ -372,7 +372,7 @@
         font-size: 10px;
     }
     .payment-icons{
-        font-size: 12px;
+        font-size: 13px;
     }
     
 }

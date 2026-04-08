@@ -97,7 +97,26 @@ const MyNavbar = ({ onBrandClick }) => {
               </Nav>
 
               <div className="drawer-footer">
-                <div className="social-mini">IG • FB • YT</div>
+                <p className='drawer-footer-p'>Odwiedź nasze social media</p>
+                <div className="social-mini">
+                   <a className='IG'
+                   target="_blank" 
+    rel="noopener noreferrer"
+    aria-label="Odwiedź nasz kanał na Insagramie"
+    href='https://www.instagram.com/bandafrytki/'
+    > <i className="fa-brands fa-instagram"></i>  </a>
+                 <a className='FB'
+                 target="_blank" 
+    rel="noopener noreferrer"
+    aria-label="Odwiedź nasz kanał na Facebook"
+                 href='https://www.facebook.com/BandaFrytki'
+                 > <i className="fa-brands fa-facebook"></i>  </a> 
+                <a className='YT'
+                target="_blank" 
+    rel="noopener noreferrer"
+    aria-label="Odwiedź nasz kanał na YouTube"
+     href='https://www.youtube.com/@BANDA_FRYTKI'> <i className="fa-brands fa-youtube"></i> </a>
+                </div>
                 <p>© 2026 BANDA FRYTKI</p>
               </div>
             </div>
