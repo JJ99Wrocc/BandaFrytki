@@ -679,7 +679,9 @@ font-size: 12px;
     transition: all 0.3s cubic-bezier(.4, 0, .2, 1);
 }
 .checkmark:hover{
-  transform: scale(1.2);
+  transform: scale(1.2) !important;
+  z-index: 10; 
+    background-color: rgba(255, 204, 0, 0.2);
 }
 /* EFEKT ZAZNACZENIA */
 .legal-checkbox input:checked ~ .checkmark {
