@@ -1,153 +1,186 @@
-/* Kontener główny - efekt zaokrąglonego tabletu */
-.premium-map-container {
-    height: 100%;
-    width: 100%;
+.premium-map-wrapper {
     position: relative;
-    background: #0a0a0a;
-    border-radius: 24px;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Nakładka szklana na wyszukiwarkę */
-.map-glass-overlay {
+.map-interface-layer {
     position: absolute;
-    top: 24px;
+    top: 20px;
     left: 0;
     right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     z-index: 1000;
-    padding: 0 24px;
-    display: flex;
-    justify-content: center;
+    pointer-events: none;
 }
 
-.search-box-premium {
+.search-container-pro {
+    pointer-events: auto;
     display: flex;
-    background: rgba(18, 18, 18, 0.85);
-    backdrop-filter: blur(12px) saturate(180%);
-    border: 1px solid rgba(255, 204, 0, 0.3);
-    border-radius: 100px;
+    width: 90%;
+    max-width: 450px;
+    background: rgba(15, 15, 15, 0.85);
+    backdrop-filter: blur(12px);
     padding: 6px;
-    width: 100%;
-    max-width: 480px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 204, 0, 0.3);
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.search-box-premium:focus-within {
-    border-color: #fc0;
-    transform: scale(1.02);
-    box-shadow: 0 15px 40px rgba(255, 204, 0, 0.2);
-}
-
-.search-box-premium input {
-    flex: 1;
+.pro-input {
     background: transparent;
     border: none;
-    color: #fff;
-    padding: 12px 24px;
-    font-size: 15px;
+    color: white;
+    padding: 12px 20px;
+    flex-grow: 1;
+    font-size: 14px;
     outline: none;
 }
 
-.search-action-btn {
-    background: #fc0;
-    color: #000;
+.pro-search-btn {
+    background: #ffcc00;
+    color: black;
     border: none;
+    padding: 0 25px;
     border-radius: 100px;
-    padding: 0 24px;
-    font-weight: 800;
-    font-size: 12px;
+    font-weight: 900;
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.search-action-btn:hover {
-    background: #fff;
-    transform: scale(0.95);
+.pro-search-btn:hover {
+    background: white;
+    transform: scale(1.02);
 }
 
-/* Styl mapy - Dark CartoDB */
-.leaflet-prestige {
-    height: 100%;
-    width: 100%;
-    background: #0f0f0f !important;
-}
-
-/* Premium Popup */
-.premium-popup .leaflet-popup-content-wrapper {
-    background: #1a1a1a !important;
-    color: #fff !important;
-    border-radius: 16px !important;
-    padding: 8px !important;
-    border: 1px solid #333;
-}
-
-.premium-popup .leaflet-popup-tip {
-    background: #1a1a1a !important;
-}
-
-.popup-card {
-    text-align: center;
-}
-
-.popup-card h3 {
-    color: #fc0;
-    margin: 0 0 8px 0;
-    font-size: 18px;
-    text-transform: uppercase;
-}
-
-.popup-card p {
+.error-toast {
+    background: #ff4444;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-top: 15px;
     font-size: 13px;
-    color: #bbb;
-    margin-bottom: 16px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-.popup-card button {
+.main-leaflet-map {
+    width: 100%;
+    height: 100%;
+}
+
+/* Stylizacja Popupów */
+.inpost-popup-style .leaflet-popup-content-wrapper {
+    background: #111 !important;
+    color: white !important;
+    border-radius: 15px !important;
+    padding: 5px !important;
+    border: 1px solid #ffcc00;
+}
+
+.popup-premium-content h3 {
+    color: #ffcc00;
+    font-size: 18px;
+    margin: 0 0 5px 0;
+}
+
+.locker-id {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.locker-addr {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 15px;
+}
+
+.select-point-btn {
+    width: 100%;
     background: transparent;
-    color: #fc0;
-    border: 2px solid #fc0;
-    padding: 8px 16px;
+    border: 1px solid #ffcc00;
+    color: #ffcc00;
+    padding: 10px;
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    width: 100%;
-    transition: all 0.3s;
+    transition: 0.3s;
 }
 
-.popup-card button:hover {
-    background: #fc0;
-    color: #000;
+.select-point-btn:hover {
+    background: #ffcc00;
+    color: black;
 }
 
-/* Loader animowany */
-.loading-shimmer {
+/* Loading Overlay */
+.map-loading-overlay {
     position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1001;
-    background: rgba(0,0,0,0.8);
-    padding: 12px 24px;
-    border-radius: 50px;
-    color: #fff;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 12px;
-    border: 1px solid #333;
 }
 
-.spinner {
-    width: 20px;
-    height: 20px;
-    border: 3px solid #fc0;
-    border-top-color: transparent;
+.shimmer-text {
+    color: #ffcc00;
+    font-weight: bold;
+    letter-spacing: 2px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+.mini-spinner {
+    width: 15px;
+    height: 15px;
+    border: 2px solid black;
+    border-top: 2px solid transparent;
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 }
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
+/* Kontener pod mapą */
+.selected-point-info {
+    background: #000000 !important; /* Twoje czarne tło */
+    color: #ffffff !important;      /* BIAŁY TEKST - inaczej go nie zobaczysz */
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #ffcc00; /* Żółty pasek InPost */
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
+
+.selected-point-info p {
+    margin: 2px 0;
+    font-size: 14px;
+    color: #ffffff; /* Wymuszenie białego koloru */
+}
+
+.selected-point-info strong {
+    font-size: 14px;
+    color: #ffcc00; /* Złoty kolor dla kodu paczkomatu */
+}
+
+.placeholder-text {
+    color: #888;
+    font-style: italic;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }

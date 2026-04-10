@@ -2,7 +2,7 @@
     "name": "BandaFrytki",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https://jj99wrocc.github.io/BandaFrytki",
+    "homepage": "https://bandafrytki.pl/",
     "dependencies": {
         "@testing-library/dom": "^10.4.1",
         "@testing-library/jest-dom": "^6.9.1",
