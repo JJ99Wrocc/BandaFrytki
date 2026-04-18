@@ -147,7 +147,7 @@ const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack })
                         <div className="tile-icon">📦</div>
                         <div className="tile-info">
                             <span className="method-name">Paczkomat InPost</span>
-                            <span className="method-price">10.99 PLN</span>
+                            <span className="method-price">11.49 PLN</span>
                         </div>
                     </div>
 
@@ -157,8 +157,8 @@ const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack })
                     >
                         <div className="tile-icon">🚚</div>
                         <div className="tile-info">
-                            <span className="method-name">Kurier DPD / DHL</span>
-                            <span className="method-price">16.00 PLN</span>
+                            <span className="method-name">Kurier Inpost</span>
+                            <span className="method-price">14,49 PLN</span>
                         </div>
                     </div>
                 </div>

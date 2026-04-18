@@ -22,6 +22,8 @@ const Header = () => {
 };  
 // POPRAWIONA LOGIKA
 const handleVideoLoad = () => {
+
+  
   setLoadedVideo(prev => {
     const nextCount = prev + 1;
     // Jeśli załadował się przynajmniej jeden film (ID 1), zdejmujemy loader

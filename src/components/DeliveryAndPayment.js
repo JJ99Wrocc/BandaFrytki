@@ -23,7 +23,7 @@ const DeliveryAndPayment = ({ onBack }) => {
     {
         id: 3,
         title: "3. Dostawa i Odbiór Przesyłki",
-        content: "Dostawy realizujemy przez Paczkomaty InPost (15,00 zł) oraz Kuriera (20,00 zł). Kupujący ma obowiązek sprawdzić stan przesyłki przy odbiorze. W przypadku stwierdzenia uszkodzenia opakowania lub ingerencji osób trzecich, należy sporządzić protokół szkody w obecności kuriera/przy paczkomacie. Jest to podstawa do dochodzenia roszczeń za uszkodzenia mechaniczne powstałe w transporcie."
+        content: "Dostawy realizujemy przez Paczkomaty InPost (11,49 zł) oraz Kuriera (14,49 zł). Kupujący ma obowiązek sprawdzić stan przesyłki przy odbiorze. W przypadku stwierdzenia uszkodzenia opakowania lub ingerencji osób trzecich, należy sporządzić protokół szkody w obecności kuriera/przy paczkomacie. Jest to podstawa do dochodzenia roszczeń za uszkodzenia mechaniczne powstałe w transporcie."
     },
     {
         id: 4,

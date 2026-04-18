@@ -38,7 +38,7 @@ const TermsAndConditions = ({onBack}) => {
     {
         id: 6,
         title: "§6. Reklamacje (Rękojmia)",
-        content: "Sprzedawca odpowiada za wady towaru na zasadach rękojmi. Reklamacje należy zgłaszać na: bandafrytki@gmail.com. Sprzedawca rozpatrzy reklamację w ciągu 14 dni. Reklamacja nie obejmuje uszkodzeń mechanicznych powstałych z winy Kupującego lub w wyniku nieprawidłowej konserwacji (np. pranie w zbyt wysokiej temperaturze)."
+        content: "Sprzedawca odpowiada za wady towaru na zasadach rękojmi. Reklamacje należy zgłaszać na: joachimek1@interia.pl. Sprzedawca rozpatrzy reklamację w ciągu 14 dni. Reklamacja nie obejmuje uszkodzeń mechanicznych powstałych z winy Kupującego lub w wyniku nieprawidłowej konserwacji (np. pranie w zbyt wysokiej temperaturze)."
     },
     {
         id: 7,

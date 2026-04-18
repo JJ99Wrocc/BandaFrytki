@@ -13,7 +13,7 @@ const ReturnsAndComplaints = ({ onBack }) => {
     {
         id: 1,
         title: "1. Prawo do odstąpienia od umowy",
-        content: "Konsument (lub osoba fizyczna prowadząca działalność gospodarczą na prawach Konsumenta) ma prawo odstąpić od umowy w terminie 14 dni bez podania przyczyny. Bieg terminu rozpoczyna się od dnia dostarczenia produktu. Do zachowania terminu wystarczy wysłanie oświadczenia przed jego upływem na adres: bandafrytki@gmail.com."
+        content: "Konsument (lub osoba fizyczna prowadząca działalność gospodarczą na prawach Konsumenta) ma prawo odstąpić od umowy w terminie 14 dni bez podania przyczyny. Bieg terminu rozpoczyna się od dnia dostarczenia produktu. Do zachowania terminu wystarczy wysłanie oświadczenia przed jego upływem na adres: joachimek1@interia.pl ."
     },
     {
         id: 2,

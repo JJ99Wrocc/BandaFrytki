@@ -13,7 +13,7 @@ const Rodo = ({ onBack }) => {
     {
         id: 1,
         title: "1. Kto jest Administratorem Twoich danych?",
-        content: "Administratorem Twoich danych osobowych jest Joachim Esangbedo, ul. Nowodworska 39/6, 54-433 Wrocław, NIP: 8943268275. Sprzedaż prowadzona jest w formie działalności nierejestrowanej zgodnie z art. 5 ustawy Prawo przedsiębiorców. Kontakt w sprawach ochrony prywatności: bandafrytki@gmail.com."
+        content: "Administratorem Twoich danych osobowych jest Joachim Esangbedo, ul. Nowodworska 39/6, 54-433 Wrocław, NIP: 8943268275. Sprzedaż prowadzona jest w formie działalności nierejestrowanej zgodnie z art. 5 ustawy Prawo przedsiębiorców. Kontakt w sprawach ochrony prywatności: joachimek1@interia.pl ."
     },
     {
         id: 2,

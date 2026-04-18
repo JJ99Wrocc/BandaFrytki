@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import '../css/Payment.css';
+import HotPayLogo from '../photo/hotpay-logo.webp'; 
 
 const Payment = ({ shake, setShake, onBack }) => {
     const [paymentMethod, setPaymentMethod] = useState(null);
     const [error, setError] = useState(false);
 
     const methods = [
-        // { id: 'blik', name: 'BLIK', icon: '💎' },
-        // { id: 'card', name: 'KARTA / GOOGLE PAY', icon: '💳' },
-        { id: 'transfer', name: 'PRZELEWY24', icon: '⚡' }
+        { id: 'transfer', name: 'HotPay'}
     ];
 
     const handlePaymentFinalize = () => {
@@ -49,7 +48,7 @@ const Payment = ({ shake, setShake, onBack }) => {
                             className={`payment-card ${paymentMethod === method.id ? 'active' : ''} ${error && !paymentMethod ? 'error-card' : ''}`}
                             onClick={() => setPaymentMethod(method.id)}
                         >
-                            <span className="method-icon">{method.icon}</span>
+                            <img className="method-icon" src={HotPayLogo}></img>
                             <span className="method-name">{method.name}</span>
                             {paymentMethod === method.id && <div className="selected-check">✓</div>}
                         </div>
