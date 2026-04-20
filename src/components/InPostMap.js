@@ -120,7 +120,7 @@ const InPostMap = ({ onSelectPoint }) => {
                 <div className="search-container-pro">
                     <input 
                         type="text" 
-                        placeholder="Wpisz np. Poznań, Mickiewicza..." 
+                        placeholder="np. Poznań, Mickiewicza..." 
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
