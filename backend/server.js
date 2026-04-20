@@ -42,7 +42,7 @@ app.post('/api/orders', async (req, res) => {
 }); // <--- TU SIĘ KOŃCZY POST
 
 // START SERWERA - TO MUSI BYĆ NA ZEWNĄTRZ
-const PORT = 5000;
+const PORT = 10000;
 app.listen(PORT, () => {
     console.log(`🚀 Serwer śmiga na porcie ${PORT}`);
 });
