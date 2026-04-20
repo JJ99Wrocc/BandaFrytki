@@ -5,7 +5,14 @@ const orderSchema = new mongoose.Schema({
     size: { type: String, required: true },
     quantity: { type: Number, required: true },
     price: { type: Number, required: true },
-    orderDate: { type: Date, default: Date.now }
+    orderDate: { type: Date, default: Date.now },
+    name: String,
+    email: String,
+    address: String,
+    phone: String,
+    deliveryMethod: String,
+    selectedPoint: String,
+    createdAt: { type: Date, default: Date.now }
 });
 
 
