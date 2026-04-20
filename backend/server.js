@@ -18,13 +18,21 @@ mongoose.connect(process.env.MONGO_URI)
 // Endpoint do zamówień
 app.post('/api/orders', async (req, res) => {
     try {
-        const { size } = req.body;
+        const { size, name, email, address } = req.body;
 
         const newOrder = new Order({
             productName: "BANDA FRYTKI TEE",
             size: size,
             quantity: 1,
-            price: 120
+            price: 85,
+            name: name,
+            email: email,
+            address: address,
+            phone: phone,
+            deliveryMethod: deliveryMethod,
+            selectedPoint: selectedPoint
+
+
         });
 
         const savedOrder = await newOrder.save();
