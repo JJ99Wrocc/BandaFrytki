@@ -18,33 +18,26 @@ mongoose.connect(process.env.MONGO_URI)
 // Endpoint do zamówień
 app.post('/api/orders', async (req, res) => {
     try {
-        const { size, name, email, address } = req.body;
+        // Wyciągamy WSZYSTKO z req.body do jednej zmiennej
+        const data = req.body; 
 
         const newOrder = new Order({
             productName: "BANDA FRYTKI TEE",
-            size: size,
+            size: data.size,
             quantity: 1,
             price: 85,
-            name: name,
-            email: email,
-            address: address,
-            phone: phone,
-            deliveryMethod: deliveryMethod,
-            selectedPoint: selectedPoint
-
-
+            name: data.name,
+            email: data.email,
+            address: data.address,
+            phone: data.phone, // Teraz bierzemy to bezpośrednio z obiektu data
+            deliveryMethod: data.deliveryMethod,
+            selectedPoint: data.selectedPoint
         });
 
         const savedOrder = await newOrder.save();
-        console.log("✅ Nowe zamówienie wpadło do bazy!");
-
-        res.status(201).json({ 
-            success: true, 
-            message: "Zamówienie zapisane w bazie!",
-            orderId: savedOrder._id 
-        });
+        res.status(201).json({ success: true, orderId: savedOrder._id });
     } catch (err) {
-        console.error("❌ Błąd zapisu:", err.message);
+        console.error("❌ BŁĄD:", err.message);
         res.status(500).json({ success: false, error: err.message });
     }
 }); // <--- TU SIĘ KOŃCZY POST
