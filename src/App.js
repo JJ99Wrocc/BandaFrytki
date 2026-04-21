@@ -118,8 +118,8 @@ return (
           selectedSize={selectedSize} 
           shake={shake}
           setShake={setShake}
-          onSuccess={() => {
-            setFinalPrice(price);
+          onSuccess={(amount) => {
+            setFinalPrice(amount);
             setView('payment');
           }} // To jest klucz do przejścia dalej!
           onBack={goBackToShop}

@@ -225,9 +225,9 @@ const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack, p
                 </div>
 
                 <div className="price-display" role="status">
-                    <p>Product: {price} PLN</p>
-                    <p>Dostawa: {deliveryCost} PLN</p>
-                    <p>Do zapłaty: <span className="price-amount">{totalPrice} PLN</span></p>
+                    <p className="price-display-p">Produkt: {price} PLN</p>
+                    <p className="price-display-p">Dostawa: {deliveryCost} PLN</p>
+                    <p className="price-display-p">Do zapłaty: <span className="price-amount">{totalPrice} PLN</span></p>
                 </div>
 
                 <button 
