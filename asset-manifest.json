@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.bbdd79be.css",
-    "main.js": "/static/js/main.21c7ccfd.js",
+    "main.css": "/static/css/main.2850a695.css",
+    "main.js": "/static/js/main.cf48cbd8.js",
     "static/js/453.367ff025.chunk.js": "/static/js/453.367ff025.chunk.js",
     "static/media/Detal1.webp": "/static/media/Detal1.9aff6b1cef714dbd9ae5.webp",
     "static/media/Detal2.webp": "/static/media/Detal2.b87adaa4b7099b3de370.webp",
@@ -13,12 +13,12 @@
     "static/media/hotpay-logo.webp": "/static/media/hotpay-logo.572ed9b28b39e2064e39.webp",
     "static/media/blik-logo.webp": "/static/media/blik-logo.59db009d1158d08b2e82.webp",
     "index.html": "/index.html",
-    "main.bbdd79be.css.map": "/static/css/main.bbdd79be.css.map",
-    "main.21c7ccfd.js.map": "/static/js/main.21c7ccfd.js.map",
+    "main.2850a695.css.map": "/static/css/main.2850a695.css.map",
+    "main.cf48cbd8.js.map": "/static/js/main.cf48cbd8.js.map",
     "453.367ff025.chunk.js.map": "/static/js/453.367ff025.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bbdd79be.css",
-    "static/js/main.21c7ccfd.js"
+    "static/css/main.2850a695.css",
+    "static/js/main.cf48cbd8.js"
   ]
 }
