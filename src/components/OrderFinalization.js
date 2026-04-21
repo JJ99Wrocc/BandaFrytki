@@ -14,10 +14,10 @@ L.Icon.Default.mergeOptions({
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 });
 
-const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack }) => {
+const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack, price}) => {
     // Dodatkowy stan do obsługi widoczności mapy
     const [showMap, setShowMap] = useState(false);
-
+    
     // 1. Stan dla danych klienta + dostawa
     const [customerData, setCustomerData] = useState({
         name: '',
@@ -27,7 +27,9 @@ const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack })
         deliveryMethod: 'inpost', // domyślna metoda
         selectedPoint: null // Przechowywanie wybranego paczkomatu
     });
-
+    
+    const deliveryCost = customerData.deliveryMethod === 'inpost' ? 11.49 : 14.49;
+    const totalPrice = (parseFloat(price) + deliveryCost).toFixed(2);
     const [errors, setErrors] = useState({
         size: false,
         name: false,
@@ -86,7 +88,7 @@ const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack })
             });
 
             if (response.ok) {
-                onSuccess();
+                onSuccess(totalPrice);
                 alert("ZAMÓWIENIE PRZYJĘTE. PRZEKIEROWANIE DO PŁATNOŚCI...");
             }
         } catch (err) {
@@ -223,7 +225,9 @@ const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack })
                 </div>
 
                 <div className="price-display" role="status">
-                    <p>Do zapłaty: <span className="price-amount">85 PLN</span></p>
+                    <p>Product: {price} PLN</p>
+                    <p>Dostawa: {deliveryCost} PLN</p>
+                    <p>Do zapłaty: <span className="price-amount">{totalPrice} PLN</span></p>
                 </div>
 
                 <button 

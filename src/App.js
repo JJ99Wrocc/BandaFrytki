@@ -14,6 +14,7 @@ import Rodo from './components/Rodo';
 import Links from './components/Links';
 import YouTubeSection from './components/YouTubeSection';
 function App() {
+  const [finalPrice, setFinalPrice] = useState(0);
       const [shake, setShake] = useState(false);
   // Stan kontrolujący co wyświetlamy: 'shop' lub 'checkout'
   const [view, setView] = useState(localStorage.getItem('savedView') || 'shop');
@@ -44,6 +45,7 @@ const triggerGlobalShake = () => {
     window.history.pushState({}, '', '/'); 
     window.scrollTo(0, 0);
 };
+const price = 85; 
 const navigateTo = (viewName, e) => {
     if (e) e.preventDefault(); 
 
@@ -103,7 +105,7 @@ return (
       {view === 'shop' && (
         <>
           <Header />
-          <Product onBuyNow={goToCheckout} shake={shake} setShake={setShake} navigate={navigateTo} />
+          <Product price={price} onBuyNow={goToCheckout} shake={shake} setShake={setShake} navigate={navigateTo} />
           <Links />
           <YouTubeSection />
         </>
@@ -112,10 +114,14 @@ return (
       {/* 2. Widok formularza (Checkout) */}
       {view === 'checkout' && (
         <OrderFinalization 
+          price={price}
           selectedSize={selectedSize} 
           shake={shake}
           setShake={setShake}
-          onSuccess={() => setView('payment')} // To jest klucz do przejścia dalej!
+          onSuccess={() => {
+            setFinalPrice(price);
+            setView('payment');
+          }} // To jest klucz do przejścia dalej!
           onBack={goBackToShop}
         />
       )}
@@ -123,6 +129,7 @@ return (
       {/* 3. Widok płatności */}
       {view === 'payment' && (
         <Payment 
+        totalPrice={finalPrice}
         shake={shake}
          setShake={setShake}
          onBack={() => {

@@ -31,7 +31,8 @@ app.post('/api/orders', async (req, res) => {
             address: data.address,
             phone: data.phone, // Teraz bierzemy to bezpośrednio z obiektu data
             deliveryMethod: data.deliveryMethod,
-            selectedPoint: data.selectedPoint
+            selectedPoint: data.selectedPoint,
+            totalPrice: data.totalPrice
         });
 
         const savedOrder = await newOrder.save();

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import '../css/Payment.css';
 import HotPayLogo from '../photo/hotpay-logo.webp'; 
 
-const Payment = ({ shake, setShake, onBack }) => {
+const Payment = ({ shake, setShake, onBack, totalPrice }) => {
     const [paymentMethod, setPaymentMethod] = useState(null);
     const [error, setError] = useState(false);
 
@@ -20,9 +20,14 @@ const Payment = ({ shake, setShake, onBack }) => {
             }, 800);
             return;
         }
-        
+        const SEKR_USLUGI = 'd0I4THRRTEg5dVkxQW9xQW55bDJpOVgrM2pEdXF1STNKb09McTNpZEV0bz0,'
+        const kwota = totalPrice;
+        const nazwaUslugi = 'Zamówienie Banda Frytki';
+        const idZamowienia = `ORDER-${Date.now()}`;
+        const hotPayUrl = `https://pobierz.hotpay.pl/uzupelnij-dane?secret=${SEKR_USLUGI}&amount=${kwota}&desc=${encodeURIComponent(nazwaUslugi)}&order_id=${idZamowienia}`;
         console.log(`Inicjowanie płatności dla: ${paymentMethod}`);
         alert(`PRZEKIEROWANIE DO BRAMKI: ${paymentMethod.toUpperCase()}`);
+        window.location.href = hotPayUrl;
     };
 
     return (
@@ -64,7 +69,7 @@ const Payment = ({ shake, setShake, onBack }) => {
                     type="button" 
                     onClick={handlePaymentFinalize}
                 >
-                    ZAPŁAĆ TERAZ
+                    ZAPŁAĆ TERAZ ({totalPrice} PLN)
                 </button>
             </div>
         </section>

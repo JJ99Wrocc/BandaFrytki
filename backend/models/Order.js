@@ -12,6 +12,7 @@ const orderSchema = new mongoose.Schema({
     phone: String,
     deliveryMethod: String,
     selectedPoint: String,
+    totalPrice: Number,
     createdAt: { type: Date, default: Date.now }
 });
 

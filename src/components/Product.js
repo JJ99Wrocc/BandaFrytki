@@ -6,7 +6,7 @@ import KoszulkaFront from '../photo/ZdjJjKoszulka.webp';
 import Detal1 from '../photo/Detal1.webp';
 import Detal2 from '../photo/Detal2.webp';
 
-function Product({ onBuyNow, shake, setShake, navigate, currentView }) {
+function Product({ onBuyNow, shake, setShake, navigate, currentView,price }) {
     const [selectedSize, setSelectedSize] = useState(null);
     const [termsAccepted, setTermsAccepted] = useState(false);
     
@@ -15,7 +15,7 @@ function Product({ onBuyNow, shake, setShake, navigate, currentView }) {
     const [zoomStyle, setZoomStyle] = useState({ display: 'none' });
 
     const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
-
+    
     // LOGIKA LUPY (Magnifier)
     const handleMouseMove = (e) => {
         const rect = e.currentTarget.getBoundingClientRect();
@@ -104,7 +104,7 @@ function Product({ onBuyNow, shake, setShake, navigate, currentView }) {
                         <h2 className="product-name">BANDA FRYTKI TEE</h2>
                         
                         <div className="price-wrapper" aria-label="Cena">
-                            <p className="product-price">85 PLN</p>
+                            <p className="product-price">{price} PLN</p>
                             <p className="shipping-info-small">
                                 Dostawa już od <strong>12.5 PLN</strong>
                             </p>
