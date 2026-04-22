@@ -9,16 +9,18 @@ const Payment = ({ shake, setShake, onBack, totalPrice, customerData, selectedSi
     const methods = [
         { id: 'transfer', name: 'HotPay'}
     ];
-
-  const handlePaymentFinalize = async () => {
-    if (!paymentMethod) {
-        setError(true);
-        setShake(true);
-        setTimeout(() => { setShake(false); setError(false); }, 800);
-        return;
-    }
+    
+    const handlePaymentFinalize = async () => {
+        if (!paymentMethod) {
+            setError(true);
+            setShake(true);
+            setTimeout(() => { setShake(false); setError(false); }, 800);
+            return;
+        }
+        const ID_ZAMOWIENIA = `ORDER-${Date.now()}`;
     try {
  const orderData = {
+            orderId: ID_ZAMOWIENIA,
             name: customerData.name,
             email: customerData.email,
             phone: customerData.phone,
@@ -32,7 +34,7 @@ const Payment = ({ shake, setShake, onBack, totalPrice, customerData, selectedSi
 const response = await fetch(`https://bandafrytki.onrender.com/api/orders`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ ...orderData, orderId: ID_ZAMOWIENIA }) // DODAJEMY orderId
+    body: JSON.stringify({orderData}) // DODAJEMY orderId
 });
         const result = await response.json();
 
@@ -51,7 +53,6 @@ const response = await fetch(`https://bandafrytki.onrender.com/api/orders`, {
     }
     const KWOTA = cena.toFixed(2);
         const NAZWA_USLUGI = 'Zamówienie Banda Frytki';
-    const ID_ZAMOWIENIA = `ORDER-${Date.now()}`;
 
     // 3. Budowanie URL za pomocą URLSearchParams (bezpieczniejsze niż string template)
     const params = new URLSearchParams({

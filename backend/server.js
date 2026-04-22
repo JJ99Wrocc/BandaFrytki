@@ -29,6 +29,7 @@ app.post('/api/orders', async (req, res) => {
         const data = req.body; 
 
         const newOrder = new Order({
+            orderId: data.orderId,
             productName: "BANDA FRYTKI TEE",
             size: data.size,
             quantity: 1,
