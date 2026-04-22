@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.60803515.css",
-    "main.js": "/static/js/main.d56cf2d7.js",
+    "main.js": "/static/js/main.d1f2d68a.js",
     "static/js/453.367ff025.chunk.js": "/static/js/453.367ff025.chunk.js",
     "static/media/Detal1.webp": "/static/media/Detal1.9aff6b1cef714dbd9ae5.webp",
     "static/media/Detal2.webp": "/static/media/Detal2.b87adaa4b7099b3de370.webp",
@@ -14,11 +14,11 @@
     "static/media/blik-logo.webp": "/static/media/blik-logo.59db009d1158d08b2e82.webp",
     "index.html": "/index.html",
     "main.60803515.css.map": "/static/css/main.60803515.css.map",
-    "main.d56cf2d7.js.map": "/static/js/main.d56cf2d7.js.map",
+    "main.d1f2d68a.js.map": "/static/js/main.d1f2d68a.js.map",
     "453.367ff025.chunk.js.map": "/static/js/453.367ff025.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.60803515.css",
-    "static/js/main.d56cf2d7.js"
+    "static/js/main.d1f2d68a.js"
   ]
 }
