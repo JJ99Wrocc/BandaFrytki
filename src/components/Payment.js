@@ -62,7 +62,7 @@ const response = await fetch(`https://bandafrytki.onrender.com/api/orders`, {
         NAZWA_USLUGI: NAZWA_USLUGI,
         ID_ZAMOWIENIA: wygenerowaneID,
         ADRES_WWW: window.location.origin,
-        ADRES_SUCCESS: `${window.location.origin}/?status=success&oid=${ID_ZAMOWIENIA}`,
+        ADRES_SUCCESS: `${window.location.origin}/?status=success&oid=${wygenerowaneID}`,
         ADRES_FAILURE: `${window.location.origin}/?status=error`,
         EMAIL: customerData.email
     });
