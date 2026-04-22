@@ -28,9 +28,12 @@ useEffect(() => {
     localStorage.setItem("selectedSize", selectedSize);
 }, [selectedSize]);
 const handleOrderSuccess = (totalPrice, data, orderId) => {
-    setFinalPrice(totalPrice); // Zapisujemy cenę z dostawą
-    setCustomerData({ ...data, orderId: orderId });     // Zapisujemy dane klienta (mail, adres itp.)
-    setStep('payment');         // Przełączamy widok na płatności
+    setFinalPrice(totalPrice); 
+    setCustomerData({ ...data, orderId: orderId }); 
+    
+    // ZMIEŃ TO:
+    setView('payment'); 
+    localStorage.setItem('savedView', 'payment');
 };
 const triggerGlobalShake = () => {
     setShake(true);

@@ -76,25 +76,8 @@ const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack, p
             }, 800);
             return;
         }
-
-        try {
-            const response = await fetch('https://bandafrytki.onrender.com/api/orders', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    size: selectedSize,
-                    ...customerData
-                })
-            });
-const result = await response.json();
-            if (response.ok) {
-                onSuccess(totalPrice, customerData);
-                alert("ZAMÓWIENIE PRZYJĘTE. PRZEKIEROWANIE DO PŁATNOŚCI...");
-            }
-        } catch (err) {
-            console.error("Błąd serwera:", err);
-            alert("BŁĄD SERWERA. SPRÓBUJ PÓŹNIEJ.");
-        }
+        const result = await response.json();
+        onSuccess(totalPrice, customerData);
     };
 
     return (    
