@@ -29,11 +29,11 @@ const Payment = ({ shake, setShake, onBack, totalPrice, customerData, selectedSi
             totalPrice: totalPrice,
         };
 
-    const response = await fetch(`https://bandafrytki.onrender.com/api/orders`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(orderData)
-        });
+const response = await fetch(`https://bandafrytki.onrender.com/api/orders`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ...orderData, orderId: ID_ZAMOWIENIA }) // DODAJEMY orderId
+});
         const result = await response.json();
 
         if (!result.success) {
