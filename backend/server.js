@@ -27,8 +27,8 @@ mongoose.connect(process.env.MONGO_URI)
 app.post('/api/orders', async (req, res) => {
     console.log("Odebrane dane:", req.body);
     try {
-        const data = req.body; 
-
+        const data = req.body.orderData || req.body;
+console.log("Saving order for email:", data.email);
         const newOrder = new Order({
             orderId: data.orderId,
             productName: "BANDA FRYTKI TEE",
