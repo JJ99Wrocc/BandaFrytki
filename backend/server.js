@@ -25,6 +25,7 @@ mongoose.connect(process.env.MONGO_URI)
 // 1. ENDPOINT DLA ZAMÓWIEŃ (Zapis do bazy bez maila)
 // ==========================================
 app.post('/api/orders', async (req, res) => {
+    console.log("Odebrane dane:", req.body);
     try {
         const data = req.body; 
 

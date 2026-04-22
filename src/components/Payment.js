@@ -17,10 +17,10 @@ const Payment = ({ shake, setShake, onBack, totalPrice, customerData, selectedSi
             setTimeout(() => { setShake(false); setError(false); }, 800);
             return;
         }
-        const ID_ZAMOWIENIA = `ORDER-${Date.now()}`;
+        const wygenerowaneID = `ORDER-${Date.now()}`;
     try {
  const orderData = {
-            orderId: ID_ZAMOWIENIA,
+            orderId: wygenerowaneID,
             name: customerData.name,
             email: customerData.email,
             phone: customerData.phone,
@@ -30,6 +30,7 @@ const Payment = ({ shake, setShake, onBack, totalPrice, customerData, selectedSi
             size: selectedSize,
             totalPrice: totalPrice,
         };
+        console.log("Dane wysyłane do serwera:", orderData);
 
 const response = await fetch(`https://bandafrytki.onrender.com/api/orders`, {
     method: 'POST',
@@ -59,7 +60,7 @@ const response = await fetch(`https://bandafrytki.onrender.com/api/orders`, {
         SEKRET: SEKRET,
         KWOTA: KWOTA,
         NAZWA_USLUGI: NAZWA_USLUGI,
-        ID_ZAMOWIENIA: ID_ZAMOWIENIA,
+        ID_ZAMOWIENIA: wygenerowaneID,
         ADRES_WWW: window.location.origin,
         ADRES_SUCCESS: `${window.location.origin}/?status=success&oid=${ID_ZAMOWIENIA}`,
         ADRES_FAILURE: `${window.location.origin}/?status=error`,
