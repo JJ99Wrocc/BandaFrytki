@@ -35,7 +35,7 @@ const Payment = ({ shake, setShake, onBack, totalPrice, customerData, selectedSi
 const response = await fetch(`https://bandafrytki.onrender.com/api/orders`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({orderData}) // DODAJEMY orderId
+    body: JSON.stringify(orderData) // DODAJEMY orderId
 });
         const result = await response.json();
 

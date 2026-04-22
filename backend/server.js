@@ -67,12 +67,10 @@ app.post('/api/hotpay-notification', async (req, res) => {
         // HotPay wysyła STATUS "SUCCESS" gdy pieniądze wpłynęły
         if (data.STATUS === 'SUCCESS') {
             // Szukamy zamówienia w bazie po mailu (najświeższe nieopłacone)
-            const order = await Order.findOne({ 
-    $or: [
-        { orderId: data.ID_ZAMOWIENIA }, 
-        { email: data.EMAIL } 
-    ] 
-}).sort({ createdAt: -1 });
+           const order = await Order.findOne({ orderId: data.ID_ZAMOWIENIA });
+           if (order) {
+        console.log("Znaleziono zamówienie w bazie dla ID:", data.ID_ZAMOWIENIA);
+        console.log("Email przypisany do zamówienia:", order.email); // To sprawdzi czy e-mail istnieje w bazie
 
             if (order && order.status !== 'paid') {
                 // WYSYŁKA MAILA PRZEZ RESEND (Dopiero teraz!)
