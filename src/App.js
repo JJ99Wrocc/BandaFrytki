@@ -27,6 +27,23 @@ const [selectedSize, setSelectedSize] = useState(() => {
 useEffect(() => {
     localStorage.setItem("selectedSize", selectedSize);
 }, [selectedSize]);
+// App.js
+const finalizujZamowienieWBazie = async () => {
+    // Tutaj możesz dodać np. powiadomienie dla użytkownika
+    alert("Dziękujemy za wpłatę! Twoje zamówienie jest przetwarzane.");
+    
+    // Opcjonalnie: czyścimy URL z parametrów, żeby po odświeżeniu strony 
+    // alert nie wyskakiwał w kółko
+    window.history.replaceState({}, document.title, "/");
+};
+useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('status') === 'success') {
+        // Dopiero tutaj robisz fetch do bazy i wysyłasz maila!
+        // Dane klienta masz w stanie customerData (o ile nie odświeżył strony ręcznie)
+        finalizujZamowienieWBazie();
+    }
+}, []);
 const handleOrderSuccess = (totalPrice, data, orderId) => {
     setFinalPrice(totalPrice); 
     setCustomerData({ ...data, orderId: orderId }); 

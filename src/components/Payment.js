@@ -59,7 +59,9 @@ const Payment = ({ shake, setShake, onBack, totalPrice, customerData, selectedSi
         KWOTA: KWOTA,
         NAZWA_USLUGI: NAZWA_USLUGI,
         ID_ZAMOWIENIA: ID_ZAMOWIENIA,
-        ADRES_WWW: window.location.origin, // Automatycznie bierze adres Twojej strony
+        ADRES_WWW: window.location.origin,
+        ADRES_SUCCESS: `${window.location.origin}/?status=success&oid=${ID_ZAMOWIENIA}`,
+        ADRES_FAILURE: `${window.location.origin}/?status=error`,
         EMAIL: customerData.email
     });
 

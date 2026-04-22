@@ -13,7 +13,8 @@ const orderSchema = new mongoose.Schema({
     deliveryMethod: String,
     selectedPoint: String,
     totalPrice: Number,
-    createdAt: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now },
+    status: { type: String, default: 'pending' }
 });
 
 

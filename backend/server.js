@@ -8,8 +8,13 @@ const { Resend } = require('resend');
 const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// ==========================================
+// MIDDLEWARE (WAŻNE DLA HOTPAY)
+// ==========================================
 app.use(cors());
 app.use(express.json());
+// Dodajemy obsługę x-www-form-urlencoded, bo tak dane wysyła HotPay
+app.use(express.urlencoded({ extended: true }));
 
 // Połączenie z bazą
 mongoose.connect(process.env.MONGO_URI)
@@ -17,7 +22,7 @@ mongoose.connect(process.env.MONGO_URI)
     .catch(err => console.error('❌ Błąd połączenia:', err));
 
 // ==========================================
-// 1. ENDPOINT DLA ZAMÓWIEŃ (SKLEP)
+// 1. ENDPOINT DLA ZAMÓWIEŃ (Zapis do bazy bez maila)
 // ==========================================
 app.post('/api/orders', async (req, res) => {
     try {
@@ -34,43 +39,14 @@ app.post('/api/orders', async (req, res) => {
             phone: data.phone,
             deliveryMethod: data.deliveryMethod,
             selectedPoint: data.selectedPoint,
-            totalPrice: data.totalPrice
+            totalPrice: data.totalPrice,
+            status: 'pending' // Domyślny status przed zapłatą
         });
 
         const savedOrder = await newOrder.save();
 
-        // WYSYŁKA MAILA DO KLIENTA (SKLEP)
-        try {
-            await resend.emails.send({
-                from: 'Banda Frytki <sklep@bandafrytki.pl>',
-                to: [data.email],
-                cc: ['bandafrytki@gmail.com'],
-                subject: `Zamówienie #${savedOrder._id.toString().slice(-6)} przyjęte! 🍟`,
-                html: `
-                    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #eee; border-radius: 10px; padding: 20px;">
-                        <h1 style="color: #FFCC00; text-align: center;">BANDA FRYTKI 🍟</h1>
-                        <h2 style="color: #333;">Siemano ${data.name}!</h2>
-                        <p>Dzięki za zamówienie! Twoja kosa (koszulka) już się szykuje.</p>
-                        <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px;">
-                            <p><strong>PRODUKT:</strong> BANDA FRYTKI TEE</p>
-                            <p><strong>ROZMIAR:</strong> ${data.size}</p>
-                            <p><strong>SUMA:</strong> ${data.totalPrice} PLN</p>
-                        </div>
-                        <p><strong>DOSTAWA:</strong></p>
-                        <p>${data.deliveryMethod === 'inpost' ? `Paczkomat: ${data.address}` : `Adres: ${data.address}`}</p>
-                        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
-                        <p style="font-size: 12px; color: #777; text-align: center;">
-                            Numer Twojego zamówienia: ${savedOrder._id}<br>
-                            Banda Frytki - Pozdro!
-                        </p>
-                    </div>
-                `
-            });
-            console.log("✅ Mail sklepowy wysłany do:", data.email);
-        } catch (mailError) {
-            console.error("❌ Błąd wysyłki maila sklepowego:", mailError.message);
-        }
-
+        // Nie wysyłamy tutaj maila! 
+        // Tylko potwierdzamy Reactowi, że zamówienie "czeka" w bazie.
         res.status(201).json({ success: true, orderId: savedOrder._id });
     } catch (err) {
         console.error("❌ BŁĄD SKLEPU:", err.message);
@@ -79,12 +55,73 @@ app.post('/api/orders', async (req, res) => {
 });
 
 // ==========================================
-// 2. ENDPOINT DLA REZERWACJI (STARY)
+// 2. NOTYFIKACJA Z HOTPAY (TUTAJ WYSYŁAMY MAIL PO ZAPŁACIE)
+// ==========================================
+app.post('/api/hotpay-notification', async (req, res) => {
+    try {
+        const data = req.body;
+        console.log("📩 Otrzymano notyfikację z HotPay:", data);
+
+        // HotPay wysyła STATUS "SUCCESS" gdy pieniądze wpłynęły
+        if (data.STATUS === 'SUCCESS') {
+            // Szukamy zamówienia w bazie po mailu (najświeższe nieopłacone)
+            const order = await Order.findOne({ email: data.EMAIL }).sort({ createdAt: -1 });
+
+            if (order && order.status !== 'paid') {
+                // WYSYŁKA MAILA PRZEZ RESEND (Dopiero teraz!)
+                try {
+                    await resend.emails.send({
+                        from: 'Banda Frytki <sklep@bandafrytki.pl>',
+                        to: [order.email],
+                        cc: ['bandafrytki@gmail.com'],
+                        subject: `Twoje zamówienie opłacone! 🍟`,
+                        html: `
+                            <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #eee; border-radius: 10px; padding: 20px;">
+                                <h1 style="color: #FFCC00; text-align: center;">BANDA FRYTKI 🍟</h1>
+                                <h2 style="color: #333;">Siemano ${order.name}!</h2>
+                                <p>Płatność zatwierdzona! Twoja kosa (koszulka) już się szykuje do wysyłki.</p>
+                                <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px;">
+                                    <p><strong>PRODUKT:</strong> BANDA FRYTKI TEE</p>
+                                    <p><strong>ROZMIAR:</strong> ${order.size}</p>
+                                    <p><strong>SUMA:</strong> ${order.totalPrice} PLN (OPŁACONO)</p>
+                                </div>
+                                <p><strong>DOSTAWA:</strong></p>
+                                <p>${order.deliveryMethod === 'inpost' ? `Paczkomat: ${order.address}` : `Adres: ${order.address}`}</p>
+                                <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
+                                <p style="font-size: 12px; color: #777; text-align: center;">
+                                    Numer Twojego zamówienia: ${order._id}<br>
+                                    Wkrótce dostaniesz info o wysyłce!<br>
+                                    Banda Frytki - Pozdro!
+                                </p>
+                            </div>
+                        `
+                    });
+                    console.log("✅ Mail po płatności wysłany do:", order.email);
+
+                    // Zmieniamy status w bazie na opłacone
+                    order.status = 'paid';
+                    await order.save();
+                } catch (mailError) {
+                    console.error("❌ Błąd wysyłki maila po płatności:", mailError.message);
+                }
+            }
+        }
+
+        // Zawsze odpowiadaj HotPay "YES", żeby potwierdzić odebranie notyfikacji
+        res.status(200).send('YES');
+    } catch (err) {
+        console.error("❌ BŁĄD NOTYFIKACJI:", err.message);
+        res.status(500).send('ERROR');
+    }
+});
+
+// ==========================================
+// 3. ENDPOINT DLA REZERWACJI (STARY - BEZ ZMIAN)
 // ==========================================
 app.post("/book", async (req, res) => {
     try {
         const { name, email, date, time } = req.body;
-        // Tutaj logika rezerwacji (Booking.create itd.)
+        // Tutaj logika Twojej rezerwacji...
 
         try {
             await resend.emails.send({
@@ -103,7 +140,9 @@ app.post("/book", async (req, res) => {
     }
 });
 
+// ==========================================
 // START SERWERA
+// ==========================================
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
     console.log(`🚀 Serwer śmiga na porcie ${PORT}`);
