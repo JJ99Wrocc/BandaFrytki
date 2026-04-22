@@ -106,7 +106,9 @@ function Product({ onBuyNow, shake, setShake, navigate, currentView,price }) {
                         <div className="price-wrapper" aria-label="Cena">
                             <p className="product-price">{price} PLN</p>
                             <p className="shipping-info-small">
-                                Dostawa już od <strong>12.5 PLN</strong>
+                                Dostawa już od <strong>11.49 PLN</strong> <br></br>
+                                Wrocław - odbioru osobistego - napisz na IG
+
                             </p>
                         </div>
 

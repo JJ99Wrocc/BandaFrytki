@@ -80,8 +80,8 @@ const Footer = ({ navigate, currentView }) => {
                                 </a>
                             </li>
                             <li>
-                                <a href="mailto:joachimek1@interia.pl" aria-label="Wyślij e-mail">
-                                    E-mail: joachimek1@interia.pl
+                                <a href="mailto:bandafrytki@gmail.com" aria-label="Wyślij e-mail">
+                                    E-mail: bandafrytki@gmail.com
                                 </a>
                             </li>
                             <li style={{ fontSize: "11px", marginTop: "10px", opacity: "0.7" }}>
