@@ -76,7 +76,7 @@ const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack, p
             }, 800);
             return;
         }
-        const result = await response.json();
+       
         onSuccess(totalPrice, customerData);
     };
 
