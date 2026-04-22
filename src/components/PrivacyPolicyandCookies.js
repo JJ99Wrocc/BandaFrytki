@@ -33,7 +33,7 @@ const PrivacyPolicyAndCookies = ({ onBack }) => {
     {
         id: 5,
         title: "§5. Prawa Użytkownika",
-        content: "Przysługuje Ci prawo do dostępu, sprostowania, usunięcia, ograniczenia przetwarzania oraz przenoszenia danych. Masz także prawo do sprzeciwu wobec przetwarzania. Kontakt w sprawach RODO: joachimek1@interia.pl . Skarga może zostać wniesiona do Prezesa Urzędu Ochrony Danych Osobowych (PUODO)."
+        content: "Przysługuje Ci prawo do dostępu, sprostowania, usunięcia, ograniczenia przetwarzania oraz przenoszenia danych. Masz także prawo do sprzeciwu wobec przetwarzania. Kontakt w sprawach RODO: bandafrytki@gmail.com . Skarga może zostać wniesiona do Prezesa Urzędu Ochrony Danych Osobowych (PUODO)."
     },
     {
         id: 6,

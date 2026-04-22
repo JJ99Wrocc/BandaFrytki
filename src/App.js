@@ -16,6 +16,8 @@ import YouTubeSection from './components/YouTubeSection';
 function App() {
   const [finalPrice, setFinalPrice] = useState(0);
       const [shake, setShake] = useState(false);
+     const [customerData, setCustomerData] = useState(null);
+      const [step, setStep] = useState('shop')
   // Stan kontrolujący co wyświetlamy: 'shop' lub 'checkout'
   const [view, setView] = useState(localStorage.getItem('savedView') || 'shop');
 const [selectedSize, setSelectedSize] = useState(() => {
@@ -25,7 +27,11 @@ const [selectedSize, setSelectedSize] = useState(() => {
 useEffect(() => {
     localStorage.setItem("selectedSize", selectedSize);
 }, [selectedSize]);
-
+const handleOrderSuccess = (totalPrice, data) => {
+    setFinalPrice(totalPrice); // Zapisujemy cenę z dostawą
+    setCustomerData(data);      // Zapisujemy dane klienta (mail, adres itp.)
+    setStep('payment');         // Przełączamy widok na płatności
+};
 const triggerGlobalShake = () => {
     setShake(true);
     setTimeout(() => setShake(false), 800);
@@ -118,10 +124,7 @@ return (
           selectedSize={selectedSize} 
           shake={shake}
           setShake={setShake}
-          onSuccess={(amount) => {
-            setFinalPrice(amount);
-            setView('payment');
-          }} // To jest klucz do przejścia dalej!
+          onSuccess={handleOrderSuccess}
           onBack={goBackToShop}
         />
       )}
@@ -130,6 +133,8 @@ return (
       {view === 'payment' && (
         <Payment 
         totalPrice={finalPrice}
+        customerData={customerData}
+        selectedSize={selectedSize}
         shake={shake}
          setShake={setShake}
          onBack={() => {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import '../css/Payment.css';
 import HotPayLogo from '../photo/hotpay-logo.webp'; 
 
-const Payment = ({ shake, setShake, onBack, totalPrice }) => {
+const Payment = ({ shake, setShake, onBack, totalPrice, customerData, selectedSize }) => {
     const [paymentMethod, setPaymentMethod] = useState(null);
     const [error, setError] = useState(false);
 
@@ -10,33 +10,69 @@ const Payment = ({ shake, setShake, onBack, totalPrice }) => {
         { id: 'transfer', name: 'HotPay'}
     ];
 
-    const handlePaymentFinalize = () => {
+  const handlePaymentFinalize = async () => {
     if (!paymentMethod) {
         setError(true);
         setShake(true);
-        setTimeout(() => {
-            setShake(false);
-            setError(false);
-        }, 800);
+        setTimeout(() => { setShake(false); setError(false); }, 800);
         return;
     }
+    try {
+ const orderData = {
+            name: customerData.name,
+            email: customerData.email,
+            phone: customerData.phone,
+            address: customerData.address,
+            deliveryMethod: customerData.deliveryMethod,
+            selectedPoint: customerData.selectedPoint,
+            size: selectedSize,
+            totalPrice: totalPrice,
+        };
 
-    const SEKR_USLUGI = 'd0I4THRRTEg5dVkxQW9xQW55bDJpOVgrM2pEdXF1STNKb09McTNpZEV0bz0,';
+    const response = await fetch(`https://bandafrytki.onrender.com/api/orders`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderData)
+        });
+        const result = await response.json();
+
+        if (!result.success) {
+            throw new Error("Błąd zapisu zamówienia w bazie");
+        }
+
+    // 1. Sekret - upewnij się, że nie ma tam spacji na początku/końcu
+    const SEKRET = 'd0I4THRRTEg5dVkxQW9xQW55bDJpOVgrM2pEdXF1STNKb09McTNpZEV0bz0,';
     
-    // Wymuszamy format 0.00, żeby HotPay nie odrzucił płatności
-    const kwota = parseFloat(totalPrice).toFixed(2);
-    
-    const nazwaUslugi = 'Zamówienie Banda Frytki';
-    const idZamowienia = `ORDER-${Date.now()}`;
+    // 2. Kwota - dodaj sprawdzenie czy totalPrice istnieje
+    const cena = parseFloat(totalPrice);
+    if (isNaN(cena) || cena <= 0) {
+        alert("Błąd kwoty zamówienia!");
+        return;
+    }
+    const KWOTA = cena.toFixed(2);
+        const NAZWA_USLUGI = 'Zamówienie Banda Frytki';
+    const ID_ZAMOWIENIA = `ORDER-${Date.now()}`;
 
-    // KLUCZOWA ZMIANA: dodane /paczka/ przed uzupelnij-dane
-    const hotPayUrl = `https://hotpay.pl/paczka/uzupelnij-dane?secret=${SEKR_USLUGI}&amount=${kwota}&desc=${encodeURIComponent(nazwaUslugi)}&order_id=${idZamowienia}`;
+    // 3. Budowanie URL za pomocą URLSearchParams (bezpieczniejsze niż string template)
+    const params = new URLSearchParams({
+        SEKRET: SEKRET,
+        KWOTA: KWOTA,
+        NAZWA_USLUGI: NAZWA_USLUGI,
+        ID_ZAMOWIENIA: ID_ZAMOWIENIA,
+        ADRES_WWW: window.location.origin, // Automatycznie bierze adres Twojej strony
+        EMAIL: customerData.email
+    });
 
-    console.log(`Inicjowanie płatności dla: ${paymentMethod}`);
-    // Opcjonalnie: możesz usunąć alert przed samym pushem, żeby było profesjonalnie
+    const hotPayUrl = `https://platnosc.hotpay.pl/?${params.toString()}`;
+
+    console.log("Finalny URL:", hotPayUrl);
     window.location.href = hotPayUrl;
+    } catch (error) {
+        // TUTAJ domykamy try i obsługujemy błąd
+        console.error("Błąd podczas finalizacji płatności:", error);
+        alert("Wystąpił błąd podczas zapisywania zamówienia. Spróbuj ponownie.");
+    }
 };
-
     return (
         <section className="payment-section" id="payment">
             <div className={`container ${shake ? 'shake-animation' : ''}`}>
