@@ -111,13 +111,14 @@ app.post('/api/hotpay-notification', async (req, res) => {
                 }
             }
         }
-
+    }
         // Zawsze odpowiadaj HotPay "YES", żeby potwierdzić odebranie notyfikacji
         res.status(200).send('YES');
     } catch (err) {
         console.error("❌ BŁĄD NOTYFIKACJI:", err.message);
         res.status(500).send('ERROR');
     }
+    
 });
 
 // ==========================================
