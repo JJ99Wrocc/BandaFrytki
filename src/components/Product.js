@@ -107,7 +107,7 @@ function Product({ onBuyNow, shake, setShake, navigate, currentView,price }) {
                             <p className="product-price">{price} PLN</p>
                             <p className="shipping-info-small">
                                 Dostawa już od <strong>11.49 PLN</strong> <br></br>
-                                Wrocław - odbioru osobistego - napisz na IG
+                                Wrocław - odbior osobisty - napisz na IG
 
                             </p>
                         </div>

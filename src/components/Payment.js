@@ -5,6 +5,7 @@ import HotPayLogo from '../photo/hotpay-logo.webp';
 const Payment = ({ shake, setShake, onBack, totalPrice, customerData, selectedSize }) => {
     const [paymentMethod, setPaymentMethod] = useState(null);
     const [error, setError] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const methods = [
         { id: 'transfer', name: 'HotPay'}
@@ -17,6 +18,7 @@ const Payment = ({ shake, setShake, onBack, totalPrice, customerData, selectedSi
             setTimeout(() => { setShake(false); setError(false); }, 800);
             return;
         }
+        setIsLoading(true);
         const wygenerowaneID = `ORDER-${Date.now()}`;
     try {
  const orderData = {
@@ -72,6 +74,7 @@ const response = await fetch(`https://bandafrytki.onrender.com/api/orders`, {
     console.log("Finalny URL:", hotPayUrl);
     window.location.href = hotPayUrl;
     } catch (error) {
+        setIsLoading(false);
         // TUTAJ domykamy try i obsługujemy błąd
         console.error("Błąd podczas finalizacji płatności:", error);
         alert("Wystąpił błąd podczas zapisywania zamówienia. Spróbuj ponownie.");
@@ -112,11 +115,18 @@ const response = await fetch(`https://bandafrytki.onrender.com/api/orders`, {
                 </div>
 
                 <button 
-                    className="finalize-btn payment-btn" 
+                    className="finalize-btn payment-btn ${isLoading ? 'loading' : ''}"  
                     type="button" 
                     onClick={handlePaymentFinalize}
+                    disabled={isLoading}
                 >
-                    ZAPŁAĆ TERAZ ({totalPrice} PLN)
+                   {isLoading ? (
+        <span className="loader-container">
+            PROSZĘ CZEKAĆ... <div className="spinner"></div>
+        </span>
+    ) : (
+        `ZAPŁAĆ TERAZ (${totalPrice} PLN)`
+    )}
                 </button>
             </div>
         </section>
