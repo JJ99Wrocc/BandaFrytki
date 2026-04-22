@@ -57,7 +57,7 @@ app.post('/api/orders', async (req, res) => {
                             <p><strong>SUMA:</strong> ${data.totalPrice} PLN</p>
                         </div>
                         <p><strong>DOSTAWA:</strong></p>
-                        <p>${data.deliveryMethod === 'inpost' ? `Paczkomat: ${data.selectedPoint}` : `Adres: ${data.address}`}</p>
+                        <p>${data.deliveryMethod === 'inpost' ? `Paczkomat: ${data.address}` : `Adres: ${data.address}`}</p>
                         <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
                         <p style="font-size: 12px; color: #777; text-align: center;">
                             Numer Twojego zamówienia: ${savedOrder._id}<br>
