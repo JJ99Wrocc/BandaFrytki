@@ -86,7 +86,7 @@ const OrderFinalization = ({ selectedSize, shake, setShake, onSuccess, onBack, p
                     ...customerData
                 })
             });
-
+const result = await response.json();
             if (response.ok) {
                 onSuccess(totalPrice, customerData);
                 alert("ZAMÓWIENIE PRZYJĘTE. PRZEKIEROWANIE DO PŁATNOŚCI...");

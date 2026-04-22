@@ -27,9 +27,9 @@ const [selectedSize, setSelectedSize] = useState(() => {
 useEffect(() => {
     localStorage.setItem("selectedSize", selectedSize);
 }, [selectedSize]);
-const handleOrderSuccess = (totalPrice, data) => {
+const handleOrderSuccess = (totalPrice, data, orderId) => {
     setFinalPrice(totalPrice); // Zapisujemy cenę z dostawą
-    setCustomerData(data);      // Zapisujemy dane klienta (mail, adres itp.)
+    setCustomerData({ ...data, orderId: orderId });     // Zapisujemy dane klienta (mail, adres itp.)
     setStep('payment');         // Przełączamy widok na płatności
 };
 const triggerGlobalShake = () => {
