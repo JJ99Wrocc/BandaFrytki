@@ -303,4 +303,7 @@ iframe {
     .yt-video-name{
         font-size: 12px;    
     }
+    .yt-section{
+        padding: 15px 0;
+    }
 }

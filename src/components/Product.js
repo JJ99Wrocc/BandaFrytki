@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import '../css/Product.css';
 
 // Importy zdjęć - upewnij się, że ścieżki są poprawne w Twoim folderze src/photo
-import KoszulkaFront from '../photo/ZdjJjKoszulka.webp';
+import KoszulkaFront from '../photo/koszulka-banda-frytki-250g-czarna-oversize.webp';
 import Detal1 from '../photo/Detal1.webp';
 import Detal2 from '../photo/Detal2.webp';
+import { Helmet} from 'react-helmet-async';
 
 function Product({ onBuyNow, shake, setShake, navigate, currentView,price }) {
     const [selectedSize, setSelectedSize] = useState(null);
@@ -15,7 +16,24 @@ function Product({ onBuyNow, shake, setShake, navigate, currentView,price }) {
     const [zoomStyle, setZoomStyle] = useState({ display: 'none' });
 
     const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
-    
+    const productSchema = {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "BANDA FRYTKI TEE",
+        "image": "https://bandafrytki.pl/static/media/koszulka-banda-frytki-250g-czarna-oversize.webp", // Podaj pełny adres
+        "description": "Koszulka premium 250g, mięsista bawełna, krój oversize, trwały haft.",
+        "brand": {
+            "@type": "Brand",
+            "name": "Banda Frytki"
+        },
+        "offers": {
+            "@type": "Offer",
+            "url": "https://bandafrytki.pl",
+            "priceCurrency": "PLN",
+            "price": "85.00",
+            "availability": "https://schema.org/InStock"
+        }
+    };
     // LOGIKA LUPY (Magnifier)
     const handleMouseMove = (e) => {
         const rect = e.currentTarget.getBoundingClientRect();
@@ -61,6 +79,13 @@ function Product({ onBuyNow, shake, setShake, navigate, currentView,price }) {
 
     return (
         <section className="product" id="product-section" aria-labelledby="product-heading">
+            <Helmet>
+                <title>Banda Frytki Tee - Koszulka 250g Premium Streetwear</title>
+                <meta name="description" content="Kup koszulkę BANDA FRYTKI TEE. Gramatura 250g, mięsista bawełna i trwały haft. Streetwear z Wrocławia za 85 PLN. Sprawdź nasz drop!" />
+                <script type="application/ld+json">
+                    {JSON.stringify(productSchema)}
+                </script>
+            </Helmet>
             <div className="product-container">
                 <h1 id="product-heading">DESIGN 01/ 2026</h1>
                 <p className="drop-subtitle" role="status">NAKŁAD WYCZERPYWALNY</p>
@@ -81,7 +106,7 @@ function Product({ onBuyNow, shake, setShake, navigate, currentView,price }) {
                                 key={mainImage}
                                 className="main-img active-fade" 
                                 src={mainImage} 
-                                alt="BandaFrytki Tee" 
+                                alt="Banda Frytki Tee czarna koszulka 250g haft premium" 
                             />
                             <div className="magnifier-lens" style={zoomStyle}></div>
                         </div>

@@ -11,6 +11,7 @@ const Footer = ({ navigate, currentView }) => {
         setOpenSection(openSection === sectionName ? null : sectionName);
     };
 
+
     useEffect(() => {
         const toggleVisibility = () => {    
             if (window.pageYOffset > 200) {
@@ -36,6 +37,7 @@ const Footer = ({ navigate, currentView }) => {
             navigate(targetID)
         }
     }
+
     return (
         <section className="footer-section" aria-labelledby="footer-navigation">
             <footer className="footer">
@@ -120,14 +122,46 @@ const Footer = ({ navigate, currentView }) => {
 
                 {/* LOWER FOOTER - Pełne dane zgodne z prawem PL */}
                 <div className="lower-footer">
-                    <div className="footer-company-info" style={{ textAlign: "center", fontSize: "12px", opacity: "0.8", marginBottom: "15px", lineHeight: "1.6" }}>
-                        <p><strong>Właścicielem sklepu jest:</strong> Joachim Esangbedo</p>
-                        <p>Adres do korespondencji: ul. Nowodworska 39/6, 54-433 Wrocław</p>
-                        <p>NIP: 8943268275 | Sprzedaż w ramach działalności nierejestrowanej</p>
-                    </div>
+                    <div className={`footer-company-info ${openSection === 'company' ? 'is-open' : ''}`}>
+    <h4 className='footer-title' onClick={() => toggleSection('company')}>
+        Dodatkowe informacje 
+    </h4>
+    {/* Treść w osobnym kontenerze */}
+    <div className="company-details-content">
+        <p><strong>Właścicielem sklepu jest:</strong> Joachim Esangbedo</p>
+        <p>Adres do korespondencji: ul. Nowodworska 39/6, 54-433 Wrocław</p>
+        <p>NIP: 8943268275 | Sprzedaż w ramach działalności nierejestrowanej</p>
+        <hr />
+    
+   
+    <hr />
+
+    <h3  style={{fontSize: '13px'}}>Banda Frytki Tee – Premium Streetwear z Wrocławia</h3>
+    <p>
+        Szukasz idealnej bazy pod stylizację? <strong>Banda Frytki Tee</strong> to coś więcej niż zwykły t-shirt. Nasza <strong>koszulka 250g</strong> to prawdziwa definicja jakości <strong>heavyweight</strong>. Wykonana z <strong>mięsistej bawełny</strong> o wysokiej gramaturze, zapewnia nie tylko komfort, ale i legendarną trwałość. Jeśli masz dość cienkich materiałów, nasz <strong>gruby t-shirt bawełniany</strong> spełni Twoje oczekiwania.
+    </p>
+
+    <p>
+        <strong>Krój oversize</strong> (boxy fit) sprawia, że koszulka idealnie układa się na sylwetce, zachowując modny, streetwearowy look. To, co nas wyróżnia, to <strong>trwały haft</strong> z logo Bandy Frytki. W przeciwieństwie do tanich nadruków, haft nie pęka w praniu i wygląda premium przez lata. To najlepsza <strong>koszulka z haftem</strong> w tej kategorii cenowej.
+    </p>
+
+    <p>
+        Cena <strong>85 PLN</strong> za produkt tej klasy to okazja, której nie znajdziesz w sieciówkach. <strong>Sklep internetowy Banda Frytki</strong> oferuje nie tylko wysyłkę (<strong>dostawa już od 11.49 PLN</strong>), ale także unikalną opcję: <strong>odbiór osobisty we Wrocławiu</strong>. Jesteśmy lokalną ekipą, więc jeśli mieszkasz we Wrocławiu, napisz do nas na IG i odbierz swój drop osobiście!
+    </p>
+
+    <p>
+        Nasz merch to idealna <strong>odzież dla twórców</strong>, graczy i fanów polskiego streetwearu. Celujemy w frazy: <em>czarna koszulka oversize, t-shirt 250g bawełna, najlepszy merch ekipy, streetwear Wrocław sklep, koszulka męska z haftem, porządny t-shirt do 100 zł, Banda Frytki ubrania</em>. Wybierając <strong>Banda Frytki Tee</strong>, wspierasz jakość i autentyczny polski content. 
+    </p>
+
+    <p style={{marginBottom: '10px' }}>
+        Parametry techniczne, które pozycjonują nasz produkt: <strong>bawełna 250g/m²</strong>, <strong>wytrzymały splot</strong>, <strong>odporność na kurczenie</strong>, <strong>minimalistyczny design</strong>. Sprawdź, dlaczego nasza mięsista bawełna zbiera tak dobre opinie i dołącz do ekipy już teraz!
+    </p>
+    </div>
+    
+</div>
                     <div className="copyright">
                         <p>© {new Date().getFullYear()} Banda Frytki. Wszelkie prawa zastrzeżone.</p>
-                        <p className="creator">Designed & Coded by JJ</p>
+                        <p className="creator">Designed & Coded by Joachim Esangbedo</p>
                     </div>
                 </div>
 

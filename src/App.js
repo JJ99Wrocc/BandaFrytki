@@ -13,6 +13,7 @@ import DeliveryAndPayment from './components/DeliveryAndPayment';
 import Rodo from './components/Rodo';
 import Links from './components/Links';
 import YouTubeSection from './components/YouTubeSection';
+
 function App() {
   const [finalPrice, setFinalPrice] = useState(0);
       const [shake, setShake] = useState(false);

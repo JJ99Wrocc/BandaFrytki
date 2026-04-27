@@ -345,6 +345,9 @@
 
 }
 @media (max-width: 450px) {
+    .links-section{
+        padding: 15px 0;
+    }
     .links-grid {
         grid-template-columns: 1fr;
     }

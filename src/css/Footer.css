@@ -219,6 +219,33 @@
     transform: translateY(-2px) scale(0.92);
     transition: all 0.1s;
 }
+.footer-title{
+    padding: 10px;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' style='font-size: 13px'><text y='30'>🍔</text></svg>") 20 15, pointer !important;
+}
+.footer-company-info .company-details-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease;
+    opacity: 0;
+    
+}
+
+/* Opcjonalnie: zmiana koloru tytułu po otwarciu */
+.footer-company-info.is-open .footer-title {
+    color: #your-accent-color;
+}
+.footer-company-info.is-open .company-details-content {
+    display: block !important; /* Na próbę, żeby sprawdzić czy działa */
+    max-height: 500px !important;
+    opacity: 1 !important;
+}
+
+/* Ukryj treść domyślnie */
+.company-details-content {
+    display: none; 
+    overflow: hidden;
+}
 
 /* --- RESPONSYWNOŚĆ I AKORDEON (poniżej 992px) --- */
 /* --- CZYSZCZENIE I NAPRAWA AKORDEONU (Mobile) --- */
@@ -374,7 +401,10 @@
     .payment-icons{
         font-size: 13px;
     }
-    
+    .footer-section{
+        padding: 0px 0 !important;
+    }
+
 }
 
 /* WEJŚCIOWA ANIMACJA POJAWIANIA SIĘ */
