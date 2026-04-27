@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.9f812c75.css",
-    "main.js": "/static/js/main.02414690.js",
+    "main.css": "/static/css/main.40297b49.css",
+    "main.js": "/static/js/main.1d41a7e1.js",
     "static/js/453.367ff025.chunk.js": "/static/js/453.367ff025.chunk.js",
-    "static/media/Detal1.webp": "/static/media/Detal1.9aff6b1cef714dbd9ae5.webp",
-    "static/media/Detal2.webp": "/static/media/Detal2.b87adaa4b7099b3de370.webp",
-    "static/media/BandaFrytkiProduct.webp": "/static/media/BandaFrytkiProduct.865f790fb9ae57562c6f.webp",
-    "static/media/koszulka-banda-frytki-250g-czarna-oversize.webp": "/static/media/koszulka-banda-frytki-250g-czarna-oversize.4a2d46e0b6bb5d7237ec.webp",
-    "static/media/BandaAaron.webp": "/static/media/BandaAaron.ce1b13be78ac241c3e9d.webp",
-    "static/media/BandaMarcin.webp": "/static/media/BandaMarcin.0b9e1ab26fc433b74dd6.webp",
-    "static/media/BandaJJ.webp": "/static/media/BandaJJ.9dc30305e6af6271766b.webp",
-    "static/media/hotpay-logo.webp": "/static/media/hotpay-logo.572ed9b28b39e2064e39.webp",
-    "static/media/blik-logo.webp": "/static/media/blik-logo.59db009d1158d08b2e82.webp",
+    "static/media/Detal1.webp": "/static/media/Detal1.c5ff6bd3d897f5156bc4.webp",
+    "static/media/Detal2.webp": "/static/media/Detal2.35e2e18fde5f189fab8a.webp",
+    "static/media/BandaFrytkiProduct.webp": "/static/media/BandaFrytkiProduct.f72821c797d3e5129149.webp",
+    "static/media/koszulka-banda-frytki-250g-czarna-oversize.webp": "/static/media/koszulka-banda-frytki-250g-czarna-oversize.52359aa50f1acef47e62.webp",
+    "static/media/BandaAaron.webp": "/static/media/BandaAaron.b67d117e07d8451de2f6.webp",
+    "static/media/BandaMarcin.webp": "/static/media/BandaMarcin.d84da35ca18b3f74c752.webp",
+    "static/media/BandaJJ.webp": "/static/media/BandaJJ.8fa5eb41052740d56be8.webp",
+    "static/media/hotpay-logo.webp": "/static/media/hotpay-logo.15a1ec354bf5153c43ab.webp",
     "index.html": "/index.html",
-    "main.9f812c75.css.map": "/static/css/main.9f812c75.css.map",
-    "main.02414690.js.map": "/static/js/main.02414690.js.map",
+    "static/media/blik-logo.webp": "/static/media/blik-logo.c5e3c4421dd71c8a3f4d.webp",
+    "main.40297b49.css.map": "/static/css/main.40297b49.css.map",
+    "main.1d41a7e1.js.map": "/static/js/main.1d41a7e1.js.map",
     "453.367ff025.chunk.js.map": "/static/js/453.367ff025.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f812c75.css",
-    "static/js/main.02414690.js"
+    "static/css/main.40297b49.css",
+    "static/js/main.1d41a7e1.js"
   ]
 }
