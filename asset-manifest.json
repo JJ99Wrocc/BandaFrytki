@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.811bfcc2.css",
-    "main.js": "/static/js/main.d2dcf9ef.js",
+    "main.js": "/static/js/main.3c722c32.js",
     "static/css/664.d4fe0f3f.chunk.css": "/static/css/664.d4fe0f3f.chunk.css",
     "static/js/664.926d4d38.chunk.js": "/static/js/664.926d4d38.chunk.js",
     "static/js/453.367ff025.chunk.js": "/static/js/453.367ff025.chunk.js",
@@ -9,7 +9,7 @@
     "static/media/BandaFrytkiProduct.webp": "/static/media/BandaFrytkiProduct.f72821c797d3e5129149.webp",
     "index.html": "/index.html",
     "main.811bfcc2.css.map": "/static/css/main.811bfcc2.css.map",
-    "main.d2dcf9ef.js.map": "/static/js/main.d2dcf9ef.js.map",
+    "main.3c722c32.js.map": "/static/js/main.3c722c32.js.map",
     "664.d4fe0f3f.chunk.css.map": "/static/css/664.d4fe0f3f.chunk.css.map",
     "664.926d4d38.chunk.js.map": "/static/js/664.926d4d38.chunk.js.map",
     "453.367ff025.chunk.js.map": "/static/js/453.367ff025.chunk.js.map",
@@ -17,6 +17,6 @@
   },
   "entrypoints": [
     "static/css/main.811bfcc2.css",
-    "static/js/main.d2dcf9ef.js"
+    "static/js/main.3c722c32.js"
   ]
 }
