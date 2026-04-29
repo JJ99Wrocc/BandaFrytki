@@ -1,16 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.40297b49.css",
-    "main.js": "/static/js/main.ab258f2c.js",
+    "main.css": "/static/css/main.811bfcc2.css",
+    "main.js": "/static/js/main.d2dcf9ef.js",
+    "static/css/664.d4fe0f3f.chunk.css": "/static/css/664.d4fe0f3f.chunk.css",
+    "static/js/664.926d4d38.chunk.js": "/static/js/664.926d4d38.chunk.js",
     "static/js/453.367ff025.chunk.js": "/static/js/453.367ff025.chunk.js",
+    "static/js/202.4f90bc6f.chunk.js": "/static/js/202.4f90bc6f.chunk.js",
     "static/media/BandaFrytkiProduct.webp": "/static/media/BandaFrytkiProduct.f72821c797d3e5129149.webp",
     "index.html": "/index.html",
-    "main.40297b49.css.map": "/static/css/main.40297b49.css.map",
-    "main.ab258f2c.js.map": "/static/js/main.ab258f2c.js.map",
-    "453.367ff025.chunk.js.map": "/static/js/453.367ff025.chunk.js.map"
+    "main.811bfcc2.css.map": "/static/css/main.811bfcc2.css.map",
+    "main.d2dcf9ef.js.map": "/static/js/main.d2dcf9ef.js.map",
+    "664.d4fe0f3f.chunk.css.map": "/static/css/664.d4fe0f3f.chunk.css.map",
+    "664.926d4d38.chunk.js.map": "/static/js/664.926d4d38.chunk.js.map",
+    "453.367ff025.chunk.js.map": "/static/js/453.367ff025.chunk.js.map",
+    "202.4f90bc6f.chunk.js.map": "/static/js/202.4f90bc6f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.40297b49.css",
-    "static/js/main.ab258f2c.js"
+    "static/css/main.811bfcc2.css",
+    "static/js/main.d2dcf9ef.js"
   ]
 }
