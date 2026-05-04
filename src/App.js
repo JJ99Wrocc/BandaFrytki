@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import './App.css';
 import MyNavbar from './components/Navbar';
 import Header from './components/Header';
-import Product from './components/Product';
-import OrderFinalization from './components/OrderFinalization';
-import Payment from './components/Payment';
-import Footer from './components/Footer';
-import TermsAndConditions from './components/TermsAndConditions'; 
-import PrivacyPolicyAndCookies from './components/PrivacyPolicyandCookies';
-import ReturnsAndComplaints from './components/ReturnsAndComplaints';
-import DeliveryAndPayment from './components/DeliveryAndPayment';
-import Rodo from './components/Rodo';
 import Links from './components/Links';
-import YouTubeSection from './components/YouTubeSection';
+const Product = lazy(() => import('./components/Product'));
+const YouTubeSection = lazy(() => import('./components/YouTubeSection'));
+const OrderFinalization = lazy(() => import('./components/OrderFinalization'));
+const Payment = lazy(() => import('./components/Payment'));
+const Footer = lazy(() => import('./components/Footer'));
+const TermsAndConditions = lazy(() => import('./components/TermsAndConditions'));
+const PrivacyPolicyAndCookies = lazy(() => import('./components/PrivacyPolicyandCookies'));
+const ReturnsAndComplaints = lazy(() => import('./components/ReturnsAndComplaints'));
+const DeliveryAndPayment = lazy(() => import('./components/DeliveryAndPayment'));
+const Rodo = lazy(() => import('./components/Rodo'));
 
 function App() {
   const [finalPrice, setFinalPrice] = useState(0);
@@ -128,62 +128,59 @@ return (
 <MyNavbar onBrandClick={goBackToShop} navigate={navigateTo} currentView={view} />
     
     <main>
-      {/* 1. Widok sklepu */}
-      {view === 'shop' && (
-        <>
-          <Header />
-          <Product price={price} onBuyNow={goToCheckout} shake={shake} setShake={setShake} navigate={navigateTo} />
-          <Links />
-          <YouTubeSection />
-        </>
-      )}
-
-      {/* 2. Widok formularza (Checkout) */}
-      {view === 'checkout' && (
-        <OrderFinalization 
-          price={price}
-          selectedSize={selectedSize} 
-          shake={shake}
-          setShake={setShake}
-          onSuccess={handleOrderSuccess}
-          onBack={goBackToShop}
-        />
-      )}
-
-      {/* 3. Widok płatności */}
-      {view === 'payment' && (
-        <Payment 
-        totalPrice={finalPrice}
-        customerData={customerData}
-        selectedSize={selectedSize}
-        shake={shake}
-         setShake={setShake}
-         onBack={() => {
-          setView('checkout');
-          localStorage.setItem('savedView', 'checkout');
-          window.history.pushState({}, '', '/');
-          window.scrollTo(0, 0);
-         }} />
+    <Suspense fallback={<div className="loading-screen">ŁADOWANIE...</div>}>
+        
+        {/* 1. Widok sklepu */}
+        {view === 'shop' && (
+          <>
+            <Header />
+            <Product price={price} onBuyNow={goToCheckout} shake={shake} setShake={setShake} navigate={navigateTo} />
+            <Links />
+            <YouTubeSection />
+          </>
         )}
 
-      {view === 'terms' && (
-    <TermsAndConditions onBack={goBackToShop} />
-  )}
+        {/* 2. Widok formularza (Checkout) */}
+        {view === 'checkout' && (
+          <OrderFinalization 
+            price={price}
+            selectedSize={selectedSize} 
+            shake={shake}
+            setShake={setShake}
+            onSuccess={handleOrderSuccess}
+            onBack={goBackToShop}
+          />
+        )}
 
-      {view === 'privacy' && (
-    <PrivacyPolicyAndCookies onBack={goBackToShop} />
-  )}
-      {view === 'delivery' && (
-    <DeliveryAndPayment onBack={goBackToShop} />
-  )}
-      {view === 'returns' && (
-    <ReturnsAndComplaints onBack={goBackToShop} />
-  )}
-      {view === 'rodo' && (
-    <Rodo onBack={goBackToShop} />
-  )}
+        {/* 3. Widok płatności */}
+        {view === 'payment' && (
+          <Payment 
+            totalPrice={finalPrice}
+            customerData={customerData}
+            selectedSize={selectedSize}
+            shake={shake}
+            setShake={setShake}
+            onBack={() => {
+              setView('checkout');
+              localStorage.setItem('savedView', 'checkout');
+              window.history.pushState({}, '', '/');
+              window.scrollTo(0, 0);
+            }} 
+          />
+        )}
+
+        {/* Pozostałe widoki (Regulaminy itp.) */}
+        {view === 'terms' && <TermsAndConditions onBack={goBackToShop} />}
+        {view === 'privacy' && <PrivacyPolicyAndCookies onBack={goBackToShop} />}
+        {view === 'delivery' && <DeliveryAndPayment onBack={goBackToShop} />}
+        {view === 'returns' && <ReturnsAndComplaints onBack={goBackToShop} />}
+        {view === 'rodo' && <Rodo onBack={goBackToShop} />}
+
+      </Suspense>
     </main>
-  <Footer navigate={navigateTo} onCLick={navigateTo} currentView={view} />
+<Suspense fallback={null}>
+      <Footer navigate={navigateTo} onCLick={navigateTo} currentView={view} />
+    </Suspense>
   </div>
 );
 }

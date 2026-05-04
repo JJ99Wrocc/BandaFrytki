@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios"; 
 import '../css/YouTubeSection.css';
+import YouTubeVideo from "./YouTubeVideo"; // Upewnij się, że ten plik istnieje w tym samym folderze
 
 const YouTubeSection = () => {
     const [longVideos, setLongVideos] = useState([]); 
@@ -15,28 +16,21 @@ const YouTubeSection = () => {
     useEffect(() => {
         const fetchLatestContent = async () => {
             try {
-                // 1. TRIK: Zamiana UC na UU w ID kanału daje ID playlisty "Wgrane filmy"
-                // To wyciąga WSZYSTKO co jest na kanale, pomijając błędy wyszukiwarki
                 const uploadPlaylistId = CHANNEL_ID.replace(/^UC/, 'UU');
-
                 const playlistUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${uploadPlaylistId}&part=snippet,contentDetails&maxResults=50`;
                 const playlistRes = await axios.get(playlistUrl);
                 const allItems = playlistRes.data.items;
 
-                // 2. Pobieramy detale (duration), żeby odróżnić filmy od shortów
                 const videoIds = allItems.map(item => item.contentDetails.videoId).join(',');
                 const detailsUrl = `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${videoIds}&part=contentDetails,snippet`;
                 const detailsRes = await axios.get(detailsUrl);
                 const allVideosWithDetails = detailsRes.data.items;
 
-                // 3. FILTROWANIE
-                // Filmy: mają M (minuty) lub H (godziny) w czasie trwania
                 const vids = allVideosWithDetails.filter(v => 
                     v.contentDetails.duration.includes('M') || 
                     v.contentDetails.duration.includes('H')
                 );
 
-                // Shorty: tylko sekundy (brak M i H)
                 const shorts = allVideosWithDetails.filter(v => 
                     !v.contentDetails.duration.includes('M') && 
                     !v.contentDetails.duration.includes('H')
@@ -55,7 +49,6 @@ const YouTubeSection = () => {
         fetchLatestContent();
     }, []);
 
-    // FUNKCJE STEROWANIA
     const nextShort = () => {
         if (shortsVideos.length > 0) {
             setCurrentShortIndex((prev) => (prev + 1) % shortsVideos.length);
@@ -94,19 +87,19 @@ const YouTubeSection = () => {
                         <span className="yt-label">OSTATNIE SHORTY</span>
                         <div className="yt-shorts-wrapper">
                             {shortsVideos.length > 0 ? (
-                                <iframe 
+                                <YouTubeVideo 
                                     key={`short-${shortsVideos[currentShortIndex].id}`}
-                                    src={`https://www.youtube.com/embed/${shortsVideos[currentShortIndex].id}?rel=0`} 
+                                    videoId={shortsVideos[currentShortIndex].id}
                                     title="YouTube Short"
-                                    allowFullScreen
-                                ></iframe>
+                                    type="short"
+                                />
                             ) : <p>Brak shortów</p>}
                         </div>
                         <div className="short-nav-container">
                             <div className="back-short" onClick={prevShort}></div>
                             <span className="yt-counter">
-                                    {shortsVideos.length > 0 ? `${currentShortIndex + 1} / ${shortsVideos.length}` : "0 / 0"}
-                                </span>
+                                {shortsVideos.length > 0 ? `${currentShortIndex + 1} / ${shortsVideos.length}` : "0 / 0"}
+                            </span>
                             <div className="next-short" onClick={nextShort}></div>
                         </div>
                     </div>
@@ -119,12 +112,12 @@ const YouTubeSection = () => {
 
                         <div className="yt-video-wrapper">
                             {longVideos.length > 0 ? (
-                                <iframe 
+                                <YouTubeVideo 
                                     key={`video-${longVideos[currentIndex].id}`}
-                                    src={`https://www.youtube.com/embed/${longVideos[currentIndex].id}?rel=0`} 
-                                    title="YouTube Video"
-                                    allowFullScreen
-                                ></iframe>
+                                    videoId={longVideos[currentIndex].id}
+                                    title={longVideos[currentIndex].snippet.title}
+                                    type="video"
+                                />
                             ) : (
                                 <div className="yt-error">Nie znaleziono długich filmów.</div>
                             )}
@@ -135,13 +128,13 @@ const YouTubeSection = () => {
                                 {longVideos[currentIndex].snippet.title}
                             </h3>
                         )}
-                            <div className="video-nav-container">
-                                <div className="back-video" onClick={prevVideo}></div>
-                                <span className="yt-counter">
-                                    {longVideos.length > 0 ? `${currentIndex + 1} / ${longVideos.length}` : "0 / 0"}
-                                </span>
-                                <div className="next-videos" onClick={nextVideo}></div>
-                            </div>
+                        <div className="video-nav-container">
+                            <div className="back-video" onClick={prevVideo}></div>
+                            <span className="yt-counter">
+                                {longVideos.length > 0 ? `${currentIndex + 1} / ${longVideos.length}` : "0 / 0"}
+                            </span>
+                            <div className="next-videos" onClick={nextVideo}></div>
+                        </div>
                     </div>
                 </div>
             </div>

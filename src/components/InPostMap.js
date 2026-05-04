@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import { motion, AnimatePresence } from 'framer-motion';
 import L from 'leaflet';
@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import '../css/InPostMap.css';
 
 // Luksusowa ikona markera
+
 const goldIcon = new L.Icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
     iconSize: [35, 50], 
@@ -22,7 +23,22 @@ const InPostMap = ({ onSelectPoint }) => {
     const [errorMsg, setErrorMsg] = useState(null);
     const mapRef = useRef(null);
     const [selectedLocker, setSelectedLocker] = useState(null);
+// Wewnątrz InPostMap.js dodaj:
 
+useEffect(() => {
+    // Sprawdzamy czy skrypt już istnieje, żeby nie dodawać go kilka razy
+    if (!window.google) {
+        const script = document.createElement('script');
+        script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCPY8BnvZykEOWAt6xRBa-t5fmJOWUTy9M&libraries=places";
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+        
+        script.onload = () => {
+            console.log("Google SDK załadowane dynamicznie");
+        };
+    }
+}, []);
     const handleLockerSelect = (locker) => {
         setSelectedLocker(locker); // Zapisujemy lokalnie, żeby pokazać pod mapą
         if (onSelectPoint) {
