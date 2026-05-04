@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Navbar.css';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faFacebook, faYoutube } from '@fortawesome/free-brands-svg-icons';
 const MyNavbar = ({ onBrandClick, navigate, currentView }) => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -96,18 +97,18 @@ const MyNavbar = ({ onBrandClick, navigate, currentView }) => {
     rel="noopener noreferrer"
     aria-label="Odwiedź nasz kanał na Insagramie"
     href='https://www.instagram.com/bandafrytki/'
-    > <i className="fa-brands fa-instagram"></i>  </a>
+    ><FontAwesomeIcon icon={faInstagram} /> </a>
                  <a className='FB'
                  target="_blank" 
     rel="noopener noreferrer"
     aria-label="Odwiedź nasz kanał na Facebook"
                  href='https://www.facebook.com/BandaFrytki'
-                 > <i className="fa-brands fa-facebook"></i>  </a> 
+                 > <FontAwesomeIcon icon={faFacebook} />  </a> 
                 <a className='YT'
                 target="_blank" 
     rel="noopener noreferrer"
     aria-label="Odwiedź nasz kanał na YouTube"
-     href='https://www.youtube.com/@BANDA_FRYTKI'> <i className="fa-brands fa-youtube"></i> </a>
+     href='https://www.youtube.com/@BANDA_FRYTKI'> <FontAwesomeIcon icon={faYoutube} /> </a>
                 </div>
                 <p>© 2026 BANDA FRYTKI</p>
               </div>

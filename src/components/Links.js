@@ -3,6 +3,8 @@ import Marcin from '../photo/BandaMarcin.webp';
 import JJ from '../photo/BandaJJ.webp';
 import Aaron from '../photo/BandaAaron.webp';
 import '../css/Links.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 const Links = () => { 
   return (
@@ -30,7 +32,10 @@ const Links = () => {
               >
               <p className="about-person">Aaron</p>
               <img className="social-link-img" src={Aaron} alt="Zdjęcie profilowe Aarona" />
-                <span className="links-img-name"><i className="fa-brands fa-instagram"></i> 99flegg</span>
+              <span className="links-img-name">
+                  {/* 2. Zamień <i> na <FontAwesomeIcon /> */}
+                  <FontAwesomeIcon icon={faInstagram} style={{ marginRight: '5px' }} /> 99flegg
+                </span>
               </a>
             </div>
 
@@ -45,7 +50,9 @@ const Links = () => {
               >
               <p className="about-person">Marcin</p>
               <img className="social-link-img" src={Marcin} alt="Zdjęcie profilowe Marcina" />
-                <span className="links-img-name"><i className="fa-brands fa-instagram"></i> panda_98mb</span>
+               <span className="links-img-name">
+                  <FontAwesomeIcon icon={faInstagram} style={{ marginRight: '5px' }} /> panda_98mb
+                </span>
               </a>
             </div>
 
@@ -60,7 +67,9 @@ const Links = () => {
               >
               <p className="about-person">JJ</p>
               <img className="social-link-img" src={JJ} alt="Zdjęcie profilowe JJ" />
-                <span className="links-img-name"><i className="fa-brands fa-instagram"></i> jj99flex</span>
+               <span className="links-img-name">
+                  <FontAwesomeIcon icon={faInstagram} style={{ marginRight: '5px' }} /> jj99flex
+                </span>
               </a>
             </div>
 

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../css/Footer.css';
 import HotPayLogo from '../photo/hotpay-logo.webp'; // Zmieniona nazwa zmiennej dla jasności
 import Blik from '../photo/blik-logo.webp';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCcVisa, faCcMastercard, faGooglePay, faApplePay } from '@fortawesome/free-brands-svg-icons'; 
 
 const Footer = ({ navigate, currentView }) => {
     const [openSection, setOpenSection] = useState(null);
@@ -105,10 +107,18 @@ const Footer = ({ navigate, currentView }) => {
                                 style={{ transition: "0.3s" }}
                             />
                         </a>
-                        <div className="payment-icon-box"><i className="fa-brands fa-cc-visa" title="Visa"></i></div>
-                        <div className="payment-icon-box"><i className="fa-brands fa-cc-mastercard" title="Mastercard"></i></div>
-                        <div className="payment-icon-box"><i className="fa-brands fa-google-pay" title="Google Pay"></i></div>
-                        <div className="payment-icon-box"><i className="fa-brands fa-apple-pay" title="Apple Pay"></i></div>
+                        <div className="payment-icon-box">
+        <FontAwesomeIcon icon={faCcVisa} title="Visa" />
+    </div>
+    <div className="payment-icon-box">
+        <FontAwesomeIcon icon={faCcMastercard} title="Mastercard" />
+    </div>
+    <div className="payment-icon-box">
+        <FontAwesomeIcon icon={faGooglePay} title="Google Pay" size="2x" />
+    </div>
+    <div className="payment-icon-box">
+        <FontAwesomeIcon icon={faApplePay} title="Apple Pay" size="2x" />
+    </div>
                         <img 
                             alt="BLIK" 
                             className="payment-icon-box" 
