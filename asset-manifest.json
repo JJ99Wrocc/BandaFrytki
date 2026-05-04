@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.40297b49.css",
-    "main.js": "/static/js/main.c3697dc6.js",
+    "main.js": "/static/js/main.1f0af3c1.js",
     "static/js/453.367ff025.chunk.js": "/static/js/453.367ff025.chunk.js",
     "static/media/BandaFrytkiProduct.webp": "/static/media/BandaFrytkiProduct.f72821c797d3e5129149.webp",
     "static/media/koszulka-banda-frytki-250g-czarna-oversize.webp": "/static/media/koszulka-banda-frytki-250g-czarna-oversize.52359aa50f1acef47e62.webp",
@@ -14,11 +14,11 @@
     "index.html": "/index.html",
     "static/media/blik-logo.webp": "/static/media/blik-logo.c5e3c4421dd71c8a3f4d.webp",
     "main.40297b49.css.map": "/static/css/main.40297b49.css.map",
-    "main.c3697dc6.js.map": "/static/js/main.c3697dc6.js.map",
+    "main.1f0af3c1.js.map": "/static/js/main.1f0af3c1.js.map",
     "453.367ff025.chunk.js.map": "/static/js/453.367ff025.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.40297b49.css",
-    "static/js/main.c3697dc6.js"
+    "static/js/main.1f0af3c1.js"
   ]
 }
