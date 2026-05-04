@@ -1,4 +1,8 @@
 /* GŁÓWNA SEKCJA - Zatarte przejście na górze */
+footer{
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px; /* Rezerwuje 500px wysokości, by strona nie skakała */
+}
 .footer-section {
     position: relative;
     background: #000;
@@ -66,7 +70,8 @@
     font-size: 13px;
     color: rgba(255, 255, 255, 0.5);
     text-decoration: none;
-    transition: all 0.3s ease;
+  
+transition: transform 0.4s ease, opacity 0.4s ease, background-color 0.4s ease;
     display: inline-block;
 }
 
@@ -158,6 +163,7 @@
 
 .payment-icons img {
     animation: fadeInUp 0.6s ease forwards;
+    will-change: transform, opacity;
 }
 /* GŁÓWNY PRZYCISK - STYL PREMIUM GLASS */
 .scroll-to-top-gold {
@@ -166,7 +172,7 @@
     bottom: 40px;
     right: 40px;
     z-index: 999923415215215;
-    
+    will-change: transform, opacity;
     /* Wymiary i Flexbox */
     width: 45px;
     height: 45px;
@@ -189,7 +195,7 @@
     
     /* Cień i Animacje */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     animation: fadeInScale 0.4s ease-out forwards;
 }
 
@@ -217,7 +223,8 @@
 /* EFEKT KLIKNIĘCIA */
 .scroll-to-top-gold:active {
     transform: translateY(-2px) scale(0.92);
-    transition: all 0.1s;
+
+transition: transform 0.1s ease, opacity 0.4s ease, background-color 0.4s ease;
 }
 .footer-title{
     padding: 10px;

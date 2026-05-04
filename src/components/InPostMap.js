@@ -1,12 +1,12 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import { motion, AnimatePresence } from 'framer-motion';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import '../css/InPostMap.css';
+import { debounce } from 'lodash';
 
 // Luksusowa ikona markera
-
 const goldIcon = new L.Icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
     iconSize: [35, 50], 
@@ -23,29 +23,21 @@ const InPostMap = ({ onSelectPoint }) => {
     const [errorMsg, setErrorMsg] = useState(null);
     const mapRef = useRef(null);
     const [selectedLocker, setSelectedLocker] = useState(null);
-// Wewnątrz InPostMap.js dodaj:
 
-useEffect(() => {
-    // Sprawdzamy czy skrypt już istnieje, żeby nie dodawać go kilka razy
-    if (!window.google) {
-        const script = document.createElement('script');
-        script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCPY8BnvZykEOWAt6xRBa-t5fmJOWUTy9M&libraries=places";
-        script.async = true;
-        script.defer = true;
-        document.head.appendChild(script);
-        
-        script.onload = () => {
-            console.log("Google SDK załadowane dynamicznie");
-        };
-    }
-}, []);
-    const handleLockerSelect = (locker) => {
-        setSelectedLocker(locker); // Zapisujemy lokalnie, żeby pokazać pod mapą
-        if (onSelectPoint) {
-            onSelectPoint(locker); // Wysyłamy do rodzica (np. do formularza zamówienia)
+    // Wczytywanie Google SDK
+    useEffect(() => {
+        if (!window.google) {
+            const script = document.createElement('script');
+            script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCPY8BnvZykEOWAt6xRBa-t5fmJOWUTy9M&libraries=places";
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
+            
+            script.onload = () => {
+                console.log("Google SDK załadowane dynamicznie");
+            };
         }
-        console.log("Wybrany paczkomat dla wysyłającego:", locker.name, locker.address);
-    };
+    }, []);
 
     // Szukanie paczkomatów przez Places API
     const searchLockersNearby = useCallback((lat, lng) => {
@@ -59,7 +51,7 @@ useEffect(() => {
         const service = new window.google.maps.places.PlacesService(document.createElement('div'));
         const request = {
             location: new window.google.maps.LatLng(lat, lng),
-            radius: '4000', // Zwiększony promień do 4km
+            radius: '4000', 
             query: 'paczkomat inpost'
         };
 
@@ -81,7 +73,14 @@ useEffect(() => {
         });
     }, []);
 
-    // Szukanie adresu przez Geocoding API
+    const handleLockerSelect = (locker) => {
+        setSelectedLocker(locker);
+        if (onSelectPoint) {
+            onSelectPoint(locker);
+        }
+        console.log("Wybrany paczkomat dla wysyłającego:", locker.name, locker.address);
+    };
+
     const handleSearch = () => {
         if (!searchTerm || !window.google) return;
         
@@ -92,13 +91,11 @@ useEffect(() => {
             address: searchTerm, 
             componentRestrictions: { country: 'PL' } 
         }, (results, status) => {
-            console.log("Geocoding Status:", status);
             if (status === 'OK') {
                 const { lat, lng } = results[0].geometry.location;
                 const latNum = lat();
                 const lngNum = lng();
                 
-                // Płynny przelot kamery
                 if (mapRef.current) {
                     mapRef.current.flyTo([latNum, lngNum], 15, {
                         animate: true,
@@ -114,12 +111,15 @@ useEffect(() => {
         });
     };
 
-    // Kontroler automatycznego odświeżania przy przesuwaniu mapy ręką
+    // Prawidłowy kontroler mapy jako komponent wewnętrzny
     const MapController = () => {
         useMapEvents({
             moveend: (e) => {
                 const center = e.target.getCenter();
-                searchLockersNearby(center.lat, center.lng);
+                if (window.searchTimeout) clearTimeout(window.searchTimeout);
+                window.searchTimeout = setTimeout(() => {
+                    searchLockersNearby(center.lat, center.lng);
+                }, 500);
             }
         });
         return null;
@@ -132,7 +132,6 @@ useEffect(() => {
             className="premium-map-wrapper"
         >
             <div className="map-interface-layer">
-                {/* Panel wyszukiwania */}
                 <div className="search-container-pro">
                     <input 
                         type="text" 
@@ -147,7 +146,6 @@ useEffect(() => {
                     </button>
                 </div>
 
-                {/* Powiadomienie o błędzie */}
                 <AnimatePresence>
                     {errorMsg && (
                         <motion.div 
@@ -173,6 +171,8 @@ useEffect(() => {
                     url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
                     attribution='&copy; CartoDB'
                 />
+                
+                {/* Kontroler musi być tutaj */}
                 <MapController />
 
                 {foundLockers.map(locker => (
@@ -191,7 +191,6 @@ useEffect(() => {
                 ))}
             </MapContainer>
 
-            {/* Informacja o wybranym paczkomacie wyświetlana pod mapą */}
             <div className="selected-point-info">
                 {selectedLocker ? (
                     <>
@@ -204,7 +203,6 @@ useEffect(() => {
                 )}
             </div>
 
-            {/* Shimmer loading effect */}
             {isLoading && (
                 <div className="map-loading-overlay">
                     <div className="shimmer-text">Lokalizowanie punktów InPost...</div>
