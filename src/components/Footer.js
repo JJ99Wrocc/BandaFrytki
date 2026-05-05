@@ -51,26 +51,29 @@ const Footer = ({ navigate, currentView }) => {
                             Mapa Strony
                         </h4>
                         <ul className="footer-navigation">
-                            <li><a onClick={(e) => handleNavigateLinkClick(e, '#header-section')}>Strona Główna</a></li>
-                            <li><a onClick={(e) => handleNavigateLinkClick(e,'#product-section')}>Produkt</a></li>
-                            <li><a onClick={(e) => handleNavigateLinkClick(e, '#links-section')}>Linki</a></li>
-                            <li><a onClick={(e) => handleNavigateLinkClick(e, '#videos-section')}>Filmy</a></li>
-                        </ul>
+    {/* Dodajemy href="#id-sekcji" */}
+    <li><a href="#header-section" onClick={(e) => handleNavigateLinkClick(e, '#header-section')}>Strona Główna</a></li>
+    <li><a href="#product-section" onClick={(e) => handleNavigateLinkClick(e,'#product-section')}>Produkt</a></li>
+    <li><a href="#links-section" onClick={(e) => handleNavigateLinkClick(e, '#links-section')}>Linki</a></li>
+    <li><a href="#videos-section" onClick={(e) => handleNavigateLinkClick(e, '#videos-section')}>Filmy</a></li>
+</ul>
                     </nav>
 
                     {/* Blok: Informacje Prawne - KLUCZOWE DLA HOTPAY */}
-                    <nav className={`footer-nav-block ${openSection === 'info' ? 'is-open' : ''}`} aria-label="Informacje prawne">
-                        <h4 className="footer-title" onClick={() => toggleSection('info')} tabIndex="0" role="button">
-                            Informacje
-                        </h4>
-                        <ul className="important-info">
-                            <li><a href="/TermsAndConditions" onClick={(e) => navigate('terms', e)}>Regulamin Sklepu</a></li>
-                            <li><a href="/PrivacyPolicyandCookies" onClick={(e) => navigate('privacy', e)}>Polityka Prywatności i Cookies</a></li>
-                            <li><a href="/DeliveryAndPayment" onClick={(e) => navigate('delivery', e)}>Dostawa i Płatność</a></li>
-                            <li><a href="/ReturnsAndComplaints" onClick={(e) => navigate('returns', e)}>Zwroty i Reklamacje</a></li>
-                            <li><a href="/Rodo" onClick={(e) => navigate('rodo', e)}>Obowiązek informacyjny (RODO)</a></li>
-                        </ul>
-                    </nav>
+               {/* Blok: Informacje Prawne - KLUCZOWE DLA SEO I HOTPAY */}
+<nav className={`footer-nav-block ${openSection === 'info' ? 'is-open' : ''}`} aria-label="Informacje prawne">
+    <h4 className="footer-title" onClick={() => toggleSection('info')} tabIndex="0" role="button">
+        Informacje
+    </h4>
+    <ul className="important-info">
+        {/* Zmieniamy ścieżki na małe litery - to standard, który Google kocha */}
+        <li><a href="/regulamin" onClick={(e) => { e.preventDefault(); navigate('terms'); }}>Regulamin Sklepu</a></li>
+        <li><a href="/polityka-prywatnosci" onClick={(e) => { e.preventDefault(); navigate('privacy'); }}>Polityka Prywatności i Cookies</a></li>
+        <li><a href="/dostawa-i-platnosc" onClick={(e) => { e.preventDefault(); navigate('delivery'); }}>Dostawa i Płatność</a></li>
+        <li><a href="/zwroty-i-reklamacje" onClick={(e) => { e.preventDefault(); navigate('returns'); }}>Zwroty i Reklamacje</a></li>
+        <li><a href="/rodo" onClick={(e) => { e.preventDefault(); navigate('rodo'); }}>Obowiązek informacyjny (RODO)</a></li>
+    </ul>
+</nav>
 
                     {/* Blok: Kontakt */}
                     <div className={`footer-nav-block ${openSection === 'contact' ? 'is-open' : ''}`}>

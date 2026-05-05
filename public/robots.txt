@@ -1,3 +1,9 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Zablokuj botom dostęp do plików systemowych/technicznych (jeśli masz takie foldery)
+Disallow: /node_modules/
+Disallow: /build/
+
+# Wskaż robotom mapę strony - to bardzo przyspiesza indeksowanie nowych produktów!
+Sitemap: https://twojadomena.pl/sitemap.xml
