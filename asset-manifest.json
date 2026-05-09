@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.7d2569ee.css",
-    "main.js": "/static/js/main.8df7699b.js",
+    "main.js": "/static/js/main.470c120c.js",
     "static/css/960.02dd3349.chunk.css": "/static/css/960.02dd3349.chunk.css",
     "static/js/960.895c734d.chunk.js": "/static/js/960.895c734d.chunk.js",
     "static/css/451.e8fbf2f5.chunk.css": "/static/css/451.e8fbf2f5.chunk.css",
@@ -37,7 +37,7 @@
     "index.html": "/index.html",
     "static/media/blik-logo.webp": "/static/media/blik-logo.c5e3c4421dd71c8a3f4d.webp",
     "main.7d2569ee.css.map": "/static/css/main.7d2569ee.css.map",
-    "main.8df7699b.js.map": "/static/js/main.8df7699b.js.map",
+    "main.470c120c.js.map": "/static/js/main.470c120c.js.map",
     "960.02dd3349.chunk.css.map": "/static/css/960.02dd3349.chunk.css.map",
     "960.895c734d.chunk.js.map": "/static/js/960.895c734d.chunk.js.map",
     "451.e8fbf2f5.chunk.css.map": "/static/css/451.e8fbf2f5.chunk.css.map",
@@ -65,6 +65,6 @@
   },
   "entrypoints": [
     "static/css/main.7d2569ee.css",
-    "static/js/main.8df7699b.js"
+    "static/js/main.470c120c.js"
   ]
 }
