@@ -3,6 +3,7 @@ import './App.css';
 import MyNavbar from './components/Navbar';
 import Header from './components/Header';
 import Links from './components/Links';
+import ReactPixel from 'react-facebook-pixel';
 const Product = lazy(() => import('./components/Product'));
 const YouTubeSection = lazy(() => import('./components/YouTubeSection'));
 const OrderFinalization = lazy(() => import('./components/OrderFinalization'));
@@ -24,7 +25,19 @@ function App() {
 const [selectedSize, setSelectedSize] = useState(() => {
     return localStorage.getItem("selectedSize") || ""; 
 });
-
+useEffect(() => {
+    // Inicjalizacja Pixela
+    const options = {
+      autoConfig: true, 
+      debug: false, 
+    };
+    
+    // Wklej tutaj swoje ID: 1927475451239878
+    ReactPixel.init('1927475451239878', options);
+    
+    // To wysyła sygnał "PageView" przy każdym wejściu na stronę
+    ReactPixel.pageView();
+  }, []);
 useEffect(() => {
     localStorage.setItem("selectedSize", selectedSize);
 }, [selectedSize]);
@@ -48,7 +61,8 @@ useEffect(() => {
 const handleOrderSuccess = (totalPrice, data, orderId) => {
     setFinalPrice(totalPrice); 
     setCustomerData({ ...data, orderId: orderId }); 
-    
+    // Wewnątrz handleOrderSuccess
+ReactPixel.track('Purchase', { value: totalPrice, currency: 'PLN' });
     // ZMIEŃ TO:
     setView('payment'); 
     localStorage.setItem('savedView', 'payment');
