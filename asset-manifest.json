@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/static/css/main.7d2569ee.css",
-    "main.js": "/static/js/main.470c120c.js",
+    "main.js": "/static/js/main.8bfd8b22.js",
     "static/css/960.02dd3349.chunk.css": "/static/css/960.02dd3349.chunk.css",
-    "static/js/960.895c734d.chunk.js": "/static/js/960.895c734d.chunk.js",
+    "static/js/960.88efac81.chunk.js": "/static/js/960.88efac81.chunk.js",
     "static/css/451.e8fbf2f5.chunk.css": "/static/css/451.e8fbf2f5.chunk.css",
     "static/js/451.a8b79f2d.chunk.js": "/static/js/451.a8b79f2d.chunk.js",
     "static/css/959.58ae09ab.chunk.css": "/static/css/959.58ae09ab.chunk.css",
@@ -26,20 +26,20 @@
     "static/css/297.af50d6b6.chunk.css": "/static/css/297.af50d6b6.chunk.css",
     "static/js/297.9f6c6c9e.chunk.js": "/static/js/297.9f6c6c9e.chunk.js",
     "static/js/541.fd4bddc0.chunk.js": "/static/js/541.fd4bddc0.chunk.js",
+    "static/media/Detal1.webp": "/static/media/Detal1.9aff6b1cef714dbd9ae5.webp",
+    "static/media/Detal2.webp": "/static/media/Detal2.b87adaa4b7099b3de370.webp",
     "static/media/BandaFrytkiProduct.webp": "/static/media/BandaFrytkiProduct.f72821c797d3e5129149.webp",
-    "static/media/koszulka-banda-frytki-250g-czarna-oversize.webp": "/static/media/koszulka-banda-frytki-250g-czarna-oversize.52359aa50f1acef47e62.webp",
+    "static/media/koszulka-banda-frytki-250g-czarna-oversize.webp": "/static/media/koszulka-banda-frytki-250g-czarna-oversize.d35eaef7c941090b8c4d.webp",
     "static/media/BandaAaron.webp": "/static/media/BandaAaron.9fb7122840bd54e8b000.webp",
-    "static/media/Detal1.webp": "/static/media/Detal1.be0a8b2ef557c7b1353c.webp",
     "static/media/BandaMarcin.webp": "/static/media/BandaMarcin.e0edfeff485833b30509.webp",
-    "static/media/Detal2.webp": "/static/media/Detal2.2973dd79dcb0123b224b.webp",
     "static/media/hotpay-logo.webp": "/static/media/hotpay-logo.15a1ec354bf5153c43ab.webp",
     "static/media/BandaJJ.webp": "/static/media/BandaJJ.dec0aea11255788974f4.webp",
     "index.html": "/index.html",
     "static/media/blik-logo.webp": "/static/media/blik-logo.c5e3c4421dd71c8a3f4d.webp",
     "main.7d2569ee.css.map": "/static/css/main.7d2569ee.css.map",
-    "main.470c120c.js.map": "/static/js/main.470c120c.js.map",
+    "main.8bfd8b22.js.map": "/static/js/main.8bfd8b22.js.map",
     "960.02dd3349.chunk.css.map": "/static/css/960.02dd3349.chunk.css.map",
-    "960.895c734d.chunk.js.map": "/static/js/960.895c734d.chunk.js.map",
+    "960.88efac81.chunk.js.map": "/static/js/960.88efac81.chunk.js.map",
     "451.e8fbf2f5.chunk.css.map": "/static/css/451.e8fbf2f5.chunk.css.map",
     "451.a8b79f2d.chunk.js.map": "/static/js/451.a8b79f2d.chunk.js.map",
     "959.58ae09ab.chunk.css.map": "/static/css/959.58ae09ab.chunk.css.map",
@@ -65,6 +65,6 @@
   },
   "entrypoints": [
     "static/css/main.7d2569ee.css",
-    "static/js/main.470c120c.js"
+    "static/js/main.8bfd8b22.js"
   ]
 }
