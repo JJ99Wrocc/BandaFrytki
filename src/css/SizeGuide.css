@@ -1,0 +1,72 @@
+/* Nakładka na całe tło */
+.size-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+/* Okienko z tabelą */
+.size-modal-content {
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  color: white;
+  border: 1px solid #333;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.size-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.size-table th {
+  background: #333;
+  padding: 10px;
+}
+
+.size-table td {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+}
+
+.size-note, .producer-disclaimer {
+  font-size: 12px;
+  color: #888;
+}
+
+
+
+@media (max-width: 600px) {
+  .size-modal-content {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .size-table th, .size-table td {
+    padding: 8px;
+  }
+}

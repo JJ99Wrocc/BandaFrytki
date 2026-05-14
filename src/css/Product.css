@@ -237,20 +237,31 @@
     -webkit-text-stroke: 1px #FFD700;
     letter-spacing: 2px;
 }
-/* Subtitle - Kontrastowy i neonowy (Frytkowy Żółty!) */
-.drop-subtitle {
-  font-family: 'Roboto Mono', monospace; /* Techniczny, maszynowy font */
+.drop-subtitle,.drop-subtitle-1{
+font-family: 'Roboto Mono', monospace; /* Techniczny, maszynowy font */
   font-size: 12px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #FFD700; /* Mocny, "frytkowy" złoty/żółty */
   background: rgba(255, 215, 0, 0.1); /* Delikatna poświata */
   display: inline-block;
   padding: 8px 15px;
   margin-top: 20px;
-  border: 1px solid #FFD700;
   /* Animacja "Pulse" - żeby tekst żył */
+}
+.drop-subtitle {
+  border: 1px solid #FFD700;
   animation: pulse 2s infinite;
+  color: #FFD700; /* Mocny, "frytkowy" złoty/żółty */
+  margin-bottom: 20px !important;
+}
+.drop-subtitle-1 {
+  animation: pulse2 2s infinite;
+  
+  border: 1px solid #fa3200;
+  color: #f94315; /* Mocny, "frytkowy" złoty/żółty */
+   font-weight: bold;
+  margin-top: 0px;
+
 }
 
 
@@ -602,6 +613,11 @@ font-size: 12px;
 @keyframes pulse {
   0% { opacity: 0.8; }
   50% { opacity: 1; text-shadow: 0 0 10px #FFD700; }
+  100% { opacity: 0.8; }
+}
+@keyframes pulse2 {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; text-shadow: 0 0 10px #ff4800; }
   100% { opacity: 0.8; }
 }
 @keyframes photoEntry {

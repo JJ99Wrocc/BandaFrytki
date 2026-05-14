@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../css/Product.css';
-
+import SizeGuide from './SizeGuide';
 // Importy zdjęć - upewnij się, że ścieżki są poprawne w Twoim folderze src/photo
 import KoszulkaFront from '../photo/koszulka-banda-frytki-250g-czarna-oversize.webp';
 import Detal1 from '../photo/Detal1.webp';
@@ -11,11 +11,11 @@ import { Helmet} from 'react-helmet-async';
 function Product({ onBuyNow, shake, setShake, navigate, currentView,price }) {
     const [selectedSize, setSelectedSize] = useState(null);
     const [termsAccepted, setTermsAccepted] = useState(false);
-    
+    const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
     const ProductImages = [KoszulkaFront, Detal1, Detal2, Detal3];
     const [mainImage, setMainImage] = useState(ProductImages[0]);
     const [zoomStyle, setZoomStyle] = useState({ display: 'none' });
-
+    
     const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
     const productSchema = {
         "@context": "https://schema.org/",
@@ -37,6 +37,11 @@ function Product({ onBuyNow, shake, setShake, navigate, currentView,price }) {
     };
     // LOGIKA LUPY (Magnifier)
     const handleMouseMove = (e) => {
+        if (window.innerWidth < 992) {
+        setZoomStyle({ display: 'none' });
+        return;
+    }
+        
         const rect = e.currentTarget.getBoundingClientRect();
         const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
         const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
@@ -89,7 +94,8 @@ function Product({ onBuyNow, shake, setShake, navigate, currentView,price }) {
             </Helmet>
             <div className="product-container">
                 <h1 id="product-heading">DESIGN 01/ 2026</h1>
-                <p className="drop-subtitle" role="status">NAKŁAD WYCZERPYWALNY</p>
+                <p className="drop-subtitle" role="status">NAKŁAD MOCNO LIMITOWANY</p>
+                <p className="drop-subtitle-1" role="status">NIE KAŻDY MOŻE JĄ NOSIĆ!</p>
 
                 <div className="product-wrapper">
                     {/* LEWA STRONA - ZDJĘCIA */}
@@ -151,7 +157,9 @@ function Product({ onBuyNow, shake, setShake, navigate, currentView,price }) {
                                 <span id="size-label" style={{ color: shake && !selectedSize ? '#ff4d4d' : 'inherit' }}>
                                     Wybierz rozmiar:
                                 </span>
-                                <button className="size-guide-btn">Tabela rozmiarów</button>
+                                <button className="size-guide-btn"
+                                onClick={() => setIsSizeGuideOpen(true)}
+                                >Tabela rozmiarów</button>
                             </div>
                             <div className="size-grid" role="group" aria-labelledby="size-label">
                                 {sizes.map((size) => (
@@ -204,6 +212,10 @@ function Product({ onBuyNow, shake, setShake, navigate, currentView,price }) {
                     </div>
                 </div>
             </div>
+            <SizeGuide 
+                isOpen={isSizeGuideOpen} 
+                onClose={() => setIsSizeGuideOpen(false)} 
+            />
         </section>
     );
 }
