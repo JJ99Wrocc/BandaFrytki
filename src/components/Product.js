@@ -5,13 +5,14 @@ import '../css/Product.css';
 import KoszulkaFront from '../photo/koszulka-banda-frytki-250g-czarna-oversize.webp';
 import Detal1 from '../photo/Detal1.webp';
 import Detal2 from '../photo/Detal2.webp';
+import Detal3 from '../photo/Detal3.webp';
 import { Helmet} from 'react-helmet-async';
 
 function Product({ onBuyNow, shake, setShake, navigate, currentView,price }) {
     const [selectedSize, setSelectedSize] = useState(null);
     const [termsAccepted, setTermsAccepted] = useState(false);
     
-    const ProductImages = [KoszulkaFront, Detal1, Detal2];
+    const ProductImages = [KoszulkaFront, Detal1, Detal2, Detal3];
     const [mainImage, setMainImage] = useState(ProductImages[0]);
     const [zoomStyle, setZoomStyle] = useState({ display: 'none' });
 

@@ -116,28 +116,35 @@ const handleVideoEnd = (id) => {
               </video>
             )}
 
-            {/* 2. GŁÓWNE WIDEO */}
-            <video 
-              ref={el => videoRefs.current[video.id] = el}
-              autoPlay 
-              muted={activeVideoId === video.id ? !isUnmuted : true}// Zawsze true na starcie dla przeglądarki
-              loop={window.innerWidth >= 576}  
-              playsInline 
-              className="header-video-item"
-              onLoadedMetadata={(e) => {
-                // Na starcie ustawiamy 0.5, chyba że to aktywny i odciszony na mobile
-                if (window.innerWidth < 576) {
-                  e.target.playbackRate = (activeVideoId === video.id && isUnmuted) ? 1.0 : 0.5;
-                } else {
-                  e.target.playbackRate = activeVideoId === video.id ? 1.0 : 0.5;
-                }
-              }} 
-              onEnded={() => handleVideoEnd(video.id)}
-            >
-              <source src={`${process.env.PUBLIC_URL}/videos/${video.src}`} type="video/webm" />
-              <source src={`${process.env.PUBLIC_URL}/videos/${video.src}`} type="video/mp4" />
+          
+      
+<video 
+  ref={el => videoRefs.current[video.id] = el}
+  autoPlay 
+  muted={activeVideoId === video.id ? !isUnmuted : true}
+  loop={window.innerWidth >= 576}  
+  playsInline 
+  
+  // KLUCZ DO WYDAJNOŚCI:
+  // Na mobile ładujemy tylko film nr 1. Reszta dostaje "none", póki nie klikniesz.
+  preload={window.innerWidth < 576 && video.id !== 1 ? "none" : "metadata"}
+  
+  // Dodajemy poster, o którym pisałem wyżej:
+  poster={`${process.env.PUBLIC_URL}/posters/poster${video.id}.webp`}
+  
+  // Mówimy przeglądarce, że film nr 1 to priorytet życiowy:
+  {...(video.id === 1 ? { fetchpriority: "high" } : {})}
 
-            </video>
+  className="header-video-item"
+  onLoadedMetadata={(e) => {
+    e.target.playbackRate = (activeVideoId === video.id && isUnmuted) ? 1.0 : 0.5;
+  }} 
+  onEnded={() => handleVideoEnd(video.id)}
+>
+  <source src={`${process.env.PUBLIC_URL}/videos/${video.src}`} type="video/mp4" />
+         <source src={`${process.env.PUBLIC_URL}/videos/${video.src}`} type="video/webm" />
+</video>
+
 
             {/* PRZYCISK UNMUTE */}
             {/* Na Desktopie: pokazuj zawsze gdy nieaktywny */}

@@ -53,16 +53,21 @@ const finalizujZamowienieWBazie = async () => {
 useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get('status') === 'success') {
-        // Dopiero tutaj robisz fetch do bazy i wysyłasz maila!
-        // Dane klienta masz w stanie customerData (o ile nie odświeżył strony ręcznie)
+window.history.replaceState({}, document.title, "/order-success");
         finalizujZamowienieWBazie();
     }
 }, []);
 const handleOrderSuccess = (totalPrice, data, orderId) => {
+    ReactPixel.track('Purchase', { 
+        value: totalPrice, 
+        currency: 'PLN',
+        content_name: 'Banda Frytki Tee',
+        order_id: orderId 
+    });
     setFinalPrice(totalPrice); 
     setCustomerData({ ...data, orderId: orderId }); 
     // Wewnątrz handleOrderSuccess
-ReactPixel.track('Purchase', { value: totalPrice, currency: 'PLN' });
+
     // ZMIEŃ TO:
     setView('payment'); 
     localStorage.setItem('savedView', 'payment');
@@ -78,6 +83,12 @@ const triggerGlobalShake = () => {
     localStorage.setItem('savedView', 'checkout');
     // Przewiń na górę strony przy zmianie widoku
     window.scrollTo(0, 0);
+    ReactPixel.track('InitiateCheckout', {
+        content_category: 'T-Shirt',
+        content_ids: ['frytki_01'],
+        value: price,
+        currency: 'PLN'
+    });
   };
  const goBackToShop = () => {
     setView('shop'); // Zmieniamy z 'kupa' na 'shop'
