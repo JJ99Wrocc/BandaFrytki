@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/static/css/main.7d2569ee.css",
-    "main.js": "/static/js/main.2a432314.js",
-    "static/css/683.d7728085.chunk.css": "/static/css/683.d7728085.chunk.css",
-    "static/js/683.353a14cf.chunk.js": "/static/js/683.353a14cf.chunk.js",
+    "main.js": "/static/js/main.ec609a3c.js",
+    "static/css/590.adbd0cdc.chunk.css": "/static/css/590.adbd0cdc.chunk.css",
+    "static/js/590.0ce907fa.chunk.js": "/static/js/590.0ce907fa.chunk.js",
     "static/css/451.e8fbf2f5.chunk.css": "/static/css/451.e8fbf2f5.chunk.css",
     "static/js/451.a8b79f2d.chunk.js": "/static/js/451.a8b79f2d.chunk.js",
     "static/css/959.58ae09ab.chunk.css": "/static/css/959.58ae09ab.chunk.css",
@@ -30,7 +30,7 @@
     "static/media/BandaFrytkiProduct.webp": "/static/media/BandaFrytkiProduct.f72821c797d3e5129149.webp",
     "static/media/Detal2.webp": "/static/media/Detal2.ace6615d36da4e3b8e9c.webp",
     "static/media/koszulka-banda-frytki-250g-czarna-oversize.webp": "/static/media/koszulka-banda-frytki-250g-czarna-oversize.d35eaef7c941090b8c4d.webp",
-    "static/media/Detal1.webp": "/static/media/Detal1.6f45b14bb5b6dfd1978f.webp",
+    "static/media/Detal1.webp": "/static/media/Detal1.336ae12a4d644b5c1afa.webp",
     "static/media/BandaAaron.webp": "/static/media/BandaAaron.9fb7122840bd54e8b000.webp",
     "static/media/BandaMarcin.webp": "/static/media/BandaMarcin.e0edfeff485833b30509.webp",
     "static/media/hotpay-logo.webp": "/static/media/hotpay-logo.15a1ec354bf5153c43ab.webp",
@@ -38,9 +38,9 @@
     "index.html": "/index.html",
     "static/media/blik-logo.webp": "/static/media/blik-logo.c5e3c4421dd71c8a3f4d.webp",
     "main.7d2569ee.css.map": "/static/css/main.7d2569ee.css.map",
-    "main.2a432314.js.map": "/static/js/main.2a432314.js.map",
-    "683.d7728085.chunk.css.map": "/static/css/683.d7728085.chunk.css.map",
-    "683.353a14cf.chunk.js.map": "/static/js/683.353a14cf.chunk.js.map",
+    "main.ec609a3c.js.map": "/static/js/main.ec609a3c.js.map",
+    "590.adbd0cdc.chunk.css.map": "/static/css/590.adbd0cdc.chunk.css.map",
+    "590.0ce907fa.chunk.js.map": "/static/js/590.0ce907fa.chunk.js.map",
     "451.e8fbf2f5.chunk.css.map": "/static/css/451.e8fbf2f5.chunk.css.map",
     "451.a8b79f2d.chunk.js.map": "/static/js/451.a8b79f2d.chunk.js.map",
     "959.58ae09ab.chunk.css.map": "/static/css/959.58ae09ab.chunk.css.map",
@@ -66,6 +66,6 @@
   },
   "entrypoints": [
     "static/css/main.7d2569ee.css",
-    "static/js/main.2a432314.js"
+    "static/js/main.ec609a3c.js"
   ]
 }
