@@ -22,7 +22,7 @@ function Product({ onBuyNow, shake, setShake, navigate, currentView,price }) {
         "@type": "Product",
         "name": "BANDA FRYTKI TEE",
         "image": "https://bandafrytki.pl/static/media/koszulka-banda-frytki-250g-czarna-oversize.webp", // Podaj pełny adres
-        "description": "Koszulka premium 250g, mięsista bawełna, krój oversize, trwały haft.",
+        "description": "Koszulka premium 250g/m², mięsista bawełna, krój oversize, trwały haft.",
         "brand": {
             "@type": "Brand",
             "name": "Banda Frytki"
@@ -31,7 +31,7 @@ function Product({ onBuyNow, shake, setShake, navigate, currentView,price }) {
             "@type": "Offer",
             "url": "https://bandafrytki.pl",
             "priceCurrency": "PLN",
-            "price": "85.00",
+            "price": "99.00",
             "availability": "https://schema.org/InStock"
         }
     };

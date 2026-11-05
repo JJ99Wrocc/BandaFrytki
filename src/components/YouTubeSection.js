@@ -11,7 +11,7 @@ const YouTubeSection = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const API_KEY = "AIzaSyA8sRkD5Jt45fZV2RTWDEfRzrxuhRQZymA";
-    const CHANNEL_ID = "UCOm0Nx84UmCnB6mMFv-rl9A"; 
+    const CHANNEL_ID = "UCd92-dthvEzGu4kqkfL8DqA"; 
 
     useEffect(() => {
         const fetchLatestContent = async () => {
