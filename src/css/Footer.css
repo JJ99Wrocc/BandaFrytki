@@ -391,17 +391,13 @@ transition: transform 0.1s ease, opacity 0.4s ease, background-color 0.4s ease;
         font-size: 8.5px;
     }
 
-    .payment-methods-wrapper{
-        margin-bottom: 20px;
-    }
+   
   
     .footer-title{
         font-size: 11px !important ;
     }
   
-    .footer-company-info,.copyright{
-        font-size: 9px !important;
-    }
+   
     .important-info a, .footer-navigation a, .contact-list a {
         font-size: 10px;
     }
