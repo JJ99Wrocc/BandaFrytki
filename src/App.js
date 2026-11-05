@@ -97,7 +97,7 @@ const triggerGlobalShake = () => {
     window.history.pushState({}, '', '/'); 
     window.scrollTo(0, 0);
 };
-const price = 85; 
+const price = 99.99; 
 const navigateTo = (viewName, e) => {
     if (e) e.preventDefault(); 
 

@@ -159,7 +159,7 @@ const Footer = ({ navigate, currentView }) => {
     </p>
 
     <p>
-        Cena <strong>85 PLN</strong> za produkt tej klasy to okazja, której nie znajdziesz w sieciówkach. <strong>Sklep internetowy Banda Frytki</strong> oferuje nie tylko wysyłkę (<strong>dostawa już od 11.49 PLN</strong>), ale także unikalną opcję: <strong>odbiór osobisty we Wrocławiu</strong>. Jesteśmy lokalną ekipą, więc jeśli mieszkasz we Wrocławiu, napisz do nas na IG i odbierz swój drop osobiście!
+        Cena <strong>99.99 PLN</strong> za produkt tej klasy to okazja, której nie znajdziesz w sieciówkach. <strong>Sklep internetowy Banda Frytki</strong> oferuje nie tylko wysyłkę (<strong>dostawa już od 11.49 PLN</strong>), ale także unikalną opcję: <strong>odbiór osobisty we Wrocławiu</strong>. Jesteśmy lokalną ekipą, więc jeśli mieszkasz we Wrocławiu, napisz do nas na IG i odbierz swój drop osobiście!
     </p>
 
     <p>

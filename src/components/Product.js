@@ -87,7 +87,7 @@ function Product({ onBuyNow, shake, setShake, navigate, currentView,price }) {
         <section className="product" id="product-section" aria-labelledby="product-heading">
             <Helmet>
                 <title>Banda Frytki Tee - Koszulka 250g Premium Streetwear</title>
-                <meta name="description" content="Kup koszulkę BANDA FRYTKI TEE. Gramatura 250g, mięsista bawełna i trwały haft. Streetwear z Wrocławia za 85 PLN. Sprawdź nasz drop!" />
+                <meta name="description" content="Kup koszulkę BANDA FRYTKI TEE. Gramatura 250g, mięsista bawełna i trwały haft. Streetwear z Wrocławia za 99.99 PLN. Sprawdź nasz drop!" />
                 <script type="application/ld+json">
                     {JSON.stringify(productSchema)}
                 </script>
