@@ -34,7 +34,7 @@ console.log("Saving order for email:", data.email);
             productName: "BANDA FRYTKI TEE",
             size: data.size,
             quantity: 1,
-            price: 85,
+            price: 99.99,
             name: data.name,
             email: data.email,
             address: data.address,
